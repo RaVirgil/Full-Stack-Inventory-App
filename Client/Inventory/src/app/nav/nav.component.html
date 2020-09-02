@@ -1,0 +1,34 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav
+    #drawer
+    class="sidenav mat-elevation-z8"
+    fixedInViewport
+    [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+    [mode]="(isHandset$ | async) ? 'over' : 'side'"
+    [opened]="(isHandset$ | async) === false"
+  >
+    <mat-nav-list class="nav-list">
+      <a mat-list-item href="/inventory" class="nav-list-item">
+        <mat-icon>storefront</mat-icon>
+        <div>Inventory</div>
+      </a>
+
+      <a mat-list-item href="/scan" class="nav-list-item">
+        <mat-icon>qr_code_scanner</mat-icon>
+        <div>Scan</div>
+      </a>
+
+      <a mat-list-item href="/add-item" class="nav-list-item">
+        <mat-icon>add</mat-icon>
+        <div>Add Item</div>
+      </a>
+
+      <a mat-list-item href="/contact" class="nav-list-item">
+        <mat-icon>contact_page</mat-icon>
+        <div>Contact</div>
+      </a>
+    </mat-nav-list>
+  </mat-sidenav>
+  
+  <router-outlet ></router-outlet>
+</mat-sidenav-container>

@@ -1,0 +1,16 @@
+.form-div{
+    font-size: large;
+    color: #def2f1;
+    margin-bottom: 20px;
+    display: grid;
+    grid-template-columns: 140px 200px;
+    grid-template-areas: "theText theInput";
+}
+
+.form-div label{
+    grid-area: theText;
+}
+
+.form-div input{
+    grid-area: theInput;
+}

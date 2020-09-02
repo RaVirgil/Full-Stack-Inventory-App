@@ -1,0 +1,65 @@
+<!--
+<h1>Add Inventory Item</h1>
+<form [formGroup]="addItemForm" (ngSubmit)="onSubmit()">
+  <div class="form-div">
+    <label>Item Name </label>
+    <input type="text" formControlName="name" />
+  </div>
+
+  <div class="form-div">
+    <label>User </label>
+    <input type="text" formControlName="user" />
+  </div>
+
+  <div class="form-div">
+    <label>Description </label>
+    <textarea formControlName="description"></textarea>
+  </div>
+
+  <div class="form-div">
+    <label>Location </label>
+    <input type="text" formControlName="location" />
+  </div>
+
+  <div class="form-div">
+    <label>Inventory Item </label>
+    <input type="number" formControlName="inventoryNumber" />
+  </div>
+
+  <div class="form-div">
+    <label>Created at </label>
+    <input type="date" formControlName="createdAt" />
+  </div>
+
+  <button type="submit" [disabled]="!addItemForm.valid">Submit</button>
+
+  <p>Form value: {{ addItemForm.value | json }}</p>
+  <p>Form validated: {{addItemForm.valid}}</p>
+</form>
+-->
+
+<form [formGroup]="addItemForm" (ngSubmit)="onSubmit()">
+  <p>
+    <mat-form-field appearance="outline">
+      <mat-label>User Name</mat-label>
+      <input
+        matInput
+        type="text"
+        formControlName="user"
+        placeholder="User Name"
+      />
+      <mat-error *ngIf="hasError('user', 'required')"
+        >User Name Required</mat-error
+      >
+    </mat-form-field>
+  </p>
+
+  
+
+ 
+  <button mat-raised-button type="submit" [disabled]="!addItemForm.valid">
+    Submit
+  </button>
+  <p>Form value: {{ addItemForm.value | json }}</p>
+  <p>Form validated: {{ addItemForm.valid }}</p>
+</form>
