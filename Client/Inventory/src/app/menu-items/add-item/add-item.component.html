@@ -1,4 +1,4 @@
-<!--
+
 <h1>Add Inventory Item</h1>
 <form [formGroup]="addItemForm" (ngSubmit)="onSubmit()">
   <div class="form-div">
@@ -31,13 +31,13 @@
     <input type="date" formControlName="createdAt" />
   </div>
 
-  <button type="submit" [disabled]="!addItemForm.valid">Submit</button>
+  <button type="submit" [disabled]="!addItemForm.valid" >Submit</button>
 
   <p>Form value: {{ addItemForm.value | json }}</p>
   <p>Form validated: {{addItemForm.valid}}</p>
 </form>
--->
 
+<!--
 <form [formGroup]="addItemForm" (ngSubmit)="onSubmit()">
   <p>
     <mat-form-field appearance="outline">
@@ -63,3 +63,4 @@
   <p>Form value: {{ addItemForm.value | json }}</p>
   <p>Form validated: {{ addItemForm.valid }}</p>
 </form>
+-->

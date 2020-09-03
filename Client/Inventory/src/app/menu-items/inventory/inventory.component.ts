@@ -1,7 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
-import { InventoryListMockService } from '../../app-logic/inventory-list-mock.service';
 import { InventoryService } from '../../app-logic/inventory-service.service';
 import { InventoryItem } from '../../app-logic/inventory-item';
 import { MatSort } from '@angular/material/sort';
@@ -37,8 +36,7 @@ export class InventoryComponent implements OnInit {
     'action',
   ];
 
-  constructor(
-    private inventoryListMockService: InventoryListMockService,
+  constructor(   
     private inventoryService: InventoryService,
     public dialog: MatDialog
   ) {}
@@ -129,7 +127,7 @@ export class InventoryComponent implements OnInit {
     this.inventoryService
       .updateItem(temp)
       .pipe(
-        finalize(() => {
+        finalize(() => {  
           this.isLoading = false;
         })
       )

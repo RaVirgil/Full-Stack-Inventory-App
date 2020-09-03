@@ -24,4 +24,9 @@ export class InventoryService {
     deleteItem(id:String){
         return this.http.delete<InventoryItem[]>('/api/inventory-items/'+id);
     }
+
+    addItem(item:InventoryItem){        
+        return this.http.post<InventoryItem[]>('/api/inventory-items',item);
+    }
+
 }

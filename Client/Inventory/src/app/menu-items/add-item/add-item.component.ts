@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { InventoryItem } from '../../app-logic/inventory-item';
-import { InventoryListMockService } from '../../app-logic/inventory-list-mock.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { InventoryService } from '../../app-logic/inventory-service.service';
+import { finalize } from 'rxjs/operators';
 
 @Component({
   selector: 'app-add-item',
@@ -12,20 +13,19 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class AddItemComponent implements OnInit {
   addItemForm: FormGroup;
   item: InventoryItem;
-  itemId: number;
+  itemId: number; 
   constructor(
-    private fb: FormBuilder,
-    private inventoryListMockServie: InventoryListMockService,
+    private fb: FormBuilder,    
+    private inventoryService: InventoryService,
     private route: Router,
     private activatedRoute: ActivatedRoute
   ) {
-    this.activatedRoute.params.subscribe(params =>{
-      this.itemId = params['id'] ? params['id']: 0;
+    this.activatedRoute.params.subscribe((params) => {
+      this.itemId = params['id'] ? params['id'] : 0;
     });
   }
 
   ngOnInit(): void {
-
     this.addItemForm = this.fb.group({
       name: ['', Validators.required],
       description: ['', Validators.maxLength(100)],
@@ -36,16 +36,18 @@ export class AddItemComponent implements OnInit {
     });
   }
 
-  onSubmit() {
+  onSubmit() {   
     this.item = new InventoryItem(this.addItemForm.value);
     this.item.modifiedAt = new Date();
-    this.item.deleted = false;
-    this.item.id = this.inventoryListMockServie.getLastId() + 1;
-    this.inventoryListMockServie.addData(this.item);
-    this.route.navigate(['/inventory']);
+    this.item.deleted = false;   
+    
+    this.inventoryService.addItem(this.item).subscribe(()=>{      
+     this.route.navigate(['/inventory'])
+    });
+    
   }
 
-  hasError(controlName:string, errorName: string){
+  hasError(controlName: string, errorName: string) {
     return this.addItemForm.controls[controlName].hasError(errorName);
   }
 }

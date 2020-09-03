@@ -12,6 +12,7 @@ function setInventoryItemRoute(router: Router): Router {
   router.post("/", postInventoryItem);
   router.put("/", putInventoryItem);
   router.delete("/:id", removeInventoryItem);  
+  
   return router;
 }
 
@@ -95,7 +96,7 @@ async function postInventoryItem(
     return next(Error("EntityManager not available"));
 
   let inventoryItem: Error | InventoryItem;
-  try {
+  try {    
     inventoryItem = await inventoryItemService.addInventoryItem(
       req.em,
       req.body
