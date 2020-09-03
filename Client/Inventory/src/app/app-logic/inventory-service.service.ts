@@ -10,12 +10,35 @@ import { tap, map, delay } from 'rxjs/operators';
 export class InventoryService {
     constructor(private http: HttpClient) {}
 
-    getData() {
+    getAllData() {
         return this.http.get<InventoryItem[]>('/api/inventory-items')
         .pipe(
-            delay(1000)
+            
         );
     }
+
+    getData(pageNumber = 1, pageSize = 5, activeOnly = false, sorting = ''): Observable<[InventoryItem[], number]> {
+        let params = new HttpParams()
+          .set('activeOnly', activeOnly ? 'true' : 'false')
+          .set('pageNumber', pageNumber.toString())
+          .set('pageSize', pageSize.toString())
+        if (sorting) params = params.set('sort', sorting);
+    
+        return this.http
+          .get<InventoryItem[]>('/api/inventory-items', {
+            params: params,
+            observe: 'response'
+          })
+          .pipe(
+            tap((resp) => {
+              console.log('Inventory items fetched', resp.body);
+            }),
+            map((resp) => {
+              return [resp.body, parseInt(resp.headers.get('X-Count'))];
+            })
+          );
+      }
+    
 
     updateItem(item:InventoryItem){
         return this.http.put<InventoryItem[]>('/api/inventory-items',item)

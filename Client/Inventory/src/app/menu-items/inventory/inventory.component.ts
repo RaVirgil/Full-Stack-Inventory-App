@@ -7,8 +7,8 @@ import { MatSort } from '@angular/material/sort';
 import { MatDialog } from '@angular/material/dialog';
 import { SelectionModel } from '@angular/cdk/collections';
 import { DialogBoxComponent } from '../../dialog-box/dialog-box.component';
-import { finalize, tap } from 'rxjs/operators';
-import { merge } from 'rxjs';
+import { finalize, tap, switchMap } from 'rxjs/operators';
+import { merge, BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'app-inventory',
@@ -20,8 +20,10 @@ export class InventoryComponent implements OnInit {
   @ViewChild(MatSort, { static: true }) sort: MatSort;
 
   isLoading: boolean;
-  selection = new SelectionModel<Element>(true, []);
-  inventoryItems: any;
+  selection = new SelectionModel<InventoryItem>(true, []);
+  inventoryItems: InventoryItem[];
+  activeOnly$=new BehaviorSubject(true);
+  itemsCount=0;
   inventoryColumns: string[] = [
     'select',
     'id',
@@ -41,55 +43,65 @@ export class InventoryComponent implements OnInit {
     public dialog: MatDialog
   ) {}
 
-  ngOnInit(): void {
-    this.isLoading = true;
-    this.inventoryService
-      .getData()
-      .pipe(
-        finalize(() => {
-          this.isLoading = false;
-        })
-      )
-      .subscribe((data) => {
-        this.inventoryItems = data;
-      });
+    get activeOnly(): boolean{
+      return this.activeOnly$.value;
+    }
+    set activeOnly(v: boolean){
+      this.activeOnly$.next(v);
+    }
 
-    merge(this.paginator.page, this.sort.sortChange)
+  ngOnInit(): void {       
+
+    merge(this.paginator.page, this.sort.sortChange, this.activeOnly$)
+    .subscribe(()=>{
+      this.paginator.pageIndex=0;
+    })
+
+    merge(this.paginator.page, this.sort.sortChange, this.activeOnly$)
+    .subscribe(()=>{
+      this.selection.clear(); 
+    })
+
+    merge(this.paginator.page, this.sort.sortChange, this.activeOnly$)
       .pipe(
-        tap(() => {
+        switchMap(() => {
           this.isLoading = true;
-          this.inventoryService
-            .getData()
-            .pipe(
-              finalize(() => {
-                this.isLoading = false;
-              })
+          return this.inventoryService
+            .getData(
+              this.paginator.pageIndex + 1,
+              this.paginator.pageSize,
+              this.activeOnly,
+              this.sort.active
+                ? `${this.sort.active}_${this.sort.direction ? this.sort.direction : 'asc'}`
+                : ''
             )
-            .subscribe(
-              (data) => {
-                this.inventoryItems = data;
-              },
-              (error) => {
-                console.log('Table could not be filled with data', error);
-              }
-            );
         })
       )
-      .subscribe();
+      .subscribe(
+        (data) => {
+          this.inventoryItems = data[0];
+          this.itemsCount = data[1];
+          this.isLoading = false;
+        },
+        (error) => {
+          console.log('Table could not be filled with data', error);
+          this.isLoading = false;
+        }
+      );
   }
 
   masterToggle() {
     console.log(this.inventoryItems);
     this.isAllItemsSelected()
       ? this.selection.clear()
-      : this.inventoryItems.data.forEach((row) => {
+      : this.inventoryItems.forEach((row) => {
           this.selection.select(row);
         });
   }
 
   isAllItemsSelected() {
     const selectedItems = this.selection.selected.length;
-    const numOfRows = this.inventoryItems.data.length;
+    const numOfRows = this.inventoryItems.length;
     return selectedItems === numOfRows;
   }
 
@@ -136,7 +148,7 @@ export class InventoryComponent implements OnInit {
       });
 
       this.inventoryService
-      .getData()
+      .getAllData()
       .pipe(
         finalize(() => {
           this.isLoading = false;
@@ -161,7 +173,7 @@ export class InventoryComponent implements OnInit {
       });
 
       this.inventoryService
-      .getData()
+      .getAllData()
       .pipe(
         finalize(() => {
           this.isLoading = false;
@@ -170,5 +182,32 @@ export class InventoryComponent implements OnInit {
       .subscribe((data) => {
         this.inventoryItems = data;
       });
+  }
+
+  private fetchData() {
+    this.isLoading = true;
+    this.inventoryService
+      .getData(
+        this.paginator.pageIndex + 1,
+        this.paginator.pageSize,
+        this.activeOnly,
+        this.sort.active
+          ? `${this.sort.active}_${this.sort.direction ? this.sort.direction : 'asc'}`
+          : ''
+      )
+      .pipe(
+        finalize(() => {
+          this.isLoading = false;
+        })
+      )
+      .subscribe(
+        (data) => {
+          this.inventoryItems = data[0];
+          this.itemsCount = data[1];
+        },
+        (error) => {
+          console.log('Table could not be filled with data', error);
+        }
+      );
   }
 }

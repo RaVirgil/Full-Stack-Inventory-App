@@ -1,5 +1,5 @@
 import { InventoryItem } from "../entities/inventory-item.entity";
-import { EntityManager, wrap } from "mikro-orm";
+import { EntityManager, wrap, QueryOrder, QueryOrderMap } from "mikro-orm";
 
 export {
     getInventoryItems ,
@@ -10,36 +10,57 @@ export {
     countInventoryItems
 };
 
-async function countInventoryItems(em: EntityManager) {
+async function countInventoryItems(em: EntityManager, activeOnly = false) {
     if (!(em instanceof EntityManager)) return Error("invalid request");
-
+  
     try {
-        const count = await em.count(InventoryItem, {});
-        return count;
+      const count = await em.count(
+        InventoryItem,
+        activeOnly ? { active: true } : {}
+      );
+      return count;
     } catch (ex) {
-        return ex;
+      return ex;
     }
-}
+  }
 
 async function getInventoryItems(
     em: EntityManager,
     page: number,
     limit: number,
+    sort = "",
     activeOnly = false
-): Promise<Error | InventoryItem[]> {
+  ): Promise<Error | InventoryItem[]> {
     if (!(em instanceof EntityManager)) return Error("invalid request");
-
-    try {
-        const items = await em.find(
-            InventoryItem,
-            activeOnly ? {} : { active: true },
-            { limit: limit, offset: (page - 1) * limit }
-        );
-        return items;
-    } catch (ex) {
-        return ex;
+  
+    let sorting: QueryOrderMap = {};
+    if (sort) {
+      const sortParams = sort.split("_");
+      const column = sortParams[0];
+      const order = sortParams[1];
+      if (column && order) {
+        sorting[column] = order === "desc" ? QueryOrder.DESC : QueryOrder.ASC;
+      } else {
+        return Error("invalid params");
+      }
     }
-}
+  
+    try {
+      const items = await em.find(
+        InventoryItem,
+        activeOnly ? { active: true } : { },
+        {
+          orderBy: sorting,
+          limit: limit,
+          offset: (page - 1) * limit,
+        }
+      );
+      await new Promise((resolve) => setTimeout(resolve, 500));
+      return items;
+    } catch (ex) {
+      return ex;
+    }
+  }
 
 async function getInventoryItem(
     em: EntityManager,

@@ -7,7 +7,7 @@ import * as inventoryItemService from "../services/inventory-item.service";
 export { setInventoryItemRoute };
 
 function setInventoryItemRoute(router: Router): Router {
-  router.get("/", getAllInventoryItems);
+  router.get("/", getInventoryItems);
   router.get("/:id", getInventoryItem);
   router.post("/", postInventoryItem);
   router.put("/", putInventoryItem);
@@ -16,7 +16,7 @@ function setInventoryItemRoute(router: Router): Router {
   return router;
 }
 
-async function getAllInventoryItems(
+async function getInventoryItems(
   req: IExpressRequest,
   res: Response,
   next: NextFunction
@@ -30,11 +30,13 @@ async function getAllInventoryItems(
   let page = req.query.pageNumber
     ? parseInt(req.query.pageNumber.toString())
     : 1;
-  let limit = req.query.pageSize ? parseInt(req.query.pageSize.toString()) : 100;
+  
+  let limit = req.query.pageSize ? parseInt(req.query.pageSize.toString()) : 5;
+
   try {
     [inventoryItems, count] = await Promise.all([
-      inventoryItemService.getInventoryItems(req.em, page, limit),
-      inventoryItemService.countInventoryItems(req.em),
+      inventoryItemService.getInventoryItems(req.em, page, limit, req.query.sort ? req.query.sort.toString() : '', req.query.activeOnly === 'true'),
+      inventoryItemService.countInventoryItems(req.em, req.query.activeOnly === 'true'),
     ]);
   } catch (ex) {
     return next(ex);

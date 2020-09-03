@@ -4,7 +4,7 @@
   "description": "My extremely clean app",
   "scripts": {
     "test": "npm run test:unit",
-    "test:unit": "ts-node-dev node_modules/jasmine/bin/jasmine --config=spec/support/jasmine.json",
+    "test:unit": "nts-node-dev node_modules/jasmine/bin/jasmine --config=spec/support/jasmine.json",
     "test:coverage": "ts-node-dev node_modules/istanbul/lib/cli.js cover -e .ts  -x \"*.d.ts\" -x \"*.spec.ts\" node_modules/jasmine/bin/jasmine.js --config=spec/support/jasmine.json",
     "start": "npm run type:check && npm run ts:node:dev",
     "ts:node:dev": "ts-node-dev src/index --watch",
