@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { InventoryItem } from '../../app-logic/inventory-item';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 import { InventoryService } from '../../app-logic/inventory-service.service';
-import { finalize } from 'rxjs/operators';
 
 @Component({
   selector: 'app-add-item',
@@ -13,17 +12,14 @@ import { finalize } from 'rxjs/operators';
 export class AddItemComponent implements OnInit {
   addItemForm: FormGroup;
   item: InventoryItem;
-  itemId: number; 
+  itemId: string; 
   constructor(
     private fb: FormBuilder,    
     private inventoryService: InventoryService,
-    private route: Router,
-    private activatedRoute: ActivatedRoute
+    private route: Router,    
   ) {
-    this.activatedRoute.params.subscribe((params) => {
-      this.itemId = params['id'] ? params['id'] : 0;
-    });
-  }
+    this.itemId="5f47cbabc6565122e45e70aa";
+    }
 
   ngOnInit(): void {
     this.addItemForm = this.fb.group({
@@ -39,10 +35,11 @@ export class AddItemComponent implements OnInit {
   onSubmit() {   
     this.item = new InventoryItem(this.addItemForm.value);
     this.item.modifiedAt = new Date();
-    this.item.deleted = false;   
+    this.item.active = true;   
     
-    this.inventoryService.addItem(this.item).subscribe(()=>{      
-     this.route.navigate(['/inventory'])
+    this.inventoryService.addItem(this.item).subscribe((data)=>{      
+      let item: InventoryItem = new InventoryItem(data);
+      this.itemId=item.id;
     });
     
   }

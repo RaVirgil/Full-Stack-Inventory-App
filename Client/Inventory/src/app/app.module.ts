@@ -23,6 +23,9 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DialogBoxComponent } from './dialog-box/dialog-box.component';
 import {HttpClientModule} from "@angular/common/http";
+import {QRCodeModule} from "angularx-qrcode";
+import {ZXingScannerModule} from "@zxing/ngx-scanner";
+import { ShowItemComponent } from './menu-items/show-item/show-item.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +33,7 @@ import {HttpClientModule} from "@angular/common/http";
     RoutingComponent,
     NavComponent,
     DialogBoxComponent,
+    ShowItemComponent,
   ],
   imports: [
     BrowserModule,
@@ -52,7 +56,9 @@ import {HttpClientModule} from "@angular/common/http";
     ReactiveFormsModule,
     HttpClientModule,
     MatProgressSpinnerModule,
-    MatSlideToggleModule
+    MatSlideToggleModule,
+    QRCodeModule,
+    ZXingScannerModule
   ],
   entryComponents: [DialogBoxComponent],
   providers: [],

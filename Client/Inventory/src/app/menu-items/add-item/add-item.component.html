@@ -1,41 +1,62 @@
 
-<h1>Add Inventory Item</h1>
 <form [formGroup]="addItemForm" (ngSubmit)="onSubmit()">
   <div class="form-div">
-    <label>Item Name </label>
-    <input type="text" formControlName="name" />
+    <mat-form-field class="form-field" appearance="outline">
+      <mat-label> Name
+      </mat-label>
+      <input matInput formControlName="name" required>
+    </mat-form-field>
   </div>
 
   <div class="form-div">
-    <label>User </label>
-    <input type="text" formControlName="user" />
+    <mat-form-field class="form-field" appearance="outline">
+      <mat-label> User
+      </mat-label>
+      <input matInput formControlName="user" required>
+    </mat-form-field>
   </div>
 
   <div class="form-div">
-    <label>Description </label>
-    <textarea formControlName="description"></textarea>
+    <mat-form-field class="form-field" appearance="outline">
+      <mat-label> Description
+      </mat-label>
+      <input matInput formControlName="description" required>
+    </mat-form-field>
   </div>
 
   <div class="form-div">
-    <label>Location </label>
-    <input type="text" formControlName="location" />
+    <mat-form-field class="form-field" appearance="outline">
+      <mat-label> Location
+      </mat-label>
+      <input matInput formControlName="location" required>
+    </mat-form-field>
   </div>
 
   <div class="form-div">
-    <label>Inventory Item </label>
-    <input type="number" formControlName="inventoryNumber" />
+    <mat-form-field class="form-field" appearance="outline">
+      <mat-label> Inventory Number
+      </mat-label>
+      <input matInput formControlName="inventoryNumber" required>
+    </mat-form-field>
   </div>
 
   <div class="form-div">
-    <label>Created at </label>
-    <input type="date" formControlName="createdAt" />
+    <mat-form-field class="form-field" appearance="outline">
+      <mat-label> Created At
+      </mat-label>
+      <input matInput type="date" formControlName="createdAt" required>
+    </mat-form-field>
   </div>
 
-  <button type="submit" [disabled]="!addItemForm.valid" >Submit</button>
+  <button class="submit-button" mat-raised-button type="submit" [disabled]="!addItemForm.valid" >Submit</button>
 
   <p>Form value: {{ addItemForm.value | json }}</p>
   <p>Form validated: {{addItemForm.valid}}</p>
 </form>
+
+<div class="qrCode" *ngIf="itemId">
+  <qrcode  [qrdata]="itemId" [size]="256" [level]="'M'"></qrcode>
+</div>
 
 <!--
 <form [formGroup]="addItemForm" (ngSubmit)="onSubmit()">

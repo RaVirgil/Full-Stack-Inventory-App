@@ -2,3 +2,44 @@
 @import "@angular/material/prebuilt-themes/deeppurple-amber.css";
 html, body { height: 100%; }
 body {  margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+.mat-progress-spinner circle, .mat-spinner circle {
+  
+    stroke: #17252a;
+  }
+
+.mat-slide-toggle.mat-checked .mat-slide-toggle-bar {
+    background-color:#def2f1;
+}
+.mat-slide-toggle.mat-checked .mat-slide-toggle-thumb {
+    background-color:#2b7a78;
+}
+
+.mat-checkbox-indeterminate.mat-accent .mat-checkbox-background, .mat-checkbox-checked.mat-accent .mat-checkbox-background {
+    background-color: #2b7a78;
+}
+
+.mat-form-field-appearance-legacy .mat-form-field-underline{
+    background-color: white;
+}
+
+.mat-primary .mat-option.mat-selected:not(.mat-option-disabled){
+    color:#2b7a78;
+}
+
+.mat-form-field.mat-focused.mat-primary .mat-select-arrow{
+    color:#2b7a78;
+}
+
+.mat-form-field.mat-focused .mat-form-field-ripple{
+    background-color:#2b7a78;
+}
+
+.mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick {
+    color: white!important;
+}
+
+.mat-form-field.mat-focused .mat-form-field-label {
+    color: #17252a!important;
+}

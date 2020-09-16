@@ -1,1 +1,11 @@
-<p>scan works!</p>
+<div class='centered' >
+  <div class='camera' >
+    <zxing-scanner [torch]="torchEnable"
+    [tryHarder]="tryHarder"
+    [(device)]="currentDevice"
+    [formats]="formats"
+    (permissionResponse)="onHasPermission($event)"
+    (camerasFound)='onCamerasFound($event)'
+    (scanSuccess)= "onScanSucces($event)"> </zxing-scanner>
+  </div>
+</div>

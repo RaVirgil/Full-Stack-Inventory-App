@@ -5,13 +5,15 @@ import {ContactComponent} from "./menu-items/contact/contact.component";
 import {InventoryComponent} from "./menu-items/inventory/inventory.component";
 import {ScanComponent} from "./menu-items/scan/scan.component";
 import {HomePageComponent} from "./home-page/home-page.component";
+import { ShowItemComponent } from './menu-items/show-item/show-item.component';
 
 const routes: Routes = [
   {path:'',component: HomePageComponent },
-  {path:'inventory',component: InventoryComponent },
-  {path:'scan',component: ScanComponent },
-  {path:'add-item',component:AddItemComponent },
-  {path:'contact',component:ContactComponent },
+  {path:'inventory',component: InventoryComponent, data: { animation: 'isLeft' }  },
+  {path:'scan',component: ScanComponent,data: { animation: 'isLeft' } },
+  {path:'add-item',component:AddItemComponent,data: { animation: 'isLeft' }  },
+  {path:'contact',component:ContactComponent,data: { animation: 'isLeft' } },
+  {path:'item/:id', component: ShowItemComponent,data: { animation: 'isLeft' }}
 ];
 
 @NgModule({
@@ -25,5 +27,6 @@ export const RoutingComponent = [
   ScanComponent,
   InventoryComponent,
   ContactComponent,
-  AddItemComponent
+  AddItemComponent,
+  ShowItemComponent
 ]

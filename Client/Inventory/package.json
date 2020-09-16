@@ -21,9 +21,14 @@
     "@angular/platform-browser": "~10.0.6",
     "@angular/platform-browser-dynamic": "~10.0.6",
     "@angular/router": "~10.0.6",
+    "@zxing/ngx-scanner": "^3.0.1",
+    "angularx": "0.0.7",
+    "angularx-qrcode": "^10.0.10",
+    "qrcode": "^1.4.4",
     "rxjs": "~6.5.5",
     "tslib": "^2.0.0",
-    "zone.js": "~0.10.3"
+    "zone.js": "~0.10.3",
+    "inventory-interfaces": "file:../../Interfaces"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.1000.5",

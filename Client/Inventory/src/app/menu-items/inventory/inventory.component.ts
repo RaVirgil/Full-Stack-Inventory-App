@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, EventEmitter } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { InventoryService } from '../../app-logic/inventory-service.service';
@@ -8,7 +8,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { SelectionModel } from '@angular/cdk/collections';
 import { DialogBoxComponent } from '../../dialog-box/dialog-box.component';
 import { finalize, tap, switchMap } from 'rxjs/operators';
-import { merge, BehaviorSubject } from 'rxjs';
+import { merge, BehaviorSubject, forkJoin, Observable, EMPTY } from 'rxjs';
+
 
 @Component({
   selector: 'app-inventory',
@@ -24,6 +25,7 @@ export class InventoryComponent implements OnInit {
   inventoryItems: InventoryItem[];
   activeOnly$=new BehaviorSubject(true);
   itemsCount=0;
+  requiredRefresh: EventEmitter<any> = new EventEmitter();
   inventoryColumns: string[] = [
     'select',
     'id',
@@ -51,21 +53,22 @@ export class InventoryComponent implements OnInit {
     }
 
   ngOnInit(): void {       
-
-    merge(this.paginator.page, this.sort.sortChange, this.activeOnly$)
+    
+    merge(this.sort.sortChange, this.activeOnly$, this.requiredRefresh)
     .subscribe(()=>{
       this.paginator.pageIndex=0;
     })
 
-    merge(this.paginator.page, this.sort.sortChange, this.activeOnly$)
+    merge( this.sort.sortChange,this.sort.sort, this.activeOnly$,this.requiredRefresh)
     .subscribe(()=>{
       this.selection.clear(); 
     })
 
-    merge(this.paginator.page, this.sort.sortChange, this.activeOnly$)
+    merge(this.paginator.page, this.sort.sortChange, this.activeOnly$,this.requiredRefresh)
       .pipe(
         switchMap(() => {
           this.isLoading = true;
+          this.selection.clear();
           return this.inventoryService
             .getData(
               this.paginator.pageIndex + 1,
@@ -86,6 +89,7 @@ export class InventoryComponent implements OnInit {
         (error) => {
           console.log('Table could not be filled with data', error);
           this.isLoading = false;
+          alert("${error.status} ${error.statusText}");
         }
       );
   }
@@ -125,6 +129,78 @@ export class InventoryComponent implements OnInit {
     });
   }
 
+  markActive() {
+    if (this.selection.selected.length == 0)
+      alert('Please mark something first')
+    else {     
+      const markItemRequests$: Observable<any>[] = [];
+
+    let noOfItems = this.selection.selected.length;
+
+    let markedSelection = this.selection.selected.map(item => Object.assign({}, item));
+
+    markedSelection.forEach(selectionItem => {
+      selectionItem.active = true;
+      selectionItem.modifiedAt = new Date();
+    })
+
+    markedSelection.forEach(selectionItem => {
+      markItemRequests$.push(
+        this.inventoryService.updateItem(selectionItem)
+      )
+    })
+
+    forkJoin(markItemRequests$)
+      .pipe(tap((resp) => {
+        if (resp != null)
+          alert(`${noOfItems} ${(noOfItems == 1) ? "item" : "items"} marked as active.`)
+      }))      
+      .subscribe(() => {
+        this.requiredRefresh.emit(null);
+      })
+      this.selection.clear();       
+    }
+  }
+
+  markInactive() {
+    if (this.selection.selected.length == 0)
+      alert('Please mark something first')
+    else {     
+      const markItemRequests$: Observable<any>[] = [];
+
+    let noOfItems = this.selection.selected.length;
+
+    let markedSelection = this.selection.selected.map(item => Object.assign({}, item));
+
+    markedSelection.forEach(selectionItem => {
+      selectionItem.active = false;
+      selectionItem.modifiedAt = new Date();
+    })
+
+    markedSelection.forEach(selectionItem => {
+      markItemRequests$.push(
+        this.inventoryService.updateItem(selectionItem)
+      )
+    })
+
+    forkJoin(markItemRequests$)
+      .pipe(tap((resp) => {
+        if (resp != null)
+          alert(`${noOfItems} ${(noOfItems == 1) ? "item" : "items"} marked as inactive.`)
+      }))      
+      .subscribe(() => {
+        this.requiredRefresh.emit(null);
+      })
+
+      this.selection.clear();       
+    }
+  }
+
+  toggleChanged(){
+    this.paginator.pageIndex=0;
+    this.activeOnly=!this.activeOnly;    
+  }
+
   updateRowData(userInputData) {
     let temp: InventoryItem = new InventoryItem();
     temp.id = userInputData.id;
@@ -143,20 +219,8 @@ export class InventoryComponent implements OnInit {
           this.isLoading = false;
         })
       )
-      .subscribe((data) => {
-        this.inventoryItems = data;
-      });
-
-      this.inventoryService
-      .getAllData()
-      .pipe(
-        finalize(() => {
-          this.isLoading = false;
-        })
-      )
-      .subscribe((data) => {
-        this.inventoryItems = data;
-      });
+      .subscribe(() => {
+      });      
   }
 
   deleteRowData(userInputData) {
@@ -168,46 +232,7 @@ export class InventoryComponent implements OnInit {
           this.isLoading = false;
         })
       )
-      .subscribe((data) => {
-        this.inventoryItems = data;
-      });
-
-      this.inventoryService
-      .getAllData()
-      .pipe(
-        finalize(() => {
-          this.isLoading = false;
-        })
-      )
-      .subscribe((data) => {
-        this.inventoryItems = data;
-      });
-  }
-
-  private fetchData() {
-    this.isLoading = true;
-    this.inventoryService
-      .getData(
-        this.paginator.pageIndex + 1,
-        this.paginator.pageSize,
-        this.activeOnly,
-        this.sort.active
-          ? `${this.sort.active}_${this.sort.direction ? this.sort.direction : 'asc'}`
-          : ''
-      )
-      .pipe(
-        finalize(() => {
-          this.isLoading = false;
-        })
-      )
-      .subscribe(
-        (data) => {
-          this.inventoryItems = data[0];
-          this.itemsCount = data[1];
-        },
-        (error) => {
-          console.log('Table could not be filled with data', error);
-        }
-      );
+      .subscribe(() => {        
+      });      
   }
 }
