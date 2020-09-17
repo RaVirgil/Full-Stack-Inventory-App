@@ -6,10 +6,11 @@ import {
   Property,
 } from "mikro-orm";
 import { ObjectId } from "mongodb";
-import {IInventoryItem} from "inventory-interfaces/IInventoryItems";
+import { IInventoryItem } from "inventory-interfaces/IInventoryItems";
 
 @Entity()
-export class InventoryItem implements MongoEntity<InventoryItem>, IInventoryItem {
+export class InventoryItem
+  implements MongoEntity<InventoryItem>, IInventoryItem {
   @PrimaryKey()
   _id!: ObjectId;
 

@@ -13,14 +13,14 @@ export class ScanComponent implements OnInit {
   currentDevice: MediaDeviceInfo = null;
   formats = [BarcodeFormat.QR_CODE];
   availableDevices: MediaDeviceInfo[];
-  hasPermission: boolean=true;
+  hasPermission: boolean = true;
   constructor(private router: Router) {}
 
   ngOnInit(): void {}
 
   onHasPermission(permission: boolean) {
     this.hasPermission = permission;
-    console.log("Permission "+ permission);
+    console.log('Permission ' + permission);
   }
 
   onCamerasFound(devices: MediaDeviceInfo[]) {

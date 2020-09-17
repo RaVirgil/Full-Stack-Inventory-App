@@ -2,20 +2,20 @@
 import { env } from "../env";
 
 function setDiscoveryClientRoute(router: Router): Router {
-	router.get("/", getdiscoveryClient);
+  router.get("/", getdiscoveryClient);
 
-	return router;
+  return router;
 }
 
 function getdiscoveryClient(_req: Request, res: Response, next: NextFunction) {
-	try {
-		const clientSettings = {
-			jsonRoute: env.A_JSON_ROUTE
-		};
-		return res.json(clientSettings);
-	} catch (ex) {
-		return next(ex);
-	}
+  try {
+    const clientSettings = {
+      jsonRoute: env.A_JSON_ROUTE,
+    };
+    return res.json(clientSettings);
+  } catch (ex) {
+    return next(ex);
+  }
 }
 
-export { setDiscoveryClientRoute }
+export { setDiscoveryClientRoute };

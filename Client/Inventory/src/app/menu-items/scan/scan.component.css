@@ -1,16 +1,15 @@
-.centered{
-    margin: 0 auto;
-    display: flex;
-    justify-content: centered;
+.centered {
+  margin: 0 auto;
+  display: flex;
+  justify-content: centered;
 }
 
-.camera{
-    margin: 100px;
-    width: 600px;
-    height: 600px;
-    
+.camera {
+  margin: 100px;
+  width: 600px;
+  height: 600px;
 }
 
-.qrCode{
-    margin: 100px;
+.qrCode {
+  margin: 100px;
 }

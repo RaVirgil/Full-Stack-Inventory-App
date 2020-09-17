@@ -11,8 +11,8 @@ function setInventoryItemRoute(router: Router): Router {
   router.get("/:id", getInventoryItem);
   router.post("/", postInventoryItem);
   router.put("/", putInventoryItem);
-  router.delete("/:id", removeInventoryItem);  
-  
+  router.delete("/:id", removeInventoryItem);
+
   return router;
 }
 
@@ -30,13 +30,22 @@ async function getInventoryItems(
   let page = req.query.pageNumber
     ? parseInt(req.query.pageNumber.toString())
     : 1;
-  
+
   let limit = req.query.pageSize ? parseInt(req.query.pageSize.toString()) : 5;
 
   try {
     [inventoryItems, count] = await Promise.all([
-      inventoryItemService.getInventoryItems(req.em, page, limit, req.query.sort ? req.query.sort.toString() : '', req.query.activeOnly === 'true'),
-      inventoryItemService.countInventoryItems(req.em, req.query.activeOnly === 'true'),
+      inventoryItemService.getInventoryItems(
+        req.em,
+        page,
+        limit,
+        req.query.sort ? req.query.sort.toString() : "",
+        req.query.activeOnly === "true"
+      ),
+      inventoryItemService.countInventoryItems(
+        req.em,
+        req.query.activeOnly === "true"
+      ),
     ]);
   } catch (ex) {
     return next(ex);
@@ -98,7 +107,7 @@ async function postInventoryItem(
     return next(Error("EntityManager not available"));
 
   let inventoryItem: Error | InventoryItem;
-  try {    
+  try {
     inventoryItem = await inventoryItemService.addInventoryItem(
       req.em,
       req.body

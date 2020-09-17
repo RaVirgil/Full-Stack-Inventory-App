@@ -18,22 +18,20 @@ import { MatListModule } from '@angular/material/list';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import {MatProgressSpinnerModule} from "@angular/material/progress-spinner"
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DialogBoxComponent } from './dialog-box/dialog-box.component';
-import {HttpClientModule} from "@angular/common/http";
-import {QRCodeModule} from "angularx-qrcode";
-import {ZXingScannerModule} from "@zxing/ngx-scanner";
-import { ShowItemComponent } from './menu-items/show-item/show-item.component';
+import { HttpClientModule } from '@angular/common/http';
+import { QRCodeModule } from 'angularx-qrcode';
+import { ZXingScannerModule } from '@zxing/ngx-scanner';
 
 @NgModule({
   declarations: [
     AppComponent,
     RoutingComponent,
     NavComponent,
-    DialogBoxComponent,
-    ShowItemComponent,
+    DialogBoxComponent    
   ],
   imports: [
     BrowserModule,
@@ -58,7 +56,7 @@ import { ShowItemComponent } from './menu-items/show-item/show-item.component';
     MatProgressSpinnerModule,
     MatSlideToggleModule,
     QRCodeModule,
-    ZXingScannerModule
+    ZXingScannerModule,
   ],
   entryComponents: [DialogBoxComponent],
   providers: [],

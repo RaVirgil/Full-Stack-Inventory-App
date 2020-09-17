@@ -12,14 +12,14 @@ import { InventoryService } from '../../app-logic/inventory-service.service';
 export class AddItemComponent implements OnInit {
   addItemForm: FormGroup;
   item: InventoryItem;
-  itemId: string; 
+  itemId: string;
   constructor(
-    private fb: FormBuilder,    
+    private fb: FormBuilder,
     private inventoryService: InventoryService,
-    private route: Router,    
+    private route: Router
   ) {
-    this.itemId="5f47cbabc6565122e45e70aa";
-    }
+    this.itemId = '5f47cbabc6565122e45e70aa';
+  }
 
   ngOnInit(): void {
     this.addItemForm = this.fb.group({
@@ -32,16 +32,15 @@ export class AddItemComponent implements OnInit {
     });
   }
 
-  onSubmit() {   
+  onSubmit() {
     this.item = new InventoryItem(this.addItemForm.value);
     this.item.modifiedAt = new Date();
-    this.item.active = true;   
-    
-    this.inventoryService.addItem(this.item).subscribe((data)=>{      
+    this.item.active = true;
+
+    this.inventoryService.addItem(this.item).subscribe((data) => {
       let item: InventoryItem = new InventoryItem(data);
-      this.itemId=item.id;
+      this.itemId = item.id;
     });
-    
   }
 
   hasError(controlName: string, errorName: string) {

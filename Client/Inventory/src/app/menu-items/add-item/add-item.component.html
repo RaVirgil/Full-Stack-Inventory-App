@@ -1,87 +1,64 @@
-
 <form [formGroup]="addItemForm" (ngSubmit)="onSubmit()">
   <div class="form-div">
     <mat-form-field class="form-field" appearance="outline">
-      <mat-label> Name
-      </mat-label>
-      <input matInput formControlName="name" required>
+      <mat-label> Name </mat-label>
+      <input matInput formControlName="name" required />
     </mat-form-field>
   </div>
 
   <div class="form-div">
     <mat-form-field class="form-field" appearance="outline">
-      <mat-label> User
-      </mat-label>
-      <input matInput formControlName="user" required>
+      <mat-label> User </mat-label>
+      <input matInput formControlName="user" required />
     </mat-form-field>
   </div>
 
   <div class="form-div">
     <mat-form-field class="form-field" appearance="outline">
-      <mat-label> Description
-      </mat-label>
-      <input matInput formControlName="description" required>
+      <mat-label> Description </mat-label>
+      <input matInput formControlName="description" required />
     </mat-form-field>
   </div>
 
   <div class="form-div">
     <mat-form-field class="form-field" appearance="outline">
-      <mat-label> Location
-      </mat-label>
-      <input matInput formControlName="location" required>
+      <mat-label> Location </mat-label>
+      <input matInput formControlName="location" required />
     </mat-form-field>
   </div>
 
   <div class="form-div">
     <mat-form-field class="form-field" appearance="outline">
-      <mat-label> Inventory Number
-      </mat-label>
-      <input matInput formControlName="inventoryNumber" required>
-    </mat-form-field>
-  </div>
-
-  <div class="form-div">
-    <mat-form-field class="form-field" appearance="outline">
-      <mat-label> Created At
-      </mat-label>
-      <input matInput type="date" formControlName="createdAt" required>
-    </mat-form-field>
-  </div>
-
-  <button class="submit-button" mat-raised-button type="submit" [disabled]="!addItemForm.valid" >Submit</button>
-
-  <p>Form value: {{ addItemForm.value | json }}</p>
-  <p>Form validated: {{addItemForm.valid}}</p>
-</form>
-
-<div class="qrCode" *ngIf="itemId">
-  <qrcode  [qrdata]="itemId" [size]="256" [level]="'M'"></qrcode>
-</div>
-
-<!--
-<form [formGroup]="addItemForm" (ngSubmit)="onSubmit()">
-  <p>
-    <mat-form-field appearance="outline">
-      <mat-label>User Name</mat-label>
+      <mat-label> Inventory Number </mat-label>
       <input
         matInput
-        type="text"
-        formControlName="user"
-        placeholder="User Name"
+        type="number"
+        formControlName="inventoryNumber"
+        required
       />
-      <mat-error *ngIf="hasError('user', 'required')"
-        >User Name Required</mat-error
-      >
     </mat-form-field>
-  </p>
+  </div>
 
-  
+  <div class="form-div">
+    <mat-form-field class="form-field" appearance="outline">
+      <mat-label> Created At </mat-label>
+      <input matInput type="date" formControlName="createdAt" required />
+    </mat-form-field>
+  </div>
 
- 
-  <button mat-raised-button type="submit" [disabled]="!addItemForm.valid">
+  <button
+    class="submit-button"
+    mat-raised-button
+    type="submit"
+    [disabled]="!addItemForm.valid"
+  >
     Submit
   </button>
+
   <p>Form value: {{ addItemForm.value | json }}</p>
   <p>Form validated: {{ addItemForm.valid }}</p>
 </form>
--->
+
+<div class="qrCode" *ngIf="itemId">
+  <qrcode [qrdata]="itemId" [size]="256" [level]="'M'"></qrcode>
+</div>

@@ -7,45 +7,50 @@ import * as jsonService from "../services/a-json.service";
 export { setAJsonRoute };
 
 function setAJsonRoute(router: Router): Router {
-    router.get("/:key1", getAJson);
-    router.post("/", postAJson);
+  router.get("/:key1", getAJson);
+  router.post("/", postAJson);
 
-    return router;
+  return router;
 }
 
-async function getAJson(req: IExpressRequest, res: Response, next: NextFunction) {
-    if (!req.em || !(req.em instanceof EntityManager))
-        return next(Error("EntityManager not available"));
+async function getAJson(
+  req: IExpressRequest,
+  res: Response,
+  next: NextFunction
+) {
+  if (!req.em || !(req.em instanceof EntityManager))
+    return next(Error("EntityManager not available"));
 
-    let aJson: Error | AJson | null;
-    try {
-        aJson = await jsonService.getAJson(req.em, req.params.key1 as string);
-    } catch (ex) {
-        return next(ex);
-    }
+  let aJson: Error | AJson | null;
+  try {
+    aJson = await jsonService.getAJson(req.em, req.params.key1 as string);
+  } catch (ex) {
+    return next(ex);
+  }
 
-    if (aJson instanceof Error)
-        return next(aJson);
+  if (aJson instanceof Error) return next(aJson);
 
-    if (aJson === null)
-        return res.status(404).end();
+  if (aJson === null) return res.status(404).end();
 
-    return res.json(aJson);
+  return res.json(aJson);
 }
 
-async function postAJson(req: IExpressRequest, res: Response, next: NextFunction) {
-    if (!req.em || !(req.em instanceof EntityManager))
-        return next(Error("EntityManager not available"));
+async function postAJson(
+  req: IExpressRequest,
+  res: Response,
+  next: NextFunction
+) {
+  if (!req.em || !(req.em instanceof EntityManager))
+    return next(Error("EntityManager not available"));
 
-    let aJson: Error | AJson;
-    try {
-        aJson = await jsonService.saveAJson(req.em, req.body);
-    } catch (ex) {
-        return next(ex);
-    }
+  let aJson: Error | AJson;
+  try {
+    aJson = await jsonService.saveAJson(req.em, req.body);
+  } catch (ex) {
+    return next(ex);
+  }
 
-    if (aJson instanceof Error)
-        return next(aJson);
+  if (aJson instanceof Error) return next(aJson);
 
-    return res.status(201).json(aJson);
+  return res.status(201).json(aJson);
 }

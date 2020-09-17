@@ -34,17 +34,13 @@ button {
   color: #def2f1;
 }
 
-
-
-.spinner-container{
-  display: flex; 
-  justify-content: center; 
-  align-items: center; 
+.spinner-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-
-.slide-toggle{
+.slide-toggle {
   font-size: large;
   margin: 20px;
 }
-
