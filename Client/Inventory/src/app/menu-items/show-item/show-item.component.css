@@ -13,3 +13,7 @@ i {
   font-size: large;
   color: #feffff;
 }
+
+agm-map{
+  height: 550px;
+}

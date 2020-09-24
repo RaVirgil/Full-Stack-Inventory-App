@@ -39,10 +39,18 @@ export class InventoryItem
   modifiedAt: Date;
 
   @Property()
+  longitude: number;
+  
+  @Property()
+  latitude: number;
+
+  @Property()
   active: boolean;
 
-  public constructor(init?: Partial<InventoryItem>) {
-    this.createdAt = new Date();
+
+
+  public constructor(init?: Partial<InventoryItem>) {    
     Object.assign(this, init);
+    this.createdAt = new Date();
   }
 }

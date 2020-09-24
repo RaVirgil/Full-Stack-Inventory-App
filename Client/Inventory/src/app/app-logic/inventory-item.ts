@@ -9,6 +9,8 @@ export class InventoryItem implements IInventoryItem {
   inventoryNumber: number;
   createdAt: Date;
   modifiedAt: Date;
+  longitude: number;
+  latitude: number;
   active: boolean;
 
   public constructor(init?: Partial<InventoryItem>) {

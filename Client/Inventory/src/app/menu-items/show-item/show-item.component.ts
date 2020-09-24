@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { InventoryService } from '../../app-logic/inventory-service.service';
 import { InventoryItem } from 'src/app/app-logic/inventory-item';
 
@@ -23,8 +23,10 @@ export class ShowItemComponent implements OnInit {
 
   ngOnInit(): void {
     this.inventoryService.getDataByID(this.itemId).subscribe((data) => {
-      this.item = new InventoryItem(data);
+      this.item = new InventoryItem(data);      
       this.itemIsFound = this.item ? true : false;
     });
   }
+
+  
 }

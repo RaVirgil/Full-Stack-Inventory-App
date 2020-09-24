@@ -3,17 +3,36 @@ import { EntityManager } from "mikro-orm";
 import { InventoryItem } from "../entities/inventory-item.entity";
 import { IExpressRequest } from "../interfaces/IExpressRequest";
 import * as inventoryItemService from "../services/inventory-item.service";
+import * as jwt from "jsonwebtoken";
+import { env } from "../env";
 
 export { setInventoryItemRoute };
 
 function setInventoryItemRoute(router: Router): Router {
-  router.get("/", getInventoryItems);
-  router.get("/:id", getInventoryItem);
-  router.post("/", postInventoryItem);
-  router.put("/", putInventoryItem);
-  router.delete("/:id", removeInventoryItem);
+  router.get("/", authToken, getInventoryItems);
+  router.get("/:id", authToken, getInventoryItem);
+  router.post("/", authToken, postInventoryItem);
+  router.put("/", authToken, putInventoryItem);
+  router.delete("/:id", authToken, removeInventoryItem);
 
   return router;
+}
+
+function authToken(req: IExpressRequest, res: Response, next: NextFunction) {
+  try {
+    const authHeader = req.headers["authorization"];
+    const token = authHeader && authHeader.split(" ")[1];
+    if (token == null)
+      return res.status(401).send("Something wrong with getting token");
+
+    jwt.verify(token, env.ACCESS_TOKEN_SECRET, (err) => {
+      if (err) return res.status(403).send("Invalid token");
+      next();
+      return;
+    });
+  } catch (ex) {
+    return next(ex);
+  }
 }
 
 async function getInventoryItems(

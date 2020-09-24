@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, EventEmitter } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
-import { MatTableDataSource } from '@angular/material/table';
+import { Router } from "@angular/router";
 import { InventoryService } from '../../app-logic/inventory-service.service';
 import { InventoryItem } from '../../app-logic/inventory-item';
 import { MatSort } from '@angular/material/sort';
@@ -8,7 +8,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { SelectionModel } from '@angular/cdk/collections';
 import { DialogBoxComponent } from '../../dialog-box/dialog-box.component';
 import { finalize, tap, switchMap } from 'rxjs/operators';
-import { merge, BehaviorSubject, forkJoin, Observable, EMPTY } from 'rxjs';
+import { merge, BehaviorSubject, forkJoin, Observable, } from 'rxjs';
 
 @Component({
   selector: 'app-inventory',
@@ -41,7 +41,8 @@ export class InventoryComponent implements OnInit {
 
   constructor(
     private inventoryService: InventoryService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private router:Router
   ) {}
 
   get activeOnly(): boolean {
@@ -259,5 +260,9 @@ export class InventoryComponent implements OnInit {
       .subscribe(() => {
         this.requiredRefresh.emit(null);
       });
+  }
+
+  goToItem(element){
+    this.router.navigate(['/item/'+element.id]);
   }
 }

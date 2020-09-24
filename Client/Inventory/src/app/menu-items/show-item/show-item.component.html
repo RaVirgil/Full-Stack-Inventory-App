@@ -21,3 +21,9 @@
     <b>Created at:</b><i>{{ item.createdAt | date }}</i>
   </p>
 </div>
+
+<agm-map [latitude]='item.longitude' [longitude]='item.latitude'>
+  <agm-marker  [latitude]='item.longitude' [longitude]='item.latitude'></agm-marker>
+</agm-map>
+
+

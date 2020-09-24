@@ -6,15 +6,17 @@ import { InventoryComponent } from './menu-items/inventory/inventory.component';
 import { ScanComponent } from './menu-items/scan/scan.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { ShowItemComponent } from './menu-items/show-item/show-item.component';
+import {LogInComponent} from "./log-in/log-in.component";
 
 const routes: Routes = [
-  { path: '', component: InventoryComponent, data: { animation: 'isLeft' } },
+  { path: '', component: HomePageComponent, data: { animation: 'isLeft' } },
   {
     path: 'inventory',
     component: InventoryComponent,
     data: { animation: 'isLeft' },
   },
   { path: 'scan', component: ScanComponent, data: { animation: 'isLeft' } },
+  
   {
     path: 'add-item',
     component: AddItemComponent,
@@ -28,6 +30,11 @@ const routes: Routes = [
   {
     path: 'item/:id',
     component: ShowItemComponent,
+    data: { animation: 'isLeft' },
+  },
+  {
+    path: 'log-in',
+    component: LogInComponent,
     data: { animation: 'isLeft' },
   },
 ];
@@ -44,5 +51,6 @@ export const RoutingComponent = [
   InventoryComponent,
   ContactComponent,
   AddItemComponent,
-  ShowItemComponent
+  ShowItemComponent,
+  LogInComponent
 ];

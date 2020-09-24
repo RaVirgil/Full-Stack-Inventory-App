@@ -9,6 +9,10 @@
   padding: 10px;
 }
 
+.toolbar{
+  background: inherit;
+}
+
 .sidenav .mat-toolbar {
   background: inherit;
 }

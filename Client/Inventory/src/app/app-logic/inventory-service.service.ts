@@ -2,16 +2,17 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { InventoryItem } from './inventory-item';
 import { Observable } from 'rxjs';
-import { tap, map, delay } from 'rxjs/operators';
+import { tap, map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
 })
 export class InventoryService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {}  
 
   getAllData() {
-    return this.http.get<InventoryItem[]>('/api/inventory-items').pipe();
+    const headers = { 'Authorization': 'Bearer '+document.cookie};
+    return this.http.get<InventoryItem[]>('/api/inventory-items',{headers}).pipe();
   }
 
   getData(
@@ -25,10 +26,11 @@ export class InventoryService {
       .set('pageNumber', pageNumber.toString())
       .set('pageSize', pageSize.toString());
     if (sorting) params = params.set('sort', sorting);
-
+    const headers = { 'Authorization': 'Bearer '+document.cookie};
     return this.http
       .get<InventoryItem[]>('/api/inventory-items', {
         params: params,
+        headers,
         observe: 'response',
       })
       .pipe(
@@ -42,18 +44,22 @@ export class InventoryService {
   }
 
   getDataByID(itemId: string) {
-    return this.http.get<InventoryItem[]>('/api/inventory-items/' + itemId);
+    const headers = { 'Authorization': 'Bearer '+document.cookie};
+    return this.http.get<InventoryItem>('/api/inventory-items/' + itemId, {headers});
   }
 
   updateItem(item: InventoryItem) {
-    return this.http.put<InventoryItem[]>('/api/inventory-items', item);
+    const headers = { 'Authorization': 'Bearer '+document.cookie};
+    return this.http.put<InventoryItem>('/api/inventory-items', item, {headers});
   }
 
   deleteItem(id: String) {
-    return this.http.delete<InventoryItem[]>('/api/inventory-items/' + id);
+    const headers = { 'Authorization': 'Bearer '+document.cookie};
+    return this.http.delete<InventoryItem>('/api/inventory-items/' + id, {headers});
   }
 
   addItem(item: InventoryItem) {
-    return this.http.post<InventoryItem[]>('/api/inventory-items', item);
+    const headers = { 'Authorization': 'Bearer '+document.cookie};
+    return this.http.post<InventoryItem>('/api/inventory-items', item, {headers});
   }
 }

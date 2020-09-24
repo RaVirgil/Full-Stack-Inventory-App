@@ -7,5 +7,7 @@ export interface IInventoryItem {
   inventoryNumber: number;
   createdAt: Date;
   modifiedAt: Date;
+  longitude: number;
+  latitude: number;
   active: boolean;
 }

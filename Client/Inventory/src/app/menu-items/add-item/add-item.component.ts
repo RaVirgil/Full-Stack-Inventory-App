@@ -13,6 +13,12 @@ export class AddItemComponent implements OnInit {
   addItemForm: FormGroup;
   item: InventoryItem;
   itemId: string;
+
+  getPosition = () =>
+    new Promise<Position>((resolve, reject) =>
+      navigator.geolocation.getCurrentPosition(resolve, reject)
+    );
+
   constructor(
     private fb: FormBuilder,
     private inventoryService: InventoryService,
@@ -36,11 +42,18 @@ export class AddItemComponent implements OnInit {
     this.item = new InventoryItem(this.addItemForm.value);
     this.item.modifiedAt = new Date();
     this.item.active = true;
+    this.getPosition()
+      .then((data) => {
+        this.item.latitude = data.coords.latitude;
+        this.item.longitude = data.coords.longitude;
 
-    this.inventoryService.addItem(this.item).subscribe((data) => {
-      let item: InventoryItem = new InventoryItem(data);
-      this.itemId = item.id;
-    });
+        this.inventoryService.addItem(this.item).subscribe((data) => {
+          let item: InventoryItem = new InventoryItem(data);
+          this.itemId = item.id;
+          console.log(this.itemId);
+        });
+      })
+      .catch((error) => console.log('error:', error.message));
   }
 
   hasError(controlName: string, errorName: string) {

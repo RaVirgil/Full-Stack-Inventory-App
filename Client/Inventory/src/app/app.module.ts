@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AppRoutingModule, RoutingComponent } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -25,13 +24,16 @@ import { DialogBoxComponent } from './dialog-box/dialog-box.component';
 import { HttpClientModule } from '@angular/common/http';
 import { QRCodeModule } from 'angularx-qrcode';
 import { ZXingScannerModule } from '@zxing/ngx-scanner';
+import { LogInComponent } from './log-in/log-in.component';
+import {AgmCoreModule} from "@agm/core";
 
 @NgModule({
   declarations: [
     AppComponent,
     RoutingComponent,
     NavComponent,
-    DialogBoxComponent    
+    DialogBoxComponent,
+    LogInComponent,        
   ],
   imports: [
     BrowserModule,
@@ -57,6 +59,9 @@ import { ZXingScannerModule } from '@zxing/ngx-scanner';
     MatSlideToggleModule,
     QRCodeModule,
     ZXingScannerModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyCRMTVkQL5C5ChUBQhOeJWHL60OiZnMbWU'
+    })
   ],
   entryComponents: [DialogBoxComponent],
   providers: [],

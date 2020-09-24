@@ -40,7 +40,7 @@
     <!-- ID Column  -->
     <ng-container matColumnDef="id">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>ID</th>
-      <td mat-cell *matCellDef="let element">{{ element.id }}</td>
+      <td mat-cell *matCellDef="let element" (click)="goToItem(element)">{{ element.id }}</td>
     </ng-container>
 
     <!-- Name Column  -->

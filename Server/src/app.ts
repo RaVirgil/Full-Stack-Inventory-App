@@ -2,6 +2,7 @@ import * as express from "express";
 import { env } from "./env";
 import { setAJsonRoute } from "./routes/a-json.route";
 import { setInventoryItemRoute } from "./routes/inventory-item.route";
+import { setUserRoute } from "./routes/user.route";
 import { setDiscoveryClientRoute } from "./routes/discovery-client.route";
 import { IExpressError } from "./interfaces/IExpressError";
 import { MikroORM, ReflectMetadataProvider } from "mikro-orm";
@@ -49,6 +50,7 @@ async function makeApp(): Promise<express.Application> {
   );
   app.use(env.A_JSON_ROUTE, setAJsonRoute(express.Router()));
   app.use(env.INVENTORY_ITEM_ROUTE, setInventoryItemRoute(express.Router()));
+  app.use(env.USER_ROUTE, setUserRoute(express.Router()));
 
   // 404
   app.use((_req, _res, next) => {
