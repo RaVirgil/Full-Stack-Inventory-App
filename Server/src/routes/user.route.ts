@@ -5,17 +5,11 @@ import * as userService from "../services/users.service";
 
 export { setUserRoute };
 
-function setUserRoute(router: Router): Router {  
-  
+function setUserRoute(router: Router): Router {
   router.post("/login", loginUser);
- 
 
   return router;
 }
-
-
-
-
 
 async function loginUser(
   req: IExpressRequest,
@@ -26,12 +20,8 @@ async function loginUser(
     return next(Error("EntityManager not available"));
 
   let accessToken: Error | string;
-  try {   
-    
-    accessToken = await userService.loginUser(
-      req.em,
-      req.body
-    );
+  try {
+    accessToken = await userService.loginUser(req.em, req.body);
   } catch (ex) {
     return next(ex);
   }
@@ -40,5 +30,3 @@ async function loginUser(
 
   return res.status(201).json(accessToken);
 }
-
-

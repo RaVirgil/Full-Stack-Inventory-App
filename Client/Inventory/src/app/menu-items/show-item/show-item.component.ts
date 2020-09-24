@@ -28,5 +28,9 @@ export class ShowItemComponent implements OnInit {
     });
   }
 
+  print(){
+    window.print();
+  }
+
   
 }

@@ -19,7 +19,44 @@ agm-map{
 }
 
 .qrCode {
-  margin: auto;
+  margin-left: 50px;
+  
+}
+
+button{
+  margin-left: 50px;
+  margin-bottom: 5px;
+  background-color: #17252a;
+  color: #def2f1;
+  height: 50px;
+  width: 50px;
+}
+
+@media print{
+  agm-map{
+    display: none;
+  }
+  
+  button{
+    display: none;
+  }
+
+  p {
+    margin-top: 30px;
+    color: black;
+  }
+  
+  b {
+    margin-left: 50px;
+    font-size: x-large;
+    color: black;
+  }
+  
+  i {
+    margin-left: 5px;
+    font-size: large;
+    color: black;
+  }
   
 }
 

@@ -26,6 +26,7 @@
   <qrcode [qrdata]="itemId" [size]="256" [level]="'M'"></qrcode>
 </div>
 
+<button class="print-button" mat-raised-button (click)="print()">Print</button>
 
 <agm-map [latitude]='item.longitude' [longitude]='item.latitude'>
   <agm-marker  [latitude]='item.longitude' [longitude]='item.latitude'></agm-marker>

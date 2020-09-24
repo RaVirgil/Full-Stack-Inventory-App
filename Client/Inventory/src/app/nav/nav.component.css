@@ -27,6 +27,16 @@
   width: 100%;
 }
 
+.nav-logout-button{
+  border-radius: 10px 10px 10px 10px;
+  background-color: #def2f1; 
+  margin-top: 100px;
+  font-size: large;
+  color: #17252a;
+  height: 100%;
+  width: 100%;
+}
+
 a.nav-list-item mat-icon {
   margin-right: 20px;
 }
@@ -46,6 +56,16 @@ a:active {
   position: sticky;
   top: 0;
   z-index: 1;
+}
+
+@media print{
+  .sidenav{
+    display: none;
+  }
+  .sidenav-container{
+    background-color: white;
+  }
+  
 }
 
 

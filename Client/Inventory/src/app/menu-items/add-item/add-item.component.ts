@@ -24,7 +24,7 @@ export class AddItemComponent implements OnInit {
     private inventoryService: InventoryService,
     private route: Router
   ) {
-    this.itemId = '5f47cbabc6565122e45e70aa';
+    this.itemId = '';
   }
 
   ngOnInit(): void {
