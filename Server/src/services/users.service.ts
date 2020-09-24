@@ -1,5 +1,5 @@
 import { User } from "../entities/user.entity";
-import { EntityManager, wrap } from "mikro-orm";
+import { EntityManager } from "mikro-orm";
 import * as bcrypt from "bcrypt";
 import * as jwt from "jsonwebtoken";
 import { env } from "../env";

@@ -22,8 +22,15 @@
   </p>
 </div>
 
+<div class="qrCode" *ngIf="itemId">
+  <qrcode [qrdata]="itemId" [size]="256" [level]="'M'"></qrcode>
+</div>
+
+
 <agm-map [latitude]='item.longitude' [longitude]='item.latitude'>
   <agm-marker  [latitude]='item.longitude' [longitude]='item.latitude'></agm-marker>
 </agm-map>
+
+
 
 
