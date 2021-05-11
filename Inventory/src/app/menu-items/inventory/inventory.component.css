@@ -1,0 +1,46 @@
+table {
+  background-color: #3aafa9;
+  width: 100%;
+}
+
+th {
+  font-size: x-large;
+  color: #def2f1;
+}
+
+td {
+  color: #feffff;
+}
+
+.mat-paginator {
+  background-color: #3aafa9;
+}
+
+a {
+  border-radius: 3px 3px 3px 3px;
+  background-color: #17252a;
+  padding: 3px;
+  margin-right: 3px;
+  font-size: medium;
+  color: #def2f1;
+}
+
+button {
+  border-radius: 10px 10px 10px 10px;
+  background-color: #17252a;
+  margin-left: 20px;
+  margin-top: 20px;
+  font-size: medium;
+  color: #def2f1;
+}
+
+.spinner-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.slide-toggle {
+  font-size: large;
+  margin: 20px;
+}

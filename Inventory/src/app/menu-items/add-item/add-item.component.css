@@ -1,0 +1,19 @@
+.form-div {
+  font-size: large;
+  color: #def2f1;
+  margin: 20px;
+}
+
+.submit-button {
+  margin: 20px;
+  background-color: #17252a;
+  color: #def2f1;
+}
+
+.qrCode {
+  position: absolute;
+  left: 50%;
+  margin-left: -50px;
+  top: 50%;
+  margin-top: -50px;
+}
