@@ -1,15 +1,17 @@
 <header class="header-container">
   <nav class="header-nav-container">
-    <a href="">LOGO</a>
+    <a routerLink="">LOGO</a>
     <input type="search" placeholder="Whatever the sir wants..." />
     <div class="nav-buttons">
-      <a href="/account">Account</a>
-      <a href="/cart">Cart</a>
+      <a routerLink="/auth">Sign In</a>
+      <a routerLink="/cart">Cart</a>
     </div>
   </nav>
 </header>
 
-<router-outlet></router-outlet>
+<main>
+  <router-outlet></router-outlet>
+</main>
 
 <footer class="footer-container">
   <a>Copyright</a>

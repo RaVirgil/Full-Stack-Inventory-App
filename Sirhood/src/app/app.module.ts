@@ -3,30 +3,20 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HomepageComponent } from './homepage/homepage.component';
-import { AccountComponent } from './account/account.component';
+import { AuthModule } from './auth/auth.module';
 import { CartComponent } from './cart/cart.component';
-import { NewComponent } from './dashboard-items/new/new.component';
-import { DealsComponent } from './dashboard-items/deals/deals.component';
-import { UpcomingComponent } from './dashboard-items/upcoming/upcoming.component';
-import { MaleComponent } from './dashboard-items/male/male.component';
-import { FemaleComponent } from './dashboard-items/female/female.component';
+import { DashboardModule } from './dashboard/dashboard.module';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    HomepageComponent,
-    AccountComponent,
-    CartComponent,
-    NewComponent,
-    DealsComponent,
-    UpcomingComponent,
-    MaleComponent,
-    FemaleComponent
+    AppComponent,    
+    CartComponent,  
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    DashboardModule,
+    AuthModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
