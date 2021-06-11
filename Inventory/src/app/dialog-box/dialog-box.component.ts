@@ -1,6 +1,6 @@
 import { Component, Inject, Optional } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { InventoryItem } from '../app-logic/inventory-item';
+import { Product } from '../app-logic/product';
 
 @Component({
   selector: 'app-dialog-box',
@@ -14,7 +14,7 @@ export class DialogBoxComponent {
   constructor(
     public dialogRef: MatDialogRef<DialogBoxComponent>,
     //@Optional() is used to prevent error if no data is passed
-    @Optional() @Inject(MAT_DIALOG_DATA) public data: InventoryItem
+    @Optional() @Inject(MAT_DIALOG_DATA) public data: Product
   ) {
     console.log(data);
     this.local_data = { ...data };

@@ -1,37 +1,29 @@
 <div>
   <p>
-    <b>Id:</b><i>{{ item.id }}</i>
+    <b>Id:</b><i>{{ product.id }}</i>
   </p>
   <p>
-    <b>Name:</b><i>{{ item.name }}</i>
+    <b>Name:</b><i>{{ product.name }}</i>
   </p>
   <p>
-    <b>Description:</b><i>{{ item.description }}</i>
+    <b>Description:</b><i>{{ product.description }}</i>
   </p>
   <p>
-    <b>User:</b><i>{{ item.user }}</i>
+    <b>User:</b><i>{{ product.user }}</i>
   </p>
   <p>
-    <b>Location:</b><i>{{ item.location }}</i>
+    <b>Location:</b><i>{{ product.location }}</i>
   </p>
   <p>
-    <b>Inventory number:</b><i>{{ item.inventoryNumber }}</i>
+    <b>Inventory number:</b><i>{{ product.inventoryNumber }}</i>
   </p>
   <p>
-    <b>Created at:</b><i>{{ item.createdAt | date }}</i>
+    <b>Created at:</b><i>{{ product.createdAt | date }}</i>
   </p>
 </div>
 
-<div class="qrCode" *ngIf="itemId">
-  <qrcode [qrdata]="itemId" [size]="256" [level]="'M'"></qrcode>
+<div class="qrCode" *ngIf="productId">
+  <qrcode [qrdata]="productId" [size]="256" [level]="'M'"></qrcode>
 </div>
 
 <button class="print-button" mat-raised-button (click)="print()">Print</button>
-
-<agm-map [latitude]='item.longitude' [longitude]='item.latitude'>
-  <agm-marker  [latitude]='item.longitude' [longitude]='item.latitude'></agm-marker>
-</agm-map>
-
-
-
-

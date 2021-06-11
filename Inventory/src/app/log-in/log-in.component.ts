@@ -23,7 +23,7 @@ export class LogInComponent implements OnInit {
 
   ngOnInit(): void {
     this.logInForm = this.fb.group({
-      user: ['', Validators.required],
+      username: ['', Validators.required],
       password: ['', Validators.required],
     });
     this.loggedInService.sharedLoggedIn.subscribe((data) => {
@@ -37,14 +37,10 @@ export class LogInComponent implements OnInit {
   onSubmit() {
     this.user = new User(this.logInForm.value);
     this.userService.loginUser(this.user).subscribe((data) => {
-      if (data == 'incorrect password') {
-        alert('incorrect password');
+      if (data == 'incorrect credentials') {
+        alert('incorrect credentials');
         return;
-      }
-      if (data == 'user non-existent') {
-        alert('user could not be found');
-        return;
-      }
+      }     
       this.loggedInService.changeLoggedIn(true);
       document.cookie = data;
       this.router.navigate(['/inventory']);

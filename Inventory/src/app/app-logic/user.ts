@@ -1,8 +1,9 @@
-import { IUsers } from '../../../../Interfaces/IUsers';
+import { IUser } from '../../../../Interfaces/IUser';
 
-export class User implements IUsers {
+export class User implements IUser {
   id: string;  
-  user: string;
+  username: string;
+  role: string;
   password:string;
   active: boolean;
 

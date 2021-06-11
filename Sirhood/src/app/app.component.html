@@ -3,8 +3,13 @@
     <a routerLink="">LOGO</a>
     <input type="search" placeholder="Whatever the sir wants..." />
     <div class="nav-buttons">
-      <a routerLink="/auth">Sign In</a>
-      <a routerLink="/cart">Cart</a>
+      <div [ngSwitch]="isAuthenticated()">
+        <a *ngSwitchCase="true" routerLink="/profile"> Profile </a>
+
+        <a *ngSwitchCase="false" routerLink="/auth"> Sign In </a>
+      </div>
+      <a routerLink="/cart"> Cart </a>
+      <a routerLink="/favorites"> Favorites </a>
     </div>
   </nav>
 </header>

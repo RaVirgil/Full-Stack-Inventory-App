@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AuthenticationService } from './@core/services/authentication.service';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'Sirhood';
+  public authenticated: boolean;
+  constructor(private readonly authenticationService: AuthenticationService) {  
+    
+  }
+  public isAuthenticated(): boolean{
+    return this.authenticationService.isAuthenticated();
+  }
 }

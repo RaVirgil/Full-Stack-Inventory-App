@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild, EventEmitter } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { Router } from "@angular/router";
 import { InventoryService } from '../../app-logic/inventory-service.service';
-import { InventoryItem } from '../../app-logic/inventory-item';
+import { Product as Product } from '../../app-logic/product';
 import { MatSort } from '@angular/material/sort';
 import { MatDialog } from '@angular/material/dialog';
 import { SelectionModel } from '@angular/cdk/collections';
@@ -20,16 +20,15 @@ export class InventoryComponent implements OnInit {
   @ViewChild(MatSort, { static: true }) sort: MatSort;
 
   isLoading: boolean;
-  selection = new SelectionModel<InventoryItem>(true, []);
-  inventoryItems: InventoryItem[];
+  selection = new SelectionModel<Product>(true, []);
+  products: Product[];
   activeOnly$ = new BehaviorSubject(true);
   itemsCount = 0;
   requiredRefresh: EventEmitter<any> = new EventEmitter();
   inventoryColumns: string[] = [
     'select',
     'id',
-    'name',
-    'user',
+    'name',    
     'description',
     'location',
     'inventoryNumber',
@@ -63,7 +62,7 @@ export class InventoryComponent implements OnInit {
 
     merge(
       this.sort.sortChange,
-      this.sort.sort,
+      //this.sort.sort,
       this.activeOnly$,
       this.requiredRefresh
     ).subscribe(() => {
@@ -94,7 +93,7 @@ export class InventoryComponent implements OnInit {
       )
       .subscribe(
         (data) => {
-          this.inventoryItems = data[0];
+          this.products = data[0];
           this.itemsCount = data[1];
           this.isLoading = false;
         },
@@ -107,17 +106,17 @@ export class InventoryComponent implements OnInit {
   }
 
   masterToggle() {
-    console.log(this.inventoryItems);
+    console.log(this.products);
     this.isAllItemsSelected()
       ? this.selection.clear()
-      : this.inventoryItems.forEach((row) => {
+      : this.products.forEach((row) => {
           this.selection.select(row);
         });
   }
 
   isAllItemsSelected() {
     const selectedItems = this.selection.selected.length;
-    const numOfRows = this.inventoryItems.length;
+    const numOfRows = this.products.length;
     return selectedItems === numOfRows;
   }
 
@@ -226,7 +225,7 @@ export class InventoryComponent implements OnInit {
   }
 
   updateRowData(userInputData) {
-    let temp: InventoryItem = new InventoryItem();
+    let temp: Product = new Product();
     temp.id = userInputData.id;
     temp.name = userInputData.name;
     temp.user = userInputData.user;

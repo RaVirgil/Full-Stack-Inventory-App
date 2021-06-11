@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { SessionGuard } from '../@core/guards/session.guard';
+import { ProductItemComponent } from '../shared/product-item/product-item.component';
 import { DashboardComponent } from './dashboard.component';
 import { DealsComponent } from './deals/deals.component';
 import { FemaleComponent } from './female/female.component';
@@ -17,8 +19,13 @@ const routes: Routes = [
       { path: 'female', component: FemaleComponent },
       { path: 'new', component: NewComponent },
       { path: 'deals', component: DealsComponent },
-      { path: 'profile', component: ProfileComponent },
+      {
+        path: 'profile',
+        component: ProfileComponent,
+        canActivate: [SessionGuard],
+      },
       { path: 'upcoming', component: UpcomingComponent },
+      { path: 'product/:id', component: ProductItemComponent },
     ],
   },
 ];

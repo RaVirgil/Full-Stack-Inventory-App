@@ -1,0 +1,8 @@
+<div *ngIf="product?.active">
+  <h1>Product: {{ product.name }}</h1>
+  <p>Description: {{ product.description }}</p>
+  <p>Price: {{product.price}}</p>
+
+  <button (click) = "addToCartButton()"> Add to cart</button>
+  <button (click) = "addToFavoritesButton()"> Add to favorites</button>  
+</div>

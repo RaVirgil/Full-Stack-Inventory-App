@@ -1,14 +1,12 @@
 import * as express from "express";
 import { env } from "./env";
-import { setAJsonRoute } from "./routes/a-json.route";
-import { setInventoryItemRoute } from "./routes/inventory-item.route";
 import { setUserRoute } from "./routes/user.route";
-import { setDiscoveryClientRoute } from "./routes/discovery-client.route";
 import { IExpressError } from "./interfaces/IExpressError";
 import { MikroORM, ReflectMetadataProvider } from "mikro-orm";
 import entities from "./entities";
 import { IExpressRequest } from "./interfaces/IExpressRequest";
 import * as bodyParser from "body-parser";
+import { setProductRoute } from "./routes/product.route";
 
 let app: express.Application;
 
@@ -27,7 +25,6 @@ async function makeApp(): Promise<express.Application> {
     autoFlush: false,
   });
 
-  // make the entity manager available in request
   app.use(
     (
       req: IExpressRequest,
@@ -44,12 +41,7 @@ async function makeApp(): Promise<express.Application> {
   app.use(bodyParser.json());
 
   // routes
-  app.use(
-    env.DISCOVERY_CLIENT_ROUTE,
-    setDiscoveryClientRoute(express.Router())
-  );
-  app.use(env.A_JSON_ROUTE, setAJsonRoute(express.Router()));
-  app.use(env.INVENTORY_ITEM_ROUTE, setInventoryItemRoute(express.Router()));
+  app.use(env.PRODUCT_ROUTE, setProductRoute(express.Router()));
   app.use(env.USER_ROUTE, setUserRoute(express.Router()));
 
   // 404

@@ -9,7 +9,7 @@ import { NewComponent } from './new/new.component';
 import { DealsComponent } from './deals/deals.component';
 import { UpcomingComponent } from './upcoming/upcoming.component';
 import { ProfileComponent } from './profile/profile.component';
-
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -19,11 +19,12 @@ import { ProfileComponent } from './profile/profile.component';
     NewComponent,
     DealsComponent,
     UpcomingComponent,
-    ProfileComponent
+    ProfileComponent,
   ],
   imports: [
     CommonModule,
-    DashboardRoutingModule
+    DashboardRoutingModule,
+    SharedModule
   ]
 })
 export class DashboardModule { }

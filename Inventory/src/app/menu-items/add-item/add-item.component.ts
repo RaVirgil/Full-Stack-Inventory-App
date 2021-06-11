@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { InventoryItem } from '../../app-logic/inventory-item';
+import { Product as Product } from '../../app-logic/product';
 import { Router } from '@angular/router';
 import { InventoryService } from '../../app-logic/inventory-service.service';
 
@@ -11,13 +11,8 @@ import { InventoryService } from '../../app-logic/inventory-service.service';
 })
 export class AddItemComponent implements OnInit {
   addItemForm: FormGroup;
-  item: InventoryItem;
+  item: Product;
   itemId: string;
-
-  getPosition = () =>
-    new Promise<Position>((resolve, reject) =>
-      navigator.geolocation.getCurrentPosition(resolve, reject)
-    );
 
   constructor(
     private fb: FormBuilder,
@@ -39,21 +34,15 @@ export class AddItemComponent implements OnInit {
   }
 
   onSubmit() {
-    this.item = new InventoryItem(this.addItemForm.value);
+    this.item = new Product(this.addItemForm.value);
     this.item.modifiedAt = new Date();
     this.item.active = true;
-    this.getPosition()
-      .then((data) => {
-        this.item.latitude = data.coords.latitude;
-        this.item.longitude = data.coords.longitude;
 
-        this.inventoryService.addItem(this.item).subscribe((data) => {
-          let item: InventoryItem = new InventoryItem(data);
-          this.itemId = item.id;
-          console.log(this.itemId);
-        });
-      })
-      .catch((error) => console.log('error:', error.message));
+    this.inventoryService.addItem(this.item).subscribe((data) => {
+      let item: Product = new Product(data);
+      this.itemId = item.id;
+      console.log(this.itemId);
+    });
   }
 
   hasError(controlName: string, errorName: string) {

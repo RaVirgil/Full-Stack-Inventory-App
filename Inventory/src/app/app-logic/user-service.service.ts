@@ -8,7 +8,7 @@ import { User } from './user';
 export class UserService {
   constructor(private http: HttpClient) {}
 
-  loginUser(user: User) {
+  loginUser(user: User) {    
     return this.http.post<string>('api/users/login', user);
   }
 }
