@@ -40,7 +40,10 @@ export class CategoryDialogBoxComponent implements OnInit {
   }
 
   public deleteSubcategory(subCategory: string): void {
-    const index = this.updateForm.value.subCategories.findIndex(subCategory);
+    console.log(subCategory);
+    const index = this.updateForm.value.subCategories.findIndex(
+      (element: string) => element === subCategory
+    );     
 
     if (index > -1) this.updateForm.value.subCategories.splice(index, 1);
   }

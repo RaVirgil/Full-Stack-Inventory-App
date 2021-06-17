@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ProductDialogBoxComponent } from './product-item-dialog-box/product-dialog-box.component';
 import { ShowItemComponent } from './show-item/show-item.component';
-import { MaterialModule } from '../material.module';
+import { MaterialModule } from './material.module';
 import { LayoutModule } from '@angular/cdk/layout';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';

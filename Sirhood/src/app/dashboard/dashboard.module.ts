@@ -27,10 +27,6 @@ import { SubcategoryComponent } from './subcategory/subcategory.component';
     CategoryComponent,
     SubcategoryComponent,
   ],
-  imports: [
-    CommonModule,
-    DashboardRoutingModule,
-    SharedModule
-  ]
+  imports: [CommonModule, DashboardRoutingModule, SharedModule],
 })
-export class DashboardModule { }
+export class DashboardModule {}

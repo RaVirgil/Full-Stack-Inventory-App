@@ -5,26 +5,22 @@ import { ProductItemComponent } from './product-item/product-item.component';
 import { CartItemComponent } from './cart-item/cart-item.component';
 import { ProductItemCardComponent } from './product-item-card/product-item-card.component';
 import { RouterModule } from '@angular/router';
-import {MatMenuModule} from '@angular/material/menu';
+import { MaterialModule } from './material.module';
 
 @NgModule({
-  declarations: [   
+  declarations: [
     FavoriteItemComponent,
     ProductItemComponent,
     CartItemComponent,
-    ProductItemCardComponent
+    ProductItemCardComponent,
   ],
-  imports: [
-    CommonModule,   
-    RouterModule,  
-    MatMenuModule,
-  ],
-  exports:[
+  imports: [CommonModule, RouterModule, MaterialModule],
+  exports: [
     FavoriteItemComponent,
     ProductItemComponent,
     CartItemComponent,
-    ProductItemCardComponent,    
-    MatMenuModule
-  ]
+    ProductItemCardComponent,
+    MaterialModule,
+  ],
 })
-export class SharedModule { }
+export class SharedModule {}

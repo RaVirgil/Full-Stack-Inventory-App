@@ -1,32 +1,49 @@
-// @import '~@angular/material/theming';
-// // Plus imports for other components in your app.
+@import '~@angular/material/theming';
+@include mat-core();
 
-// // Include the common styles for Angular Material. We include this here so that you only
-// // have to load a single css file for Angular Material in your app.
-// // Be sure that you only ever include this mixin once!
-// @include mat-core();
+$primary-scheme: (
+  100: #aaa0a0,
+  500: #d7cec7,
+  700: #644e5b,
+  contrast: (
+    100: rgba(255,255,255,0.87),
+    500: #000,
+    700: #ffffff,
+  )
+);
+$accent-scheme: (
+  100: #97aabd,
+  500: #565656,
+  700: #384d60,
+  contrast: (
+    100: rgba(0,0,0,0.87),
+    500: #fff,
+    700: #f5f5f5,
+  )
+);
 
-// // Define the palettes for your theme using the Material Design palettes available in palette.scss
-// // (imported above). For each palette, you can optionally specify a default, lighter, and darker
-// // hue. Available color palettes: https://material.io/design/color/
-// $Sirhood-primary: mat-palette($mat-indigo);
-// $Sirhood-accent: mat-palette($mat-pink, A200, A100, A400);
+$warn-scheme: (
+  100: #b97582,
+  500: #76323f,
+  700: #661927,
+  contrast: (
+    100: rgba(0,0,0,0.87),
+    500: #fff,
+    700: #f5f5f5,
+  )
+);
+$primary-palette: mat-palette($primary-scheme);
+$accent-palette: mat-palette($accent-scheme);
+$warn-palette: mat-palette($warn-scheme);
 
-// // The warn palette is optional (defaults to red).
-// $Sirhood-warn: mat-palette($mat-red);
+$app-light-theme: mat-light-theme($primary-palette, $accent-palette, $warn-palette);
 
-// // Create the theme object. A theme consists of configurations for individual
-// // theming systems such as "color" or "typography".
-// $Sirhood-theme: mat-light-theme((
-//   color: (
-//     primary: $Sirhood-primary,
-//     accent: $Sirhood-accent,
-//     warn: $Sirhood-warn,
-//   )
-// ));
+@include angular-material-theme($app-light-theme);
 
-// // Include theme styles for core and each component used in your app.
-// // Alternatively, you can import and @include the theme mixins for each component
-// // that you are using.
-// @include angular-material-theme($Sirhood-theme);
-
+// following section is for dark mode.
+// use appropriate class name for darkMode
+$app-dark-theme: mat-dark-theme($primary-palette, $accent-palette);
+.darkMode {
+  @include angular-material-theme($app-dark-theme);
+}
+    

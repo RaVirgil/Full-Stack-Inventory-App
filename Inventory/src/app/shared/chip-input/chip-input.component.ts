@@ -2,7 +2,6 @@ import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { MatChipInputEvent } from '@angular/material/chips';
 
-
 @Component({
   selector: 'app-chip-input',
   templateUrl: './chip-input.component.html',
@@ -19,7 +18,7 @@ export class ChipInputComponent {
   readonly separatorKeysCodes = [ENTER, COMMA] as const;
 
   add(event: MatChipInputEvent): void {
-    const value = (event.value || '').trim();
+    const value = (event?.value || '').trim();
 
     if (value) {
       this.addChip.emit(value);
