@@ -2,11 +2,16 @@ export const env = {
   PORT: 8000,
 
   NODE_ENV: "development",
-  
-  PRODUCT_ROUTE: "/api/products",
+
+  INVENTORY_PRODUCT_ROUTE: "/api/inventory/products",
+  SIRHOOD_PRODUCT_ROUTE: "/api/sirhood/products",
+  CART_ROUTE: "/api/cart",
+  FAVORITES_ROUTE: "/api/favorites",
+  INVENTORY_CATEGORY_ROUTE: "/api/inventory/categories",
+  SIRHOOD_CATEGORY_ROUTE: "/api/sirhood/categories",
   USER_ROUTE: "/api/users",
   ACCESS_TOKEN_SECRET: "ACCES_SECRET",
-  REFRESH_TOKEN_SECRET:"REFRESH_SECRET",
+  REFRESH_TOKEN_SECRET: "REFRESH_SECRET",
 
   MONGO_URL: "mongodb://127.0.0.1:27017",
   DB_NAME: "inventory",

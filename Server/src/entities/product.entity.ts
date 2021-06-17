@@ -26,7 +26,25 @@ export class Product implements MongoEntity<Product>, IProduct {
   price: number;
 
   @Property()
+  priceDeal: number;
+
+  @Property()
+  brand: string;
+
+  @Property()
+  category: string;
+
+  @Property()
+  subCategory: string;
+
+  @Property()
+  quantity: number;
+
+  @Property()
   user: string;
+
+  @Property()
+  tags: string[];
 
   @Property()
   location: string;

@@ -5,25 +5,35 @@ import { IExpressError } from "./interfaces/IExpressError";
 import { MikroORM, ReflectMetadataProvider } from "mikro-orm";
 import entities from "./entities";
 import { IExpressRequest } from "./interfaces/IExpressRequest";
-import * as bodyParser from "body-parser";
-import { setProductRoute } from "./routes/product.route";
+import { setInventoryProductRoute } from "./routes/inventory-product.route";
+import { setSirhoodProductRoute } from "./routes/sirhood-product.route";
+import { setCartRoute } from "./routes/cart.route";
+import { setFavoritesRoute } from "./routes/favorites.route";
+import { setInventoryCategoryRoute } from "./routes/inventory-category.route";
+import { setSirhoodCategoryRoute } from "./routes/sirhood-category.route";
 
+export { makeApp };
 let app: express.Application;
 
-async function makeApp(): Promise<express.Application> {
+async function makeApp(): Promise<express.Application | Error> {
   if (app) return app;
 
   app = express();
 
-  const orm = await MikroORM.init({
-    metadataProvider: ReflectMetadataProvider,
-    cache: { enabled: false },
-    entities: entities,
-    dbName: env.DB_NAME,
-    clientUrl: env.MONGO_URL,
-    type: "mongo",
-    autoFlush: false,
-  });
+  let orm: any;
+  try {
+    orm = await MikroORM.init({
+      metadataProvider: ReflectMetadataProvider,
+      cache: { enabled: false },
+      entities: entities,
+      dbName: env.DB_NAME,
+      clientUrl: env.MONGO_URL,
+      type: "mongo",
+      autoFlush: false,
+    });
+  } catch (er) {
+    return er;
+  }
 
   app.use(
     (
@@ -37,11 +47,25 @@ async function makeApp(): Promise<express.Application> {
   );
 
   // middleware
-  app.use(bodyParser.urlencoded({ extended: false }));
-  app.use(bodyParser.json());
+  app.use(express.urlencoded({ extended: false }));
+  app.use(express.json());
 
   // routes
-  app.use(env.PRODUCT_ROUTE, setProductRoute(express.Router()));
+  app.use(
+    env.INVENTORY_PRODUCT_ROUTE,
+    setInventoryProductRoute(express.Router())
+  );
+  app.use(env.SIRHOOD_PRODUCT_ROUTE, setSirhoodProductRoute(express.Router()));
+  app.use(env.CART_ROUTE, setCartRoute(express.Router()));
+  app.use(env.FAVORITES_ROUTE, setFavoritesRoute(express.Router()));
+  app.use(
+    env.INVENTORY_CATEGORY_ROUTE,
+    setInventoryCategoryRoute(express.Router())
+  );
+  app.use(
+    env.SIRHOOD_CATEGORY_ROUTE,
+    setSirhoodCategoryRoute(express.Router())
+  );
   app.use(env.USER_ROUTE, setUserRoute(express.Router()));
 
   // 404
@@ -65,5 +89,3 @@ async function makeApp(): Promise<express.Application> {
 
   return app;
 }
-
-export { makeApp };

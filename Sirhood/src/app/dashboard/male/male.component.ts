@@ -10,18 +10,22 @@ import { ProductService } from 'src/app/@core/services/product.service';
   styleUrls: ['./male.component.css'],
 })
 export class MaleComponent implements OnInit {
-  public products: Product[];
+  public products: Product[] = [];
 
   constructor(
     private readonly productSerivce: ProductService,
     private readonly cartService: CartService,
-    private readonly favoritesService: FavoritesService, 
+    private readonly favoritesService: FavoritesService
   ) {}
 
   ngOnInit(): void {
-    this.productSerivce
-      .getAll()
-      .subscribe((result: Product[]) => (this.products = result));
+    this.productSerivce.getAll().subscribe((result: Product[]) => {      
+      result.forEach((product) => {        
+        if (product.tags?.includes("male")) this.products.push(product);
+      });
+      console.log(result);
+      console.log(this.products);
+    });
   }
 
   public addToCart(product: Product) {
@@ -30,5 +34,5 @@ export class MaleComponent implements OnInit {
 
   public addToFavorites(product: Product) {
     this.favoritesService.add(product);
-  }  
+  }
 }

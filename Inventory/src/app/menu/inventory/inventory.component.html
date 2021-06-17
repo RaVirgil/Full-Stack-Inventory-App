@@ -1,0 +1,15 @@
+<mat-form-field appearance="fill">
+  <mat-label>Tabel</mat-label>
+  <mat-select [(ngModel)] = "table">
+    <mat-option *ngFor="let table of tables" [value] = "table">
+      {{table}}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+
+<ng-container [ngSwitch] = "table">
+  <app-categories *ngSwitchCase = '"Categories"'></app-categories>
+  <app-products *ngSwitchCase = '"Products"'></app-products>
+
+  <app-products *ngSwitchDefault></app-products>
+</ng-container>

@@ -3,6 +3,11 @@ export interface IProduct {
   name: string;
   description: string;  
   price: number;
+  priceDeal: number;
+  quantity: number;
+  brand: string;
+  category: string;
+  subCategory: string;
   tags: string[];
   inventoryNumber: number;
   createdAt: Date;

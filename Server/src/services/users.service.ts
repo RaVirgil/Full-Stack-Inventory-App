@@ -3,14 +3,46 @@ import { EntityManager } from "mikro-orm";
 import * as bcrypt from "bcrypt";
 import * as jwt from "jsonwebtoken";
 import { env } from "../env";
-export { loginUser };
+
+export { loginUser, registerUser };
 
 async function loginUser(
   em: EntityManager,
   user: User
+): Promise<Error | any> {
+  if (!(em instanceof EntityManager)) return Error("invalid request");
+
+  if (!user.username || typeof user.username !== "string")
+    return Error("invalid params");
+  if (!user.password || typeof user.password !== "string")
+    return Error("invalid params");
+        
+
+  try {
+    const foundUser = await em.findOne(User, { username: user.username });
+    if (foundUser != null) {
+      if (await bcrypt.compare(user.password, foundUser.password)) {
+        return {
+          accessToken: generateAccessToken(foundUser.id),
+          userId: foundUser.id,
+          userRole: foundUser.role
+        };
+      }
+      return "error";
+    }    
+  } catch (ex) {
+    console.log(ex);
+    return ex;
+  }
+  return "error";
+}
+
+async function registerUser(
+  em: EntityManager,
+  user: User
 ): Promise<Error | string> {
   if (!(em instanceof EntityManager)) return Error("invalid request");
-  
+
   if (!user.username || typeof user.username !== "string")
     return Error("invalid params");
   if (!user.password || typeof user.password !== "string")
@@ -18,23 +50,23 @@ async function loginUser(
 
   try {
     const foundUser = await em.findOne(User, { username: user.username });
-    console.log(foundUser);
-    if (foundUser != null) {
-      if (await bcrypt.compare(user.password, foundUser.password)) {
-        return generateAccessToken(foundUser.id);
-      }
+    if (foundUser == null) {
+      bcrypt.hash(user.password, 10, function (_err, hash) {
+        user.password = hash;
+        user.role = "user";
+        const madeUser = new User(user);
+        em.persistAndFlush(madeUser);
+      });
     }
   } catch (ex) {
     return ex;
   }
-  return "incorrect credentials";
+  return "error";
 }
 
-function generateAccessToken(id: string) {  
-  console.log(id)
-  const accessToken = jwt.sign({id: id}, env.ACCESS_TOKEN_SECRET, {
-    expiresIn: "5m",
+function generateAccessToken(id: string) {
+  const accessToken = jwt.sign({ id: id }, env.ACCESS_TOKEN_SECRET, {
+    expiresIn: "10m",
   });
-  console.log("POST users/login 201");
   return accessToken;
 }

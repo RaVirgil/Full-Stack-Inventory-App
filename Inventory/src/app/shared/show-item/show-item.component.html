@@ -1,0 +1,49 @@
+<div> 
+  <p>
+    <b>Name:</b><i>{{ product.name }}</i>
+  </p>
+  <p>
+    <b>Description:</b><i>{{ product.description }}</i>
+  </p>
+  <p>
+    <b>Price:</b><i>{{ product.price }}</i>
+  </p>
+  <p>
+    <b>Price Deal:</b><i>{{ product.priceDeal }}</i>
+  </p>
+  <p>
+    <b>Quantity:</b><i>{{ product.quantity }}</i>
+  </p>
+  <p>
+    <b>Category:</b><i>{{ product.category }}</i>
+  </p>
+  <p>
+    <b>Subcategory:</b><i>{{ product.subCategory }}</i>
+  </p>
+  <p>
+    <b>Tags:</b><i>{{ product.tags }}</i>
+  </p>
+  <p>
+    <b>Modified by:</b><i>{{ product.user }}</i>
+  </p>
+  <p>
+    <b>Location:</b><i>{{ product.location }}</i>
+  </p>
+  <p>
+    <b>Inventory number:</b><i>{{ product.inventoryNumber }}</i>
+  </p>
+  <p>
+    <b>Created at:</b><i>{{ product.createdAt | date:'medium' }}</i>
+  </p>
+  <p>
+    <b>Active:</b><i>{{ product.active? 'yes' : 'no' }}</i>
+  </p>
+</div>
+
+<div class="qrCode" *ngIf="productId">
+  <qrcode [qrdata]="productId" [size]="256" [level]="'M'"></qrcode>
+</div>
+
+<button class="action-button" mat-raised-button (click)="print()">Print</button>
+<button class="action-button" mat-raised-button (click)="openDialog('Update')">Update</button>
+<button class="action-button" mat-raised-button (click)="openDialog('Delete')">Delete</button>

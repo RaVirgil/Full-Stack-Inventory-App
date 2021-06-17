@@ -1,25 +1,7 @@
-<header class="header-container">
-  <nav class="header-nav-container">
-    <a routerLink="">LOGO</a>
-    <input type="search" placeholder="Whatever the sir wants..." />
-    <div class="nav-buttons">
-      <div [ngSwitch]="isAuthenticated()">
-        <a *ngSwitchCase="true" routerLink="/profile"> Profile </a>
-
-        <a *ngSwitchCase="false" routerLink="/auth"> Sign In </a>
-      </div>
-      <a routerLink="/cart"> Cart </a>
-      <a routerLink="/favorites"> Favorites </a>
-    </div>
-  </nav>
-</header>
+<app-header></app-header>
 
 <main>
   <router-outlet></router-outlet>
 </main>
 
-<footer class="footer-container">
-  <a>Copyright</a>
-  <a>github</a>
-  <a>Trademark 2021</a>
-</footer>
+<app-footer></app-footer>

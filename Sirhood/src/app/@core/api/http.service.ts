@@ -9,19 +9,18 @@ export class HttpService {
   constructor(private readonly http: HttpClient) {}
 
   public get(endpoint: string): Observable<any> {
-    const token = this.getToken();
-    console.log(token);
-    const headers = { 'Authorization': 'Bearer ' + token };
-    return this.http.get(`/api/${endpoint}`, { headers });
+    return this.http.get(`api/${endpoint}`);
   }
 
   public post(endpoint: string, payload: any): Observable<any> {
-    return this.http.post(`/api/${endpoint}`, payload);
+    return this.http.post(`api/${endpoint}`, payload);
   }
 
-  private getToken(): string {
-    const token = localStorage.getItem('token');
-    if (token === null) return 'null';
-    return token;
+  public delete(endpoint: string): Observable<any> {
+    return this.http.delete(`api/${endpoint}`);
+  }
+
+  public put(endpoint: string, payload: any): Observable<any> {
+    return this.http.post(`api/${endpoint}`, payload);
   }
 }

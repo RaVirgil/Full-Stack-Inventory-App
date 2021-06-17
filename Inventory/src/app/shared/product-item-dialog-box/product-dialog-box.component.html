@@ -1,0 +1,96 @@
+<h1 mat-dialog-title>
+  <strong>{{ action }}</strong>
+</h1>
+
+<form
+  class="dialog-update-form"
+  [formGroup]="updateForm"  
+  mat-dialog-content
+  *ngIf="action != 'Delete'; else elseTemplate"
+>
+  <mat-form-field>
+    <input matInput placeholder="Name" formControlName="name" />
+  </mat-form-field>
+
+  <mat-form-field>
+    <textarea
+      matInput
+      placeholder="Description"
+      formControlName="description"
+    ></textarea>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput placeholder="Price" formControlName="price" />
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput placeholder="Price Deal" formControlName="priceDeal" />
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput placeholder="Quantity" formControlName="quantity" />
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput placeholder="Brand" formControlName="brand" />
+  </mat-form-field>
+
+  <mat-form-field>
+    <textarea matInput placeholder="Tags" formControlName="tags"></textarea>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput placeholder="Location" formControlName="location" />
+  </mat-form-field>
+
+  <mat-form-field>
+    <input
+      matInput
+      placeholder="Inventory Number"
+      formControlName="inventoryNumber"
+    />
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Category</mat-label>
+    <select
+      matNativeControl
+      [(ngModel)]="selectedCategory"
+      [ngModelOptions]="{ standalone: true }"
+    >
+      <option *ngFor="let cat of categories" [ngValue]="cat">
+        {{ cat.name }}
+      </option>
+    </select>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Subcategory</mat-label>
+    <select matNativeControl formControlName="subCategory">
+      <option *ngFor="let subCategory of selectedCategory.subCategories" [ngValue] = "subCategory">
+        {{ subCategory }}
+      </option>
+    </select>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Active</mat-label>
+    <select matNativeControl formControlName="active">
+      <option value="true">True</option>
+      <option value="false">False</option>
+    </select>
+  </mat-form-field>
+</form>
+
+<ng-template #elseTemplate>
+  Sure to delete <b>{{ receivedData.name }}</b
+  >?
+</ng-template>
+
+<div class="dialog-buttons" mat-dialog-actions>
+  <button mat-button [disabled]="!updateForm.valid" (click) = "doAction()">{{ action }}</button>
+  <button mat-button (click)="closeDialog()" mat-flat-button color="warn">
+    Cancel
+  </button>
+</div>

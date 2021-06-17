@@ -10,6 +10,17 @@ export class ProductService {
   constructor(private readonly httpService: HttpService) {}
 
   public getAll(): Observable<Product[]> {
-    return this.httpService.get('products');
+    return this.httpService.get('sirhood/products');
+  }
+
+  public getForCategory(category: string): Observable<Product[]> {
+    return this.httpService.get(`sirhood/products/category/${category}`);
+  }
+
+  public getForSubCategory(
+    category: string,
+    subCategory: string
+  ): Observable<Product[]> {    
+    return this.httpService.get(`sirhood/products/category/${category}/subCategory/${subCategory}`);
   }
 }

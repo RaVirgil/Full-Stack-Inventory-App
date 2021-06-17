@@ -1,0 +1,134 @@
+<form [formGroup]="addItemForm">
+  <div class="form-div">
+    <mat-form-field class="form-field" appearance="outline">
+      <mat-label> Name </mat-label>
+      <input matInput formControlName="name" required />
+    </mat-form-field>
+  </div>
+
+  <div class="form-div">
+    <mat-form-field class="form-field" appearance="outline">
+      <mat-label> Description </mat-label>
+      <textarea
+        matInput
+        maxlength="256"
+        formControlName="description"
+        required
+      ></textarea>
+      <mat-hint align="end"
+        >{{ addItemForm.value.description.length }} / 256</mat-hint
+      >
+    </mat-form-field>
+  </div>
+
+  <div class="form-div">
+    <mat-form-field floatLabel="always" appearance="outline">
+      <mat-label> Price </mat-label>
+      <input
+        class="price-input"
+        matInput
+        formControlName="price"
+        type="number"
+        placeholder="0"
+      />
+      <span matPrefix>RON&nbsp;</span>
+    </mat-form-field>
+  </div>
+
+  <div class="form-div">
+    <mat-form-field floatLabel="always" appearance="outline">
+      <mat-label> Price Deal </mat-label>
+      <input
+        class="price-input"
+        matInput
+        formControlName="priceDeal"
+        type="number"
+        placeholder="0"
+      />
+      <span matPrefix>RON&nbsp;</span>
+    </mat-form-field>
+  </div>
+
+  <div class="form-div">
+    <mat-form-field class="form-field" appearance="outline">
+      <mat-label> Quantity </mat-label>
+      <input type="number" matInput formControlName="quantity" required />
+    </mat-form-field>
+  </div>
+
+  <div class="form-div">
+    <mat-form-field class="form-field" appearance="outline">
+      <mat-label> Brand </mat-label>
+      <input matInput formControlName="brand" required />
+    </mat-form-field>
+  </div>
+
+  <div class="form-div">
+    <mat-form-field appearance="fill">
+      <mat-label>Category</mat-label>
+      <select
+        matNativeControl
+        [(ngModel)]="selectedCategory"
+        [ngModelOptions]="{ standalone: true }"
+      >
+        <option *ngFor="let cat of categories" [ngValue]="cat">
+          {{ cat.name }}
+        </option>
+      </select>
+    </mat-form-field>
+  </div>
+
+  <div class="form-div">
+    <mat-form-field appearance="fill">
+      <mat-label>Subcategory</mat-label>
+      <select matNativeControl formControlName="subCategory">
+        <option *ngFor="let subCategory of selectedCategory.subCategories">
+          {{ subCategory }}
+        </option>
+      </select>
+    </mat-form-field>
+  </div>
+
+  <div class="form-div">
+    <mat-form-field class="form-field" appearance="outline">
+      <mat-label> Location </mat-label>
+      <input matInput formControlName="location" required />
+    </mat-form-field>
+  </div>
+
+  <div class="form-div">
+    <mat-form-field class="form-field" appearance="outline">
+      <mat-label> Inventory Number </mat-label>
+      <input
+        matInput
+        type="number"
+        formControlName="inventoryNumber"
+        required
+      />
+    </mat-form-field>
+  </div>
+
+  <div class="form-div">
+    <mat-form-field class="form-field" appearance="outline">
+      <mat-label> Created At </mat-label>
+      <input matInput type="date" formControlName="createdAt" required />
+    </mat-form-field>
+  </div>
+
+  <div class="form-div">
+    <app-chip-input
+      [chips]="addItemForm.value.tags"
+      (addChip)="addTag($event)"
+      (deleteChip)="deleteTag($event)"
+    ></app-chip-input>
+  </div>
+
+  <button
+    class="submit-button"
+    mat-raised-button
+    (click)="onSubmit()"
+    [disabled]="!addItemForm.valid"
+  >
+    Submit
+  </button>
+</form>

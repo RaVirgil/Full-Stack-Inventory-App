@@ -1,0 +1,10 @@
+.dialog-update-form{      
+    display:flex;
+    height: 100%;
+  flex-flow: column wrap;
+}
+
+.dialog-buttons{
+  justify-content: center;
+  margin-top: auto;
+}

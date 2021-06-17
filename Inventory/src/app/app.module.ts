@@ -1,69 +1,25 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { AppRoutingModule, RoutingComponent } from './app-routing.module';
+import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatTableModule } from '@angular/material/table';
-import { MatPaginatorModule } from '@angular/material/paginator';
-import { MatSortModule } from '@angular/material/sort';
-import { MatCheckboxModule } from '@angular/material/checkbox';
-import { MatSidenavModule } from '@angular/material/sidenav';
-import { NavComponent } from './nav/nav.component';
-import { LayoutModule } from '@angular/cdk/layout';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatButtonModule } from '@angular/material/button';
-import { MatIconModule } from '@angular/material/icon';
-import { MatListModule } from '@angular/material/list';
-import { MatDialogModule } from '@angular/material/dialog';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { MatSlideToggleModule } from '@angular/material/slide-toggle';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { DialogBoxComponent } from './dialog-box/dialog-box.component';
-import { HttpClientModule } from '@angular/common/http';
-import { QRCodeModule } from 'angularx-qrcode';
-import { ZXingScannerModule } from '@zxing/ngx-scanner';
-import { LogInComponent } from './log-in/log-in.component';
-import {AgmCoreModule} from "@agm/core";
+import { MenuModule } from './menu/menu.module';
+import { AuthenticationModule } from './authentication/authentication.module';
+
+import { SharedModule } from './shared/shared.module';
+
+import { BrowserModule } from '@angular/platform-browser';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    RoutingComponent,
-    NavComponent,
-    DialogBoxComponent,
-    LogInComponent,        
-  ],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
-    AppRoutingModule,
     BrowserAnimationsModule,
-    MatTableModule,
-    MatPaginatorModule,
-    MatSortModule,
-    MatCheckboxModule,
-    MatSidenavModule,
-    LayoutModule,
-    MatToolbarModule,
-    MatButtonModule,
-    MatIconModule,
-    MatListModule,
-    MatDialogModule,
-    MatFormFieldModule,
-    FormsModule,
-    MatInputModule,
-    ReactiveFormsModule,
-    HttpClientModule,
-    MatProgressSpinnerModule,
-    MatSlideToggleModule,
-    QRCodeModule,
-    ZXingScannerModule,
-    AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyCRMTVkQL5C5ChUBQhOeJWHL60OiZnMbWU'
-    })
+    AppRoutingModule,
+    MenuModule,
+    AuthenticationModule,
+    SharedModule,
   ],
-  entryComponents: [DialogBoxComponent],
   providers: [],
   bootstrap: [AppComponent],
 })

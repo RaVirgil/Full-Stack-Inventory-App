@@ -9,9 +9,12 @@ import { CartComponent } from './cart/cart.component';
 import { DashboardModule } from './dashboard/dashboard.module';
 import { SharedModule } from './shared/shared.module';
 import { FavoritesComponent } from './favorites/favorites.component';
+import { HeaderComponent } from './header/header.component';
+import { FooterComponent } from './footer/footer.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
-  declarations: [AppComponent, CartComponent, FavoritesComponent],
+  declarations: [AppComponent, CartComponent, FavoritesComponent, HeaderComponent, FooterComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -19,6 +22,7 @@ import { FavoritesComponent } from './favorites/favorites.component';
     AuthModule,
     HttpClientModule,
     SharedModule,
+    BrowserAnimationsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

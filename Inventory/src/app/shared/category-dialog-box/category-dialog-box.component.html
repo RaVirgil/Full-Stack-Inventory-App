@@ -1,0 +1,46 @@
+<h1 mat-dialog-title>
+  <strong>{{ action }}</strong>
+</h1>
+
+<form
+  class="dialog-update-form"
+  [formGroup]="updateForm"
+  mat-dialog-content
+  *ngIf="action != 'Delete'; else elseTemplate"
+>
+  <mat-form-field>
+    <input matInput placeholder="Name" formControlName="name" />
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput placeholder="Type" formControlName="type" />
+  </mat-form-field>
+
+  <app-chip-input
+    [chips]="updateForm.value.subCategories"
+    (addChip)="addSubcategory($event)"
+    (deleteChip)="deleteSubcategory($event)"
+  ></app-chip-input>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Active</mat-label>
+    <select matNativeControl formControlName="active">
+      <option value="true">True</option>
+      <option value="false">False</option>
+    </select>
+  </mat-form-field>
+</form>
+
+<ng-template #elseTemplate>
+  Sure to delete <b>{{ receivedData.name }}</b
+  >?
+</ng-template>
+
+<div class="dialog-buttons" mat-dialog-actions>
+  <button mat-button [disabled]="!updateForm.valid" (click)="doAction()">
+    {{ action }}
+  </button>
+  <button mat-button (click)="closeDialog()" mat-flat-button color="warn">
+    Cancel
+  </button>
+</div>

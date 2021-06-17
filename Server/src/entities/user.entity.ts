@@ -7,6 +7,7 @@ import {
 } from "mikro-orm";
 import { ObjectId } from "mongodb";
 import { IUser } from "../../../Interfaces/IUser";
+import { Product } from "./product.entity";
 
 @Entity()
 export class User implements MongoEntity<User>, IUser {
@@ -17,7 +18,13 @@ export class User implements MongoEntity<User>, IUser {
   id!: string;
 
   @Property()
-  username: string;
+  username: string;  
+
+  @Property()
+  cart: Product[];
+
+  @Property()
+  favorites: Product[];
 
   @Property()
   password: string;

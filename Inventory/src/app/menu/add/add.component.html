@@ -1,0 +1,15 @@
+<mat-form-field appearance="fill">
+    <mat-label>Type</mat-label>
+    <mat-select [(ngModel)] = "type">
+      <mat-option *ngFor="let type of types" [value] = "type">
+        {{type}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  
+  <ng-container [ngSwitch] = "type">
+    <app-add-category *ngSwitchCase = '"Category"'></app-add-category>
+    <app-add-item *ngSwitchCase = '"Product"'></app-add-item>
+  
+    <app-add-item *ngSwitchDefault></app-add-item>
+  </ng-container>

@@ -13,6 +13,8 @@ export class FavoritesComponent implements OnInit {
   constructor(private readonly favoritesService: FavoritesService) {}
 
   ngOnInit(): void {
-    this.products = this.favoritesService.get();
+    this.favoritesService
+      .get()
+      .subscribe((products: Product[]) => (this.products = products));
   }
 }

@@ -10,6 +10,9 @@ import { DealsComponent } from './deals/deals.component';
 import { UpcomingComponent } from './upcoming/upcoming.component';
 import { ProfileComponent } from './profile/profile.component';
 import { SharedModule } from '../shared/shared.module';
+import { CategoriesComponent } from './categories/categories.component';
+import { CategoryComponent } from './category/category.component';
+import { SubcategoryComponent } from './subcategory/subcategory.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +23,9 @@ import { SharedModule } from '../shared/shared.module';
     DealsComponent,
     UpcomingComponent,
     ProfileComponent,
+    CategoriesComponent,
+    CategoryComponent,
+    SubcategoryComponent,
   ],
   imports: [
     CommonModule,

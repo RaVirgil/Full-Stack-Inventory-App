@@ -1,42 +1,15 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { AddItemComponent } from './menu-items/add-item/add-item.component';
-import { ContactComponent } from './menu-items/contact/contact.component';
-import { InventoryComponent } from './menu-items/inventory/inventory.component';
-import { ScanComponent } from './menu-items/scan/scan.component';
-import { HomePageComponent } from './home-page/home-page.component';
-import { ShowItemComponent } from './menu-items/show-item/show-item.component';
-import {LogInComponent} from "./log-in/log-in.component";
+import { AuthenticationComponent } from './authentication/authentication.component';
+import { MenuComponent } from './menu/menu.component';
+import { SessionGuard } from './@core/guards/session.guard';
+import { NotFoundComponent } from './shared/not-found/not-found.component';
 
 const routes: Routes = [
-  { path: '', component: HomePageComponent, data: { animation: 'isLeft' } },
-  {
-    path: 'inventory',
-    component: InventoryComponent,
-    data: { animation: 'isLeft' },
-  },
-  { path: 'scan', component: ScanComponent, data: { animation: 'isLeft' } },
-  
-  {
-    path: 'add-item',
-    component: AddItemComponent,
-    data: { animation: 'isLeft' },
-  },
-  {
-    path: 'contact',
-    component: ContactComponent,
-    data: { animation: 'isLeft' },
-  },
-  {
-    path: 'item/:id',
-    component: ShowItemComponent,
-    data: { animation: 'isLeft' },
-  },
-  {
-    path: 'log-in',
-    component: LogInComponent,
-    data: { animation: 'isLeft' },
-  },
+  { path: '', component: AuthenticationComponent },
+  { path: 'auth', component: AuthenticationComponent },
+  { path: 'menu', component: MenuComponent, canActivate: [SessionGuard], loadChildren: () => import('./menu/menu.module').then(m => m.MenuModule) },
+  { path: '**', component: NotFoundComponent },
 ];
 
 @NgModule({
@@ -44,13 +17,3 @@ const routes: Routes = [
   exports: [RouterModule],
 })
 export class AppRoutingModule {}
-
-export const RoutingComponent = [
-  HomePageComponent,
-  ScanComponent,
-  InventoryComponent,
-  ContactComponent,
-  AddItemComponent,
-  ShowItemComponent,
-  LogInComponent
-];

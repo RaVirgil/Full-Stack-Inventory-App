@@ -12,7 +12,7 @@ export class SessionGuard implements CanActivate {
   ) {}
   canActivate(): boolean {
     if (!this.authenticationService.isAuthenticated()) {
-      this.router.navigate(['login']);
+      this.router.navigate(['auth/login']);
       return false;
     }
 

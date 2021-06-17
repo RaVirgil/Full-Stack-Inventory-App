@@ -14,7 +14,7 @@ export const slider = trigger('routeAnimations', [
   transition('isLeft => *', slideTo('right')),
 ]);
 
-function slideTo(direction) {
+function slideTo(direction: string) {
   const optional = { optional: true };
   return [
     query(

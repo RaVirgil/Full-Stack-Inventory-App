@@ -1,0 +1,44 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav
+    #drawer
+    class="sidenav mat-elevation-z8"
+    fixedInViewport
+    [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+    [mode]="(isHandset$ | async) ? 'over' : 'side'"
+    [opened]="(isHandset$ | async) === false"
+    *ngIf="isLoggedIn$"
+  >
+    <mat-nav-list class="nav-list">
+      <a mat-list-item routerLink="./" class="nav-list-item">
+        <mat-icon>storefront</mat-icon>
+        <div>Inventory</div>
+      </a>      
+
+      <a mat-list-item routerLink="./scan" class="nav-list-item">
+        <mat-icon>qr_code_scanner</mat-icon>
+        <div>Scan</div>
+      </a>
+
+      <a mat-list-item routerLink="./add" class="nav-list-item">
+        <mat-icon>add</mat-icon>
+        <div>Add</div>
+      </a>
+
+      <a mat-list-item routerLink="./contact" class="nav-list-item">
+        <mat-icon>contact_page</mat-icon>
+        <div>Contact</div>
+      </a>
+
+      <button mat-button (click)="logout()" class="nav-logout-button">
+        <mat-icon>login</mat-icon>
+        <div>Logout</div>
+      </button>
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <div [@routeAnimations]="prepareRoute(outlet)">
+      <router-outlet #outlet="outlet"></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>
