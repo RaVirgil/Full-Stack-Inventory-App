@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Product } from '../@core/entities/product.entity';
 import { FavoritesService } from '../@core/services/favorites.service';
 
+
 @Component({
   selector: 'app-favorites',
   templateUrl: './favorites.component.html',

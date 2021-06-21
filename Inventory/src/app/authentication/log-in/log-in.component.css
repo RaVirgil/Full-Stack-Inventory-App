@@ -1,13 +1,7 @@
-.form-div{    
-    margin-left: 40%;
-}
-
-.form-field{
-    font-size: large;
-    
-}
-
-.submit-button{
-    
-    margin-left: 44%;
+.login-form{
+    display: flex;
+    flex-flow: column ;
+    width: 20rem;   
+    align-items: center;
+    justify-content: center;
 }

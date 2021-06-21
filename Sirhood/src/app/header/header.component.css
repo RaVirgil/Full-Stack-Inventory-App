@@ -1,5 +1,37 @@
-.header-nav-container {
+.header-container {
   display: flex;
-  flex-wrap: column wrap;
+  flex-flow: row wrap;
   justify-content: space-evenly;
+  height: 30vh;
+  background-color: lightblue;
+}
+
+.header-nav-container {
+  height: 15%;
+  width: 100%;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-evenly;
+  background-color: lightcoral;
+}
+
+.header-links-container {
+  width: 100%;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+}
+
+.header-links-left {
+  width: 10%;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+}
+
+.header-links-right {
+  width: 10%;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
 }

@@ -89,8 +89,8 @@
 </ng-template>
 
 <div class="dialog-buttons" mat-dialog-actions>
-  <button mat-button [disabled]="!updateForm.valid" (click) = "doAction()">{{ action }}</button>
-  <button mat-button (click)="closeDialog()" mat-flat-button color="warn">
+  <button [disabled]="!updateForm.valid"  mat-flat-button color="secondary" (click) = "doAction()">{{ action }}</button>
+  <button (click)="closeDialog()" mat-flat-button color="warn">
     Cancel
   </button>
 </div>

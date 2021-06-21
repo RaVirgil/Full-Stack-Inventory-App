@@ -1,14 +1,81 @@
-<div class="container">
-  <app-categories>    
-  </app-categories>
-  <a routerLink="/male"> male </a>
-  <a routerLink="/female"> female </a>
-  <a routerLink="/new"> new </a>
-  <a routerLink="/deals"> deals </a>
-  <a routerLink="/profile"> profile </a>
-  <a routerLink="/upcoming"> upcoming </a>
+<div class="dashboard-container">
+  <section class="highlight-category-container">
+    <a routerLink="/category/Ceasuri"> Ceasuri </a>
+  </section>
+
+  <section class="categories-container">
+    <mat-grid-list cols="4" rowHeight="100px">
+      <mat-grid-tile
+        [colspan]="1"
+        [rowspan]="3"
+        style="background-color: lightblue"
+      >
+        <a routerLink="/category/Parfumuri"> Parfumuri </a>
+      </mat-grid-tile>
+
+      <mat-grid-tile
+        [colspan]="2"
+        [rowspan]="1"
+        style="background-color: lightcyan"
+      >
+        <a routerLink="/category/Tricouri"> Tricouri polo </a>
+      </mat-grid-tile>
+
+      <mat-grid-tile
+        [colspan]="1"
+        [rowspan]="3"
+        style="background-color: lightgreen"
+      >
+        <a routerLink="/category/Costume"> Costume </a>
+      </mat-grid-tile>
+
+      <mat-grid-tile
+        [colspan]="1"
+        [rowspan]="2"
+        style="background-color: lightgoldenrodyellow"
+      >
+        <a routerLink="/category/Pantaloni"> Pantaloni </a>
+      </mat-grid-tile>
+
+      <mat-grid-tile
+        [colspan]="1"
+        [rowspan]="2"
+        style="background-color: lightcoral"
+      >
+        <a routerLink="/category/Accesorii"> Accesorii </a>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </section>
+
+  <section class="inspiration-container">
+    <mat-grid-list cols="3" rowHeight="100px">
+      <mat-grid-tile
+        [colspan]="2"
+        [rowspan]="2"
+        style="background-color: lightblue"
+      >
+        <p>
+          Our story......................................................
+        </p>
+      </mat-grid-tile>
+
+      <mat-grid-tile
+        [colspan]="1"
+        [rowspan]="1"
+        style="background-color: lightcyan"
+      >
+        <a routerLink="/male"> For him </a>
+      </mat-grid-tile>
+
+      <mat-grid-tile
+        [colspan]="1"
+        [rowspan]="1"
+        style="background-color: lightgreen"
+      >
+        <a routerLink="/female"> For her </a>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </section>
+
+  <router-outlet></router-outlet>
 </div>
-
-<button mat-raised-button>asdas</button>
-
-<router-outlet></router-outlet>

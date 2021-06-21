@@ -46,11 +46,7 @@
     border-radius: 10px 10px 10px 10px;
     transition: box-shadow 0.5s;
     box-shadow: 0 0 11px rgba(33, 33, 33, 0.2);
-  }
-  
-  .nav-list {
-    align-items: center;
-  }
+  }  
   
   .mat-toolbar.mat-primary {
     position: sticky;

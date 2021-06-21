@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 import { DashboardRoutingModule } from './dashboard-routing.module';
 import { DashboardComponent } from './dashboard.component';
 import { MaleComponent } from './male/male.component';
@@ -10,7 +9,6 @@ import { DealsComponent } from './deals/deals.component';
 import { UpcomingComponent } from './upcoming/upcoming.component';
 import { ProfileComponent } from './profile/profile.component';
 import { SharedModule } from '../shared/shared.module';
-import { CategoriesComponent } from './categories/categories.component';
 import { CategoryComponent } from './category/category.component';
 import { SubcategoryComponent } from './subcategory/subcategory.component';
 
@@ -22,8 +20,7 @@ import { SubcategoryComponent } from './subcategory/subcategory.component';
     NewComponent,
     DealsComponent,
     UpcomingComponent,
-    ProfileComponent,
-    CategoriesComponent,
+    ProfileComponent, 
     CategoryComponent,
     SubcategoryComponent,
   ],

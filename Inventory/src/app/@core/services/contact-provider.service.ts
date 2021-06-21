@@ -6,10 +6,10 @@ import { IContactData} from "../entities/IContactData";
 })
 export class ContactProviderService {
   private data = <IContactData>{
-    info: 'Coolest storage',
-    address: 'Address of the coolest storage',
+    info: 'Radu Virgil-Andrei',
+    address: 'Brașov, România',
     openDays: 'Monday-Friday',
-    phone: '0733333333',
+    phone: '0746888265',
     timeSlot: '9.00-17.00',
   };
 

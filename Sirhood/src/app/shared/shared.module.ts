@@ -6,6 +6,7 @@ import { CartItemComponent } from './cart-item/cart-item.component';
 import { ProductItemCardComponent } from './product-item-card/product-item-card.component';
 import { RouterModule } from '@angular/router';
 import { MaterialModule } from './material.module';
+import { CategoriesMenuComponent } from './categories-menu/categories-menu.component';
 
 @NgModule({
   declarations: [
@@ -13,6 +14,7 @@ import { MaterialModule } from './material.module';
     ProductItemComponent,
     CartItemComponent,
     ProductItemCardComponent,
+    CategoriesMenuComponent
   ],
   imports: [CommonModule, RouterModule, MaterialModule],
   exports: [
@@ -21,6 +23,7 @@ import { MaterialModule } from './material.module';
     CartItemComponent,
     ProductItemCardComponent,
     MaterialModule,
+    CategoriesMenuComponent
   ],
 })
 export class SharedModule {}

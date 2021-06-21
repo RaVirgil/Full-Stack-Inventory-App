@@ -5,8 +5,7 @@
     fixedInViewport
     [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
     [mode]="(isHandset$ | async) ? 'over' : 'side'"
-    [opened]="(isHandset$ | async) === false"
-    *ngIf="isLoggedIn$"
+    [opened]="(isHandset$ | async) === false"    
   >
     <mat-nav-list class="nav-list">
       <a mat-list-item routerLink="./" class="nav-list-item">

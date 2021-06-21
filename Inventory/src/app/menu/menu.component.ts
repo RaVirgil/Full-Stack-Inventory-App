@@ -13,8 +13,6 @@ import { AuthenticationService } from '../@core/services/authentication.service'
   animations: [slider],
 })
 export class MenuComponent {
-  isLoggedIn$ = new BehaviorSubject(false);
-
   isHandset$: Observable<boolean> = this.breakpointObserver
     .observe(Breakpoints.Handset)
     .pipe(

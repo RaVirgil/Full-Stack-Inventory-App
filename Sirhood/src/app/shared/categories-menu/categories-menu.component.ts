@@ -3,11 +3,11 @@ import { Category } from 'src/app/@core/entities/category.entity';
 import { CategoryService } from 'src/app/@core/services/category.service';
 
 @Component({
-  selector: 'app-categories',
-  templateUrl: './categories.component.html',
-  styleUrls: ['./categories.component.css'],
+  selector: 'app-categories-menu',
+  templateUrl: './categories-menu.component.html',
+  styleUrls: ['./categories-menu.component.css'],
 })
-export class CategoriesComponent implements OnInit {
+export class CategoriesMenuComponent implements OnInit {
   public categories: Category[] =[];
   private timedOutCloser: any;
 

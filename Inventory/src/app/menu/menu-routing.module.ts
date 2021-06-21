@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { SessionGuard } from '../@core/guards/session.guard';
 import { ShowItemComponent } from '../shared/show-item/show-item.component';
-import { AddItemComponent } from './add-item/add-item.component';
 import { AddComponent } from './add/add.component';
 import { CategoriesComponent } from './categories/categories.component';
 import { ContactComponent } from './contact/contact.component';

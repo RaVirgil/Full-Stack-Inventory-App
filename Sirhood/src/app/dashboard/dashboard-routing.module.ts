@@ -16,22 +16,23 @@ const routes: Routes = [
   {
     path: '',
     component: DashboardComponent,
-    children: [
-      {path: 'category/:category', component: CategoryComponent},
-      {path: 'category/:category/subCategory/:subCategory', component: SubcategoryComponent},
-      { path: 'male', component: MaleComponent },
-      { path: 'female', component: FemaleComponent },
-      { path: 'new', component: NewComponent },
-      { path: 'deals', component: DealsComponent },
-      {
-        path: 'profile',
-        component: ProfileComponent,
-        canActivate: [SessionGuard],
-      },
-      { path: 'upcoming', component: UpcomingComponent },
-      { path: 'product/:id', component: ProductItemComponent },
-    ],
   },
+  { path: 'category/:category', component: CategoryComponent },
+  {
+    path: 'category/:category/subCategory/:subCategory',
+    component: SubcategoryComponent,
+  },
+  { path: 'male', component: MaleComponent },
+  { path: 'female', component: FemaleComponent },
+  { path: 'new', component: NewComponent },
+  { path: 'deals', component: DealsComponent },
+  {
+    path: 'profile',
+    component: ProfileComponent,
+    canActivate: [SessionGuard],
+  },
+  { path: 'upcoming', component: UpcomingComponent },
+  { path: 'product/:id', component: ProductItemComponent },
 ];
 
 @NgModule({
