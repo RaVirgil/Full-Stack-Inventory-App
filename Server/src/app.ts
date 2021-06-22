@@ -1,16 +1,16 @@
 import * as express from "express";
 import { env } from "./env";
 import { setUserRoute } from "./routes/user.route";
-import { IExpressError } from "./interfaces/IExpressError";
 import { MikroORM, ReflectMetadataProvider } from "mikro-orm";
-import entities from "./entities";
-import { IExpressRequest } from "./interfaces/IExpressRequest";
+import entities from "./entities/entitiesExport";
 import { setInventoryProductRoute } from "./routes/inventory-product.route";
 import { setSirhoodProductRoute } from "./routes/sirhood-product.route";
 import { setCartRoute } from "./routes/cart.route";
 import { setFavoritesRoute } from "./routes/favorites.route";
 import { setInventoryCategoryRoute } from "./routes/inventory-category.route";
 import { setSirhoodCategoryRoute } from "./routes/sirhood-category.route";
+import { IExpressRequest } from "./interfaces/IExpressRequest";
+import { IExpressError } from "./interfaces/IExpressError";
 
 export { makeApp };
 let app: express.Application;

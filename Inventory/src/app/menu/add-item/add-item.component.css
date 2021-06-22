@@ -23,3 +23,10 @@
 .price-input{
   text-align: right;
 }
+
+.add-item-form{
+  height: 25rem;
+  
+  display: flex;
+  flex-flow: column wrap;
+}

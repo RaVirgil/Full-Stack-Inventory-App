@@ -1,10 +1,10 @@
 import { Router, Response, NextFunction } from "express";
 import { EntityManager } from "mikro-orm";
 import { Category } from "../entities/category.entity";
-import { IExpressRequest } from "../interfaces/IExpressRequest";
 import * as categoryService from "../services/category.service";
 import * as jwt from "jsonwebtoken";
 import { env } from "../env";
+import { IExpressRequest } from "../interfaces/IExpressRequest";
 
 export { setInventoryCategoryRoute };
 

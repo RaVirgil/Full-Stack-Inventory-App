@@ -6,7 +6,7 @@
     margin: 20px;
   }
   
-  .submit-button {
+  .submit-button {  
     margin: 20px;
     background-color: #17252a;
     color: #def2f1;
@@ -22,5 +22,4 @@
   
   .price-input{
     text-align: right;
-  }
-  
+  }  

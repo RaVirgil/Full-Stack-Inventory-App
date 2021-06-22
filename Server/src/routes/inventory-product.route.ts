@@ -1,10 +1,10 @@
 import { Router, Response, NextFunction } from "express";
 import { EntityManager } from "mikro-orm";
 import { Product } from "../entities/product.entity";
-import { IExpressRequest } from "../interfaces/IExpressRequest";
 import * as productService from "../services/products.service";
 import * as jwt from "jsonwebtoken";
 import { env } from "../env";
+import { IExpressRequest } from "../interfaces/IExpressRequest";
 
 export { setInventoryProductRoute };
 
@@ -21,8 +21,8 @@ function setInventoryProductRoute(router: Router): Router {
 function authToken(req: IExpressRequest, res: Response, next: NextFunction) {
   try {
     console.log("called");
-    const authHeader = req.headers["authorization"];   
-    const token = authHeader && authHeader.split(" ")[1];    
+    const authHeader = req.headers["authorization"];
+    const token = authHeader && authHeader.split(" ")[1];
     if (token == null)
       return res.status(401).send("Something wrong with getting token");
 
@@ -62,10 +62,7 @@ async function getProducts(
         req.query.sort ? req.query.sort.toString() : "",
         req.query.activeOnly === "true"
       ),
-      productService.countProducts(
-        req.em,
-        req.query.activeOnly === "true"
-      ),
+      productService.countProducts(req.em, req.query.activeOnly === "true"),
     ]);
   } catch (ex) {
     return next(ex);
@@ -86,10 +83,7 @@ async function getProduct(
 
   let product: Error | Product | null;
   try {
-    product = await productService.getProduct(
-      req.em,
-      req.params.id
-    );
+    product = await productService.getProduct(req.em, req.params.id);
   } catch (ex) {
     return next(ex);
   }
@@ -126,13 +120,9 @@ async function postProduct(
   if (!req.em || !(req.em instanceof EntityManager))
     return next(Error("EntityManager not available"));
 
-    
   let product: Error | Product;
   try {
-    product = await productService.addProduct(
-      req.em,
-      req.body
-    );
+    product = await productService.addProduct(req.em, req.body);
   } catch (ex) {
     return next(ex);
   }
@@ -152,10 +142,7 @@ async function putProduct(
 
   let product: Error | Product;
   try {
-    product = await productService.updateProduct(
-      req.em,
-      req.body
-    );
+    product = await productService.updateProduct(req.em, req.body);
   } catch (ex) {
     return next(ex);
   }

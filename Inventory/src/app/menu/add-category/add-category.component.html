@@ -1,4 +1,4 @@
-<form [formGroup]="addCategoryForm">
+<form [formGroup]="addCategoryForm" >
   <div class="form-div">
     <mat-form-field class="form-field" appearance="outline">
       <mat-label> Name </mat-label>
@@ -42,14 +42,13 @@
         />
       </mat-chip-list>
     </mat-form-field>
-  </div>
-
-  <button
-    class="submit-button"
-    mat-raised-button
-    (click) = "onSubmit()"
-    [disabled]="!addCategoryForm.valid"
-  >
-    Submit
-  </button>
+  </div> 
 </form>
+<button
+class="submit-button"
+mat-raised-button
+(click) = "onSubmit()"
+[disabled]="!addCategoryForm.valid"
+>
+Submit
+</button>
