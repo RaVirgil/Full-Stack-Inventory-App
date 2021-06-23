@@ -11,6 +11,11 @@ import { ProfileComponent } from './profile/profile.component';
 import { SharedModule } from '../shared/shared.module';
 import { CategoryComponent } from './category/category.component';
 import { SubcategoryComponent } from './subcategory/subcategory.component';
+import { CartComponent } from './cart/cart.component';
+import { FavoritesComponent } from './favorites/favorites.component';
+import { InfoComponent } from './info/info.component';
+import { QuestionsComponent } from './questions/questions.component';
+import { ContactComponent } from '../contact/contact.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +28,11 @@ import { SubcategoryComponent } from './subcategory/subcategory.component';
     ProfileComponent, 
     CategoryComponent,
     SubcategoryComponent,
+    CartComponent,
+    FavoritesComponent,
+    InfoComponent,
+    QuestionsComponent,
+    ContactComponent
   ],
   imports: [CommonModule, DashboardRoutingModule, SharedModule],
 })

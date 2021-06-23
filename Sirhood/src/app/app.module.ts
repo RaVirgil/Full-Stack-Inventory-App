@@ -10,22 +10,13 @@ import { SharedModule } from './shared/shared.module';
 import { FooterComponent } from './footer/footer.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HeaderComponent } from './header/header.component';
-import { CartComponent } from './cart/cart.component';
-import { FavoritesComponent } from './favorites/favorites.component';
-import { ContactComponent } from './contact/contact.component';
-import { InfoComponent } from './info/info.component';
-import { QuestionsComponent } from './questions/questions.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     FooterComponent,
-    HeaderComponent,
-    CartComponent,
-    FavoritesComponent,
-    ContactComponent,
-    InfoComponent,
-    QuestionsComponent,
+    HeaderComponent   
   ],
   imports: [
     BrowserModule,
