@@ -48,3 +48,18 @@
     width: 100%;
     font-size: x-large;
 }
+
+.stepper{
+    background: transparent;
+}
+
+.done-text{
+    font-size: xx-large;
+}
+
+.done-container{
+    margin-top: 1rem;
+    font-size: large;
+    text-align: center;
+    
+}

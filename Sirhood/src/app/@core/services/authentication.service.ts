@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { CookieService } from 'ngx-cookie';
 import { HttpService } from '../api/http.service';
+import { UserInfo } from '../entities/user-info.entity';
 import { User } from '../entities/user.entity';
 import { LocalStorageService } from './local-storage.service';
 
@@ -33,6 +34,10 @@ export class AuthenticationService {
         }
 
         this.localStorageService.put('token', data.accessToken);
+        this.localStorageService.put(
+          'info',
+          JSON.stringify(this.getUserInfo(data))
+        );
         this.cookieService.put('userId', data.userId);
         this.router.navigate(['']);
       });
@@ -70,8 +75,29 @@ export class AuthenticationService {
     return 'notAuthenticated';
   }
 
+  public getInfo(): UserInfo{  
+    return JSON.parse(this.localStorageService.get('info')!);
+  }
+
+  private getUserInfo(data: any): UserInfo {
+    const userInfo: UserInfo = {
+      username: data.username,
+      email: data.email,
+      phone: data.phone,
+      country: data.country,
+      county: data.county,
+      address: data.address,
+      fullname: data.fullname,
+    };
+
+    return userInfo;
+  }
+
   private openSnackbar(): void {
-    this.snackBar.open(`Incorrect credentials`, 'Ok', { duration: 5000, horizontalPosition: 'center',
-      verticalPosition: 'top', });
+    this.snackBar.open(`Incorrect credentials`, 'Ok', {
+      duration: 5000,
+      horizontalPosition: 'center',
+      verticalPosition: 'top',
+    });
   }
 }

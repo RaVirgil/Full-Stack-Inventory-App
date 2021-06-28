@@ -9,6 +9,8 @@ import { MaterialModule } from './material.module';
 import { CategoriesMenuComponent } from './categories-menu/categories-menu.component';
 import { CookieModule } from 'ngx-cookie';
 import { AvailableStockComponent } from './available-stock/available-stock.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CardPaymentComponent } from './card-payment/card-payment.component';
 
 @NgModule({
   declarations: [
@@ -17,9 +19,11 @@ import { AvailableStockComponent } from './available-stock/available-stock.compo
     CartItemComponent,
     ProductItemCardComponent,
     CategoriesMenuComponent,  
-    AvailableStockComponent
+    AvailableStockComponent,
+    CardPaymentComponent
   ],
-  imports: [CommonModule, RouterModule, MaterialModule,CookieModule.forRoot()],
+  imports: [CommonModule, RouterModule, MaterialModule,CookieModule.forRoot(),  FormsModule,
+    ReactiveFormsModule],
   exports: [
     FavoriteItemComponent,
     ProductItemComponent,
@@ -27,7 +31,10 @@ import { AvailableStockComponent } from './available-stock/available-stock.compo
     ProductItemCardComponent,
     MaterialModule,
     CategoriesMenuComponent,
-    AvailableStockComponent
+    AvailableStockComponent,
+    FormsModule,
+    ReactiveFormsModule,
+    CardPaymentComponent
   ],
 })
 export class SharedModule {}

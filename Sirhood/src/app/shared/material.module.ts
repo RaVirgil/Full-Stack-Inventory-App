@@ -17,7 +17,9 @@ import { MatCardModule } from '@angular/material/card';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatBadgeModule } from '@angular/material/badge';
-import {MatStepperModule} from '@angular/material/stepper';
+import {MatStepperModule} from "@angular/material/stepper";
+import {MatRadioModule} from '@angular/material/radio';
+
 @NgModule({
   imports: [
     MatCheckboxModule,
@@ -37,8 +39,9 @@ import {MatStepperModule} from '@angular/material/stepper';
     MatCardModule,
     FlexLayoutModule,
     MatSnackBarModule,
-    MatBadgeModule,
-    MatStepperModule
+    MatBadgeModule, 
+    MatStepperModule,
+    MatRadioModule,
   ],
   exports: [
     MatCheckboxModule,
@@ -59,7 +62,9 @@ import {MatStepperModule} from '@angular/material/stepper';
     FlexLayoutModule,
     MatSnackBarModule,
     MatBadgeModule,
-    MatStepperModule
+    MatStepperModule,
+    MatRadioModule,
+
   ],
 })
 export class MaterialModule {}

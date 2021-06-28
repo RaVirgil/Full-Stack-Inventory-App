@@ -4,7 +4,6 @@ import { AuthRoutingModule } from './auth-routing.module';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { AuthComponent } from './auth.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthenticationService } from '../@core/services/authentication.service';
 import { JwtHelperService, JwtModule, JWT_OPTIONS } from '@auth0/angular-jwt';
 import { SharedModule } from '../shared/shared.module';
@@ -13,14 +12,11 @@ import { SharedModule } from '../shared/shared.module';
   declarations: [LoginComponent, RegisterComponent, AuthComponent],
   imports: [
     CommonModule,
-    AuthRoutingModule,
-    FormsModule,
-    ReactiveFormsModule,
+    AuthRoutingModule,   
     JwtModule,
     SharedModule
   ],
-  providers: [
-    AuthenticationService,
+  providers: [   
     { provide: JWT_OPTIONS, useValue: JWT_OPTIONS },
     JwtHelperService,
   ],

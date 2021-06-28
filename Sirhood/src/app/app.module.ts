@@ -24,7 +24,6 @@ import { HeaderComponent } from './header/header.component';
     DashboardModule,
     AuthModule,
     HttpClientModule,
-
     SharedModule,
     BrowserAnimationsModule,
   ],

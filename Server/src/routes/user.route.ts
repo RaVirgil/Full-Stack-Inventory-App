@@ -21,16 +21,13 @@ async function loginUser(
     return next(Error("EntityManager not available"));
 
   let response: Error | any;
-  console.log(req.body);
   try {
-    console.log(req.body);
+  
     response = await userService.loginUser(req.em, req.body);
   } catch (ex) {
-    console.log(ex);
+
     return next(ex);
   }
-
-  console.log(response);  
 
   return res.json(response);
 }

@@ -6,6 +6,7 @@ import {
   Property,
 } from "mikro-orm";
 import { ObjectId } from "mongodb";
+import { IProduct } from "../../../Interfaces/IProduct";
 import { IUser } from "../../../Interfaces/IUser";
 import { Product } from "./product.entity";
 
@@ -19,6 +20,27 @@ export class User implements MongoEntity<User>, IUser {
 
   @Property()
   username: string;  
+
+  @Property()
+  email: string;
+
+  @Property()
+  phone: string;
+
+  @Property()
+  country: string;
+
+  @Property()
+  county: string;
+
+  @Property()
+  address: string;
+
+  @Property()
+  fullname: string;
+
+  @Property()
+  orders: IProduct[];
 
   @Property()
   cart: Product[];
@@ -35,7 +57,8 @@ export class User implements MongoEntity<User>, IUser {
   @Property()
   active: boolean;
 
+
   public constructor(init?: Partial<User>) {
     Object.assign(this, init);
-  }
+  } 
 }

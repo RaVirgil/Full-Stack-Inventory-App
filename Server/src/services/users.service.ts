@@ -6,30 +6,33 @@ import { env } from "../env";
 
 export { loginUser, registerUser };
 
-async function loginUser(
-  em: EntityManager,
-  user: User
-): Promise<Error | any> {
+async function loginUser(em: EntityManager, user: User): Promise<Error | any> {
   if (!(em instanceof EntityManager)) return Error("invalid request");
 
   if (!user.username || typeof user.username !== "string")
     return Error("invalid params");
   if (!user.password || typeof user.password !== "string")
     return Error("invalid params");
-        
 
   try {
     const foundUser = await em.findOne(User, { username: user.username });
     if (foundUser != null) {
       if (await bcrypt.compare(user.password, foundUser.password)) {
         return {
+          username: foundUser.username,
+          email: foundUser.email,
+          phone: foundUser.phone,
+          country: foundUser.country,
+          county: foundUser.county,
+          address: foundUser.address,
+          fullname: foundUser.fullname,
           accessToken: generateAccessToken(foundUser.id),
           userId: foundUser.id,
-          userRole: foundUser.role
+          userRole: foundUser.role,
         };
       }
       return "error";
-    }    
+    }
   } catch (ex) {
     console.log(ex);
     return ex;
