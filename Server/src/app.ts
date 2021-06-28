@@ -12,6 +12,9 @@ import { setSirhoodCategoryRoute } from "./routes/sirhood-category.route";
 import { IExpressRequest } from "./interfaces/IExpressRequest";
 import { IExpressError } from "./interfaces/IExpressError";
 import { setSessionRoute } from "./routes/session.route";
+import { calculatePopularProductsList } from "./services/products.service";
+import { setInventoryOrderRoute } from "./routes/inventory-order.route";
+import { setSirhoodOrderRoute } from "./routes/sirhood-order.route";
 
 export { makeApp };
 let app: express.Application;
@@ -56,17 +59,30 @@ async function makeApp(): Promise<express.Application | Error> {
     env.INVENTORY_PRODUCT_ROUTE,
     setInventoryProductRoute(express.Router())
   );
-  app.use(env.SIRHOOD_PRODUCT_ROUTE, setSirhoodProductRoute(express.Router()));
-  app.use(env.CART_ROUTE, setCartRoute(express.Router()));
-  app.use(env.FAVORITES_ROUTE, setFavoritesRoute(express.Router()));
   app.use(
     env.INVENTORY_CATEGORY_ROUTE,
     setInventoryCategoryRoute(express.Router())
   );
   app.use(
+    env.INVENTORY_ORDER_ROUTE,
+    setInventoryOrderRoute(express.Router())
+  );
+
+  app.use(env.SIRHOOD_PRODUCT_ROUTE, setSirhoodProductRoute(express.Router()));
+  app.use(
     env.SIRHOOD_CATEGORY_ROUTE,
     setSirhoodCategoryRoute(express.Router())
   );
+  app.use(
+    env.SIRHOOD_ORDER_ROUTE,
+    setSirhoodOrderRoute(express.Router())
+  );
+
+
+  app.use(env.CART_ROUTE, setCartRoute(express.Router()));
+  app.use(env.FAVORITES_ROUTE, setFavoritesRoute(express.Router()));
+ 
+
   app.use(env.USER_ROUTE, setUserRoute(express.Router()));
   app.use(env.SESSION_ROUTE, setSessionRoute(express.Router()));
 
@@ -88,6 +104,7 @@ async function makeApp(): Promise<express.Application | Error> {
       res.status(err.status || 500).send(err.message);
     }
   );
-
+  
+  calculatePopularProductsList(orm.em.fork());
   return app;
 }

@@ -13,6 +13,7 @@ export class Product implements IProduct {
   subCategory: string;
   location: string;
   tags: string[];
+  imageLink: string;
   inventoryNumber: number;
   createdAt: Date;
   modifiedAt: Date;
@@ -23,4 +24,5 @@ export class Product implements IProduct {
   public constructor(init?: Partial<Product>) {
     Object.assign(this, init);
   }
+  
 }

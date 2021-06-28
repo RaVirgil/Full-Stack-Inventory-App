@@ -11,6 +11,8 @@ import { CookieModule } from 'ngx-cookie';
 import { AvailableStockComponent } from './available-stock/available-stock.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CardPaymentComponent } from './card-payment/card-payment.component';
+import { VisitedComponent } from './visited/visited.component';
+import { MostPopularComponent } from './most-popular/most-popular.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,9 @@ import { CardPaymentComponent } from './card-payment/card-payment.component';
     ProductItemCardComponent,
     CategoriesMenuComponent,  
     AvailableStockComponent,
-    CardPaymentComponent
+    CardPaymentComponent,
+    VisitedComponent,
+    MostPopularComponent
   ],
   imports: [CommonModule, RouterModule, MaterialModule,CookieModule.forRoot(),  FormsModule,
     ReactiveFormsModule],
@@ -34,7 +38,9 @@ import { CardPaymentComponent } from './card-payment/card-payment.component';
     AvailableStockComponent,
     FormsModule,
     ReactiveFormsModule,
-    CardPaymentComponent
+    CardPaymentComponent,
+    VisitedComponent,
+    MostPopularComponent
   ],
 })
 export class SharedModule {}

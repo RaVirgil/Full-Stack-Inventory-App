@@ -1,0 +1,9 @@
+<div class="container" *ngIf="visitedProducts?.length != 0">
+    <h1> Your history </h1>
+    <mat-nav-list  fxLayout="row">
+        <div mat-list-item class="list-item clickable" *ngFor="let product of visitedProducts">
+            <img src="{{product.imageLink}}" height="8rem" width="8rem" alt="imagelink" routerLink="product/{{product.id}}">
+            <p>{{product.name}}</p>
+        </div>
+      </mat-nav-list>
+</div>

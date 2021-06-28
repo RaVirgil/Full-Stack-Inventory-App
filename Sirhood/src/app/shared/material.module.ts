@@ -41,7 +41,7 @@ import {MatRadioModule} from '@angular/material/radio';
     MatSnackBarModule,
     MatBadgeModule, 
     MatStepperModule,
-    MatRadioModule,
+    MatRadioModule
   ],
   exports: [
     MatCheckboxModule,
@@ -63,8 +63,7 @@ import {MatRadioModule} from '@angular/material/radio';
     MatSnackBarModule,
     MatBadgeModule,
     MatStepperModule,
-    MatRadioModule,
-
+    MatRadioModule   
   ],
 })
 export class MaterialModule {}

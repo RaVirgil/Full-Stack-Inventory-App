@@ -9,6 +9,7 @@ export interface IProduct {
   category: string;
   subCategory: string;
   tags: string[];
+  imageLink: string;
   inventoryNumber: number;
   createdAt: Date;
   modifiedAt: Date;  

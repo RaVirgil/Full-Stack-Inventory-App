@@ -47,6 +47,9 @@ export class Product implements MongoEntity<Product>, IProduct {
   tags: string[];
 
   @Property()
+  imageLink: string;
+
+  @Property()
   location: string;
 
   @Property()

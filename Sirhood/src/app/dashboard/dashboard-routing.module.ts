@@ -11,7 +11,6 @@ import { FavoritesComponent } from './favorites/favorites.component';
 import { FemaleComponent } from './female/female.component';
 import { InfoComponent } from './info/info.component';
 import { MaleComponent } from './male/male.component';
-import { NewComponent } from './new/new.component';
 import { PaymentComponent } from './payment/payment.component';
 import { ProfileComponent } from './profile/profile.component';
 import { QuestionsComponent } from './questions/questions.component';
@@ -30,7 +29,6 @@ const routes: Routes = [
   },
   { path: 'male', component: MaleComponent },
   { path: 'female', component: FemaleComponent },
-  { path: 'new', component: NewComponent },
   { path: 'deals', component: DealsComponent },
   {
     path: 'profile',

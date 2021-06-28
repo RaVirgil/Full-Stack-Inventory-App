@@ -11,7 +11,8 @@ import { LocalStorageService } from './local-storage.service';
 export class SessionService {
   public session: BehaviorSubject<Session> = new BehaviorSubject<Session>(
     new Session({
-      cart: []
+      cart: [],
+      visited: []
     })
   );
 
@@ -38,14 +39,22 @@ export class SessionService {
     }
   }
 
-  public setCart(cart: Product[]): void {
-    this.session.getValue().cart = cart;
-
+  public setCart(cart: Product[]): void {   
     const newSession = {
       ...this.session.getValue(),
     };
 
     newSession.cart = cart;
+    this.session.next(newSession);
+    this.put();
+  }
+
+  public setVisited(visited: Product[]): void {  
+    const newSession = {
+      ...this.session.getValue(),
+    };
+
+    newSession.visited = visited;
     this.session.next(newSession);
     this.put();
   }

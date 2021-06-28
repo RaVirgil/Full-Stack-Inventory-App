@@ -8,11 +8,34 @@ export { setSirhoodProductRoute };
 
 function setSirhoodProductRoute(router: Router): Router {
   router.get("/", getProducts);
+  router.get('/popular', getPopularProducts);
   router.get("/:id", getProduct);
   router.get("/category/:category", getProductsForCategory);
-  router.get("/category/:category/subCategory/:subCategory", getProductsForSubcategory);
+  router.get(
+    "/category/:category/subCategory/:subCategory",
+    getProductsForSubcategory
+  );
   return router;
 }
+
+async function getPopularProducts( req: IExpressRequest,
+  res: Response,
+  next: NextFunction){
+    if (!req.em || !(req.em instanceof EntityManager))
+    return next(Error("EntityManager not available"));
+
+    let result: Product[] | Error;
+
+    try {
+      result = await productService.getPopularProducts(req.em);
+      console.log(result);
+    } catch (ex) {
+      return next(ex);
+    }
+
+    if(result instanceof Error) next(result);
+    return res.json(result);
+  }
 
 async function getProducts(
   req: IExpressRequest,

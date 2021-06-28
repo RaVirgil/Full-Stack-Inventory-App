@@ -1,0 +1,20 @@
+.list-item {  
+    height: 10rem;
+    width: 10rem;
+    background-color: #97aabd;
+    border-radius: 5px; 
+    margin: 1rem;
+    font-size: large;
+  }
+  
+  .clickable{
+    cursor: pointer;
+  }
+  
+  .container{
+      margin-top: 1rem;
+    background-color: white;
+    padding: 1rem;
+    border-radius: 5px;
+  }
+  

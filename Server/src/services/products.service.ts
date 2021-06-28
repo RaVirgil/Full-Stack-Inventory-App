@@ -1,16 +1,36 @@
 import { Product } from "../entities/product.entity";
 import { EntityManager, wrap, QueryOrder, QueryOrderMap } from "mikro-orm";
+import { Session } from "../entities/session.entity";
+import { groupBy, orderBy } from "lodash";
+import { CronJob } from "cron";
 
 export {
   getProducts,
   getProduct,
+  getPopularProducts,
   updateProduct,
   addProduct,
   removeProduct,
   countProducts,
   getProductForCategory,
   getProductForSubcategory,
+  getVisitedProducts,
+  calculatePopularProductsList
 };
+
+let mostPopularProducts: Product[] = [];
+
+async function calculatePopularProductsList(em: EntityManager) {
+  const cronJob = new CronJob("* * * * *", async () => {
+    const result = await getVisitedProducts(em);
+    if (!(result instanceof Error)) mostPopularProducts = result;
+    console.log('upated!');
+  });
+
+  if (!cronJob.running) {
+    cronJob.start();
+  }
+}
 
 async function countProducts(em: EntityManager, activeOnly = false) {
   if (!(em instanceof EntityManager)) return Error("invalid request");
@@ -18,6 +38,47 @@ async function countProducts(em: EntityManager, activeOnly = false) {
   try {
     const count = await em.count(Product, activeOnly ? { active: true } : {});
     return count;
+  } catch (ex) {
+    return ex;
+  }
+}
+
+async function getPopularProducts(em: EntityManager): Promise<Product[] | Error>{
+  if (!(em instanceof EntityManager)) return Error("invalid request");
+  return mostPopularProducts;
+}
+
+async function getVisitedProducts(em: EntityManager): Promise<Product[] | Error> {
+  if (!(em instanceof EntityManager)) return Error("invalid request");
+
+  try {
+    const sessions = await em.find(Session, {});
+
+    let visited: Product[] = [];
+    sessions.forEach((session) => {
+      visited.push(...session.visited);
+    });
+
+    let idAndLengths = [];
+    var groupedById = groupBy(visited, (product) => product.id);
+
+    for (let key in groupedById) {
+      const arrayLength = groupedById[key].length;
+      idAndLengths.push({ id: key, length: arrayLength });
+    }   
+
+    let orderedByLength = orderBy(idAndLengths, (object) => object.length, ["desc"]);
+    let firstFivePopularId = orderedByLength.splice(0, 5);
+
+    let productsList: Product[] = [];
+
+    for (let object of firstFivePopularId) {
+      const product = await getProduct(em, object.id);
+      if (product != null && !(product instanceof Error))
+        productsList.push(product);
+    }
+
+    return productsList;
   } catch (ex) {
     return ex;
   }
@@ -82,7 +143,7 @@ async function removeProduct(
   if (!id || typeof id !== "string") return Error("invalid params");
 
   try {
-    const item = await em.findOneOrFail(Product, { id });
+    const item = await em.findOneOrFail(Product, { id: id });
     await em.removeAndFlush(item);
   } catch (ex) {
     return ex;
