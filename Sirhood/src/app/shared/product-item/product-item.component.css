@@ -1,0 +1,36 @@
+.product-infos {
+    display: flex;
+    flex-flow: column wrap;
+    align-items: center;
+    
+  }
+  
+  .product-image {
+    border-radius: 2%;
+  }
+  
+  .title {
+    font-size: 4rem;
+    font-weight: 400;
+    margin: 3rem;    
+  }
+  
+  .price {
+    margin: 1rem;
+    font-size: 2rem;
+    font-weight: lighter;
+  }
+  
+  .description {
+    font-size: 2rem;
+    font-weight: lighter;
+    margin: 2rem;
+  }
+  
+  .buttons > button {
+    margin: 1rem;
+  }
+  
+  .container{
+    height: 100vh;
+  }

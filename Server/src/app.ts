@@ -11,6 +11,7 @@ import { setInventoryCategoryRoute } from "./routes/inventory-category.route";
 import { setSirhoodCategoryRoute } from "./routes/sirhood-category.route";
 import { IExpressRequest } from "./interfaces/IExpressRequest";
 import { IExpressError } from "./interfaces/IExpressError";
+import { setSessionRoute } from "./routes/session.route";
 
 export { makeApp };
 let app: express.Application;
@@ -67,6 +68,7 @@ async function makeApp(): Promise<express.Application | Error> {
     setSirhoodCategoryRoute(express.Router())
   );
   app.use(env.USER_ROUTE, setUserRoute(express.Router()));
+  app.use(env.SESSION_ROUTE, setSessionRoute(express.Router()));
 
   // 404
   app.use((_req, _res, next) => {

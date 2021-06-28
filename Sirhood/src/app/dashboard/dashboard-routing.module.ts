@@ -12,6 +12,7 @@ import { FemaleComponent } from './female/female.component';
 import { InfoComponent } from './info/info.component';
 import { MaleComponent } from './male/male.component';
 import { NewComponent } from './new/new.component';
+import { PaymentComponent } from './payment/payment.component';
 import { ProfileComponent } from './profile/profile.component';
 import { QuestionsComponent } from './questions/questions.component';
 import { SubcategoryComponent } from './subcategory/subcategory.component';
@@ -38,11 +39,22 @@ const routes: Routes = [
   },
   { path: 'upcoming', component: UpcomingComponent },
   { path: 'product/:id', component: ProductItemComponent },
-  {path: "cart", component: CartComponent},
-  {path: "favorites", component: FavoritesComponent, canActivate: [SessionGuard]},
-  {path: "info", component: InfoComponent},
-  {path: "questions", component: QuestionsComponent},
-  {path: "contact", component: ContactComponent}
+  {
+    path: 'cart',
+    component: CartComponent,  
+  },
+  {
+    path: 'payment',
+    component: PaymentComponent,
+  },
+  {
+    path: 'favorites',
+    component: FavoritesComponent,
+    canActivate: [SessionGuard],
+  },
+  { path: 'info', component: InfoComponent },
+  { path: 'questions', component: QuestionsComponent },
+  { path: 'contact', component: ContactComponent },
 ];
 
 @NgModule({

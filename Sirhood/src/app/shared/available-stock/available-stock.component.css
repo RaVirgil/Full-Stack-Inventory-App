@@ -1,0 +1,17 @@
+.red {
+  color: red;
+}
+
+.green {
+  color: green;
+}
+
+.orange {
+  color: orange;
+}
+
+.price-quantity-container {
+  display: flex;
+  justify-content: space-between;
+  font-size: medium;
+}

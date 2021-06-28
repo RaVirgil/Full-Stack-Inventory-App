@@ -10,7 +10,14 @@ import { MatInputModule } from '@angular/material/input';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSelectModule } from '@angular/material/select';
 import { MatChipsModule } from '@angular/material/chips';
-import {MatGridListModule} from '@angular/material/grid-list';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatCardModule } from '@angular/material/card';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatBadgeModule } from '@angular/material/badge';
+import {MatStepperModule} from '@angular/material/stepper';
 @NgModule({
   imports: [
     MatCheckboxModule,
@@ -24,7 +31,14 @@ import {MatGridListModule} from '@angular/material/grid-list';
     MatInputModule,
     MatSelectModule,
     MatChipsModule,
-    MatGridListModule
+    MatGridListModule,
+    MatDividerModule,
+    MatSidenavModule,
+    MatCardModule,
+    FlexLayoutModule,
+    MatSnackBarModule,
+    MatBadgeModule,
+    MatStepperModule
   ],
   exports: [
     MatCheckboxModule,
@@ -38,7 +52,14 @@ import {MatGridListModule} from '@angular/material/grid-list';
     MatInputModule,
     MatSelectModule,
     MatChipsModule,
-    MatGridListModule
+    MatGridListModule,
+    MatDividerModule,
+    MatSidenavModule,
+    MatCardModule,
+    FlexLayoutModule,
+    MatSnackBarModule,
+    MatBadgeModule,
+    MatStepperModule
   ],
 })
 export class MaterialModule {}

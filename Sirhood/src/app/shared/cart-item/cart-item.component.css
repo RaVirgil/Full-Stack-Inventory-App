@@ -1,0 +1,44 @@
+.red {
+  color: red;
+}
+
+.green {
+  color: green;
+}
+
+.orange {
+  color: orange;
+}
+
+.card-content-container {
+  display: flex;
+  justify-content: space-between;
+  flex-flow: row wrap;
+}
+
+.container {
+  max-width: 100%;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.price {
+  font-size: x-large;
+  font-weight: bold;
+  text-align: center;
+}
+
+
+.info-right-container-buttons button {
+  margin: 0.5rem;
+}
+
+.img-container {
+  max-width: 15%;
+  width: 15%;
+}
+
+.info-center-container {
+  max-width: 50%;
+  width: 50%;
+}

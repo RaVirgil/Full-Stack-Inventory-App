@@ -1,0 +1,50 @@
+.container{
+    display: flex;
+    flex-flow: row wrap;
+    width: 100%;
+   
+}
+
+.products-list{
+    max-width: 40%;
+    width: 40%;   
+    background: #97aabd;
+    border-radius: 10px;
+    padding: 1%;
+    height: fit-content;
+}
+
+.summary{
+    max-width: 15%;
+    width: 15%;
+    font-size: large;
+}
+.divider{
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+.price{    
+    font-size: medium;
+    text-align: start;
+}
+
+.spacer-left{
+    width: 20%;
+    max-width: 20%;
+}
+
+.spacer-right{
+    width: 5%;
+    max-width: 5%;
+}
+
+.total{
+    font-size: xx-large;
+}
+
+.buyButton{
+    margin-top: 0.5rem;
+    width: 100%;
+    font-size: x-large;
+}

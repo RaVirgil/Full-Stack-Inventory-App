@@ -1,17 +1,21 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Product } from 'src/app/@core/entities/product.entity';
 
 @Component({
   selector: 'app-cart-item',
   templateUrl: './cart-item.component.html',
-  styleUrls: ['./cart-item.component.css']
+  styleUrls: ['./cart-item.component.css'],
 })
-export class CartItemComponent implements OnInit {
+export class CartItemComponent {
   @Input() product: Product;
-  constructor() { }
+  @Output() addToFavorites: EventEmitter<Product> = new EventEmitter<Product>();
+  @Output() delete: EventEmitter<Product> = new EventEmitter<Product>();
 
-  ngOnInit(): void {
+  public addToFavoritesButton(): void {
+    this.addToFavorites.emit(this.product);
   }
 
+  public deleteButton(): void {   
+    this.delete.emit(this.product);
+  }
 }
- 

@@ -12,6 +12,10 @@ export class ProductService {
   public getAll(): Observable<Product[]> {
     return this.httpService.get('sirhood/products');
   }
+  
+  public getById(id: string | null): Observable<Product>{    
+    return this.httpService.get(`sirhood/products/${id}`);
+  }
 
   public getForCategory(category: string): Observable<Product[]> {
     return this.httpService.get(`sirhood/products/category/${category}`);

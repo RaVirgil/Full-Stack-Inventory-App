@@ -1,7 +1,38 @@
-<div *ngIf = "product?.active">
+<!-- <div *ngIf = "product?.active">
     <h1>{{product.name}}</h1>
     <p>{{product.price}}</p>
     <button (click) = "addToCartButton()">Add to cart</button>
     <button (click) = "addToFavoritesButton()">Add to favorites</button>
     <a routerLink = "/product/{{product.id}}">Go to info</a>
-</div>
+</div> -->
+
+<mat-card class="mat-elevation-z4 card" routerLink="/product/{{ product.id }}">
+  <mat-card-header>
+    <img mat-card-image alt="Some photo" />
+  </mat-card-header>
+  <mat-divider></mat-divider>
+  <mat-card-content>
+    <mat-card-title>{{ product.name }}</mat-card-title>
+    <p>
+      {{ product.brand }}
+    </p>
+
+    <app-available-stock [product] = product></app-available-stock>
+  </mat-card-content>
+  <mat-card-actions>
+    <button
+      mat-stroked-button
+      color="accent"
+      (click)="addToCartButton(); $event.stopPropagation()"
+    >
+      Add to cart
+    </button>
+    <button
+      mat-stroked-button
+      color="accent"
+      (click)="addToFavoritesButton(); $event.stopPropagation()"
+    >
+      <mat-icon>favorite_border</mat-icon>
+    </button>
+  </mat-card-actions>
+</mat-card>

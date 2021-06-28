@@ -16,6 +16,7 @@ import { FavoritesComponent } from './favorites/favorites.component';
 import { InfoComponent } from './info/info.component';
 import { QuestionsComponent } from './questions/questions.component';
 import { ContactComponent } from '../contact/contact.component';
+import { PaymentComponent } from './payment/payment.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { ContactComponent } from '../contact/contact.component';
     FavoritesComponent,
     InfoComponent,
     QuestionsComponent,
-    ContactComponent
+    ContactComponent,
+    PaymentComponent
   ],
   imports: [CommonModule, DashboardRoutingModule, SharedModule],
 })

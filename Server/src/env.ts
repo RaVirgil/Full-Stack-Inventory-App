@@ -10,6 +10,7 @@ export const env = {
   INVENTORY_CATEGORY_ROUTE: "/api/inventory/categories",
   SIRHOOD_CATEGORY_ROUTE: "/api/sirhood/categories",
   USER_ROUTE: "/api/users",
+  SESSION_ROUTE: "/api/session",
   ACCESS_TOKEN_SECRET: "ACCES_SECRET",
   REFRESH_TOKEN_SECRET: "REFRESH_SECRET",
 

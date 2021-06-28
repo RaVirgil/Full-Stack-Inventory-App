@@ -1,9 +1,27 @@
-<form [formGroup] = "registerForm" (ngSubmit)="onSubmit()">
-    <label for="username"> Username </label>
-    <input id="username" type="text" formControlName="username" required>    
-
-    <label for="password"> Password </label>
-    <input id="password" type="password" formControlName="password">
-
-    <button type="submit" [disabled]="!registerForm.valid"> Login </button>
-</form>
+<div class="main-wrapper" fxLayout="row" fxLayoutAlign="center center">
+    <mat-card class="box">
+      <mat-card-header>
+        <mat-card-title>Register</mat-card-title>
+      </mat-card-header>
+  
+      <form class="form" [formGroup] = "registerForm">
+  
+        <mat-card-content>
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Username" type="text" formControlName="username" required>
+          </mat-form-field>
+  
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Email" type="text" formControlName="email">
+          </mat-form-field>
+  
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Password" type="password" formControlName="password">
+          </mat-form-field>
+        </mat-card-content>
+  
+        <button mat-raised-button color="accent" class="btn-block" [disabled]="!registerForm.valid" (click) = "register()">Register</button>  
+        <a routerLink = "../login"> Back to login </a>
+      </form>
+    </mat-card>
+  </div>

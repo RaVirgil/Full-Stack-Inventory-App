@@ -34,7 +34,7 @@ export class FavoritesService {
     this.httpService.post(
       `favorites/${this.authenticationService.getUserId()}`,
       product
-    );
+    ).subscribe();
   }
 
   public get(): Observable<Product[]> {
@@ -74,7 +74,7 @@ export class FavoritesService {
   private removeAllFromDb(): void {
     this.httpService.delete(
       `favorites/${this.authenticationService.getUserId()}`
-    );
+    ).subscribe();
   }
 
   public remove(product: Product): void {
@@ -99,6 +99,6 @@ export class FavoritesService {
   private removeFromDb(product: Product): void {
     this.httpService.delete(
       `favorites/${this.authenticationService.getUserId()}/:${product.id}`
-    );
+    ).subscribe();
   }
 }

@@ -21,6 +21,6 @@ export class HttpService {
   }
 
   public put(endpoint: string, payload: any): Observable<any> {
-    return this.http.post(`api/${endpoint}`, payload);
+    return this.http.put(`api/${endpoint}`, payload);
   }
 }

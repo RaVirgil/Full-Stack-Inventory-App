@@ -1,28 +1,36 @@
-<header class="header-container">
-  <nav class="header-nav-container">
-    <a routerLink="">LOGO</a>
-    <input type="search" placeholder="Whatever the sir wants..." />
-    <div class="nav-buttons">
+<mat-toolbar class="toolbar">
+  <mat-toolbar-row class="up-container">
+    <img src="../../assets/images/logo.png" alt="LOGO" routerLink="" class="img-container"/>
+
+    <span>
+      <input type="search" placeholder="Whatever the sir wants..." />
+    </span>
+
+    <span class="auth-cart-fav-buttons">
       <div [ngSwitch]="isAuthenticated()">
-        <a *ngSwitchCase="true" routerLink="/profile"> Profile </a>
-
-        <a *ngSwitchCase="false" routerLink="/auth"> Sign In </a>
+        <a mat-button *ngSwitchCase="true" routerLink="/profile">
+          <mat-icon>perm_identity</mat-icon>
+          Profile
+        </a>
+        <a mat-button *ngSwitchCase="false" routerLink="/auth"
+          ><mat-icon>login</mat-icon> Sign In
+        </a>
       </div>
-      <a routerLink="/cart"> Cart </a>
-      <a routerLink="/favorites"> Favorites </a>
-    </div>
-  </nav>
+      <a mat-button routerLink="/favorites"><mat-icon>favorite</mat-icon> Favorites </a>
+      <a mat-button routerLink="/cart" matBadge="{{cartSize}}" matBadgePosition="before" matBadgeColor="accent"><mat-icon>shopping_cart</mat-icon> Cart </a>
+    </span>
+  </mat-toolbar-row>
 
-  <section class="header-links-container">
+  <mat-toolbar-row class="down-container">
     <div class="header-links-left">
       <app-categories-menu> </app-categories-menu>
-      <a routerLink="/deals"> Deals </a>
+      <a mat-button routerLink="/deals"> Deals </a>
     </div>
 
     <div class="header-links-right">
-      <a routerLink="/info"> Info </a>
-      <a routerLink="/questions"> Q&A </a>
-      <a routerLink="/contact"> Contact </a>
+      <a mat-button routerLink="/info"> Info </a>
+      <a mat-button routerLink="/questions"> Q&A </a>
+      <a mat-button routerLink="/contact"> Contact </a>
     </div>
-  </section>
-</header>
+  </mat-toolbar-row>  
+</mat-toolbar>

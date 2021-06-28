@@ -21,15 +21,18 @@ export class RegisterComponent implements OnInit {
     this.registerForm = new FormGroup({
       username: new FormControl('', Validators.required),
       password: new FormControl('', Validators.required),
+      email: new FormControl('', Validators.required)
     });
   }
 
-  public onSubmit(): void {
+  public register(): void {
     const username = this.registerForm.value.username;
     const password = this.registerForm.value.password;    
+    const email = this.registerForm.value.email;
     const active = true;
     const user = new User(username, password, active);
     this.authenticationService.register(user);
+    this.authenticationService.login(user.username, user.password);
     this.router.navigate(['']);
   }
 }

@@ -1,102 +1,62 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { HttpService } from '../api/http.service';
 import { Product } from '../entities/product.entity';
+import { Session } from '../entities/session.entity';
 import { AuthenticationService } from './authentication.service';
+import { SessionService } from './session.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CartService {
+  public cartSize: BehaviorSubject<number> = new BehaviorSubject<number>(0);
+  public cart$: BehaviorSubject<Product[]> = new BehaviorSubject<Product[]>([]);
   private cart: Product[] = [];
 
   constructor(
     private readonly httpService: HttpService,
-    private readonly authenticationService: AuthenticationService
-  ) {}
+    private readonly authenticationService: AuthenticationService,
+    private readonly sessionService: SessionService
+  ) {
+    this.sessionService.session.subscribe((session: Session) => {
+      this.cart = session?.cart;
+      this.cart$.next(session?.cart);
+      this.cartSize.next(session?.cart.length);
+    });
+  }
 
   public add(product: Product) {
-    const userId = this.authenticationService.getUserId();
+    const authenticated = this.authenticationService.isAuthenticated();
 
-    switch (userId) {
-      case 'notAuthenticated': {
-        this.cart.push(product);
-        break;
-      }
-      default: {
-        this.addToDb(product);
-        break;
-      }
+    if (authenticated) {
+      this.addToDb(product);
     }
+
+    this.cart.push(product);
+    this.cart$.next(this.cart);
+    this.sessionService.setCart(this.cart);
   }
 
   private addToDb(product: Product): void {
-    this.httpService.post(
-      `cart/${this.authenticationService.getUserId()}`,
-      product
-    );
-  }
-
-  public get(): Observable<Product[]> {
-    const userId = this.authenticationService.getUserId();
-    
-    switch (userId) {
-      case 'notAuthenticated': {
-        return of(this.cart);
-      }
-      default: {
-        return this.getFromDb();
-      }
-    }       
-  }
-
-  private getFromDb(): Observable<Product[]> {    
-    return this.httpService.get(
-      `cart/${this.authenticationService.getUserId()}`
-    );
+    this.httpService
+      .post(`cart/${this.authenticationService.getUserId()}`, product)
+      .subscribe();
   }
 
   public removeAll(): void {
-    const userId = this.authenticationService.getUserId();
-
-    switch (userId) {
-      case 'notAuthenticated': {
-        this.cart = [];
-        break;
-      }
-      default: {
-        this.removeAllFromDb();
-        break;
-      }
-    }
-  }
-
-  private removeAllFromDb(): void {
-    this.httpService.delete(`cart/${this.authenticationService.getUserId()}`);
+    this.cart = [];
+    this.cart$.next(this.cart);
+    this.sessionService.setCart(this.cart);
   }
 
   public remove(product: Product): void {
-    const userId = this.authenticationService.getUserId();
-
-    switch (userId) {
-      case 'notAuthenticated': {
-        const index = this.cart.findIndex(
-          (cartProduct) => cartProduct.id === product.id,
-          0
-        );
-        this.cart.splice(index, 1);
-        break;
-      }
-      default: {
-        this.removeFromDb(product);
-        break;
-      }
-    }
-  }
-
-  private removeFromDb(product: Product): void {
-    this.httpService.delete(
-      `cart/${this.authenticationService.getUserId()}/:${product.id}`
+    const index = this.cart.findIndex(
+      (cartProduct) => cartProduct.id === product.id
     );
+
+    this.cart.splice(index, 1);
+    this.cart$.next(this.cart);
+    this.sessionService.setCart(this.cart);
   }
 }

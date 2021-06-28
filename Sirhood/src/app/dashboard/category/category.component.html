@@ -1,6 +1,9 @@
-<app-product-item-card
-  *ngFor="let product of products"
-  [product]="product"
-  (addToCart)="addToCart($event)"
-  (addToFavorites)="addToFavorites($event)"
-></app-product-item-card>
+<div fxLayout="row wrap" fxLayoutGap = "16px grid">
+  <div fxFlex="25%" fxFlex.sm="33%" fxFlex.xs="100%" *ngFor="let product of products">
+    <app-product-item-card
+      [product]="product"
+      (addToCart)="addToCart($event)"
+      (addToFavorites)="addToFavorites($event)"
+    ></app-product-item-card>
+  </div>
+</div>

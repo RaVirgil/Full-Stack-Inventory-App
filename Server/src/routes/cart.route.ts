@@ -79,7 +79,7 @@ async function postCart(
 ) {
   if (!req.em || !(req.em instanceof EntityManager))
     return next(Error("EntityManager not available"));
-
+  console.log(req.body);
   try {
     await cartService.addToCart(req.em, req.params.id, req.body);
   } catch (ex) {

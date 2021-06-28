@@ -1,81 +1,65 @@
-<div class="dashboard-container">
-  <section class="highlight-category-container">
-    <a routerLink="/category/Ceasuri"> Ceasuri </a>
-  </section>
+<section class="highlight-category-container">
+  <a routerLink="/category/Ceasuri"> Ceasuri </a>
+</section>
 
-  <section class="categories-container">
-    <mat-grid-list cols="4" rowHeight="100px">
-      <mat-grid-tile
-        [colspan]="1"
-        [rowspan]="3"
-        style="background-color: lightblue"
-      >
-        <a routerLink="/category/Parfumuri"> Parfumuri </a>
-      </mat-grid-tile>
+<section class="categories-container">
+  <mat-grid-list cols="4" rowHeight="100px">
+    <mat-grid-tile [colspan]="1" [rowspan]="3" class="parfumuri">
+      <a routerLink="/category/Parfumuri"> Parfumuri </a>
+    </mat-grid-tile>
 
-      <mat-grid-tile
-        [colspan]="2"
-        [rowspan]="1"
-        style="background-color: lightcyan"
-      >
-        <a routerLink="/category/Tricouri"> Tricouri polo </a>
-      </mat-grid-tile>
+    <mat-grid-tile
+      [colspan]="2"
+      [rowspan]="1"
+      style="background-color: lightgreen"
+      class="costume"
+    >
+      <a routerLink="/category/Costume"> Costume </a>
+    </mat-grid-tile>
 
-      <mat-grid-tile
-        [colspan]="1"
-        [rowspan]="3"
-        style="background-color: lightgreen"
-      >
-        <a routerLink="/category/Costume"> Costume </a>
-      </mat-grid-tile>
+    <mat-grid-tile [colspan]="1" [rowspan]="3" class="ulei-barba">
+      <a routerLink="/category/Ulei barba"> Ulei de barba </a>
+    </mat-grid-tile>
 
-      <mat-grid-tile
-        [colspan]="1"
-        [rowspan]="2"
-        style="background-color: lightgoldenrodyellow"
-      >
-        <a routerLink="/category/Pantaloni"> Pantaloni </a>
-      </mat-grid-tile>
+    <mat-grid-tile [colspan]="1" [rowspan]="2" class="pantaloni">
+      <a routerLink="/category/Pantaloni"> Pantaloni </a>
+    </mat-grid-tile>
 
-      <mat-grid-tile
-        [colspan]="1"
-        [rowspan]="2"
-        style="background-color: lightcoral"
-      >
-        <a routerLink="/category/Accesorii"> Accesorii </a>
-      </mat-grid-tile>
-    </mat-grid-list>
-  </section>
+    <mat-grid-tile [colspan]="1" [rowspan]="2" class="accesorii">
+      <a routerLink="/category/Accesorii"> Accesorii </a>
+    </mat-grid-tile>
+  </mat-grid-list>
+</section>
 
-  <section class="inspiration-container">
-    <mat-grid-list cols="3" rowHeight="100px">
-      <mat-grid-tile
-        [colspan]="2"
-        [rowspan]="2"
-        style="background-color: lightblue"
-      >
+<section class="inspiration-container">
+  <mat-grid-list cols="3" rowHeight="100px">
+    <mat-grid-tile
+      [colspan]="2"
+      [rowspan]="2"
+      
+    >
+      <div class="inspiration-block">
+        <p><i> Sirhood - becoming a gentleman from a man</i></p>
         <p>
-          Our story......................................................
+          Our mission is to provide the necessary products and clothing for
+          every ocasion. We encourage you to release your inner gentleman and
+          become a better version of yourself.
         </p>
-      </mat-grid-tile>
+        <p>
+          Because we know that at the side of every great gentleman there is a
+          great lady, we come in help with gifts so you can pamper her everyday.
+        </p>
+      </div>
+    </mat-grid-tile>
 
-      <mat-grid-tile
-        [colspan]="1"
-        [rowspan]="1"
-        style="background-color: lightcyan"
-      >
-        <a routerLink="/male"> For him </a>
-      </mat-grid-tile>
+    <mat-grid-tile [colspan]="1" [rowspan]="1" class="pentru-el">
+      <a routerLink="/male"> Pentru el </a>
+    </mat-grid-tile>
 
-      <mat-grid-tile
-        [colspan]="1"
-        [rowspan]="1"
-        style="background-color: lightgreen"
-      >
-        <a routerLink="/female"> For her </a>
-      </mat-grid-tile>
-    </mat-grid-list>
-  </section>
+    <mat-grid-tile [colspan]="1" [rowspan]="1" class="pentru-ea">
+      <a routerLink="/female"> Pentru ea </a>
+    </mat-grid-tile>
+  </mat-grid-list>
+</section>
 
-  <router-outlet></router-outlet>
-</div>
+<router-outlet></router-outlet>

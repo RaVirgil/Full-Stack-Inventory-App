@@ -22,10 +22,7 @@ export class ProductItemComponent implements OnInit  {
   private initProduct(): void{
     const id = this.route.snapshot.paramMap.get('id');   
 
-    this.productService.getAll().subscribe((products: Product[]) => products.forEach(x => {
-      if(x.id == id)
-      this.product = x;
-    }));  
+    this.productService.getById(id).subscribe(product => this.product = product); 
   }
 
   public addToCartButton() {

@@ -19,8 +19,7 @@ function setInventoryProductRoute(router: Router): Router {
 }
 
 function authToken(req: IExpressRequest, res: Response, next: NextFunction) {
-  try {
-    console.log("called");
+  try {  
     const authHeader = req.headers["authorization"];
     const token = authHeader && authHeader.split(" ")[1];
     if (token == null)

@@ -1,8 +1,30 @@
-<div *ngIf="product?.active">
-  <h1>Product: {{ product.name }}</h1>
-  <p>Description: {{ product.description }}</p>
-  <p>Price: {{product.price}}</p>
+<section class="container">
+  <mat-grid-list cols="2" rowHeight="45%">
+    <mat-grid-tile colspan="1" rowspan="2">
+      <img
+        class="product-image"        
+        alt="image of a product"
+      />
+    </mat-grid-tile>
 
-  <button (click) = "addToCartButton()"> Add to cart</button>
-  <button (click) = "addToFavoritesButton()"> Add to favorites</button>  
-</div>
+    <mat-grid-tile rowspan="2">
+      <section class="product-infos">
+        <h1 class="title">{{ product?.name }}</h1>
+        <h3 class="price">{{ product?.price | currency: "USD" }}</h3>
+        <p class="description">{{ product?.description }}</p>
+        <div class="buttons">
+          <button
+            mat-raised-button
+            color="accent"
+            (click)="addToFavoritesButton()"
+          >
+            Add to wishlist
+          </button>
+          <button mat-raised-button color="accent" (click)="addToCartButton()">
+            Add to cart
+          </button>
+        </div>
+      </section>
+    </mat-grid-tile>    
+  </mat-grid-list>
+</section>

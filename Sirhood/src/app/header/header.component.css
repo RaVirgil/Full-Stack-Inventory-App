@@ -1,37 +1,56 @@
-.header-container {
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: space-evenly;
-  height: 30vh;
-  background-color: lightblue;
+.spacer{
+    flex: 1 1 auto;
 }
 
-.header-nav-container {
-  height: 15%;
-  width: 100%;
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: space-evenly;
-  background-color: lightcoral;
+.toolbar{
+padding-top: 1rem;
+   position: sticky;
+   background-color: transparent;   
 }
 
-.header-links-container {
-  width: 100%;
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: space-around;
+.header-links-left{
+    display: flex;
+    justify-content: space-around;
+    width: 15%;
+    font-size: x-large;
 }
 
-.header-links-left {
-  width: 10%;
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: space-around;
+.header-links-right{
+    display: flex;
+    justify-content: space-around;
+    width: 15%;
 }
 
-.header-links-right {
-  width: 10%;
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: space-around;
+.up-container{
+    display: flex;
+    flex-flow: column wrap;
+    height: 3rem;
+    width: 100%;
+    justify-content: space-evenly;
+}
+
+.up-container img{
+    width: 400px;
+    height: 500px;
+    cursor: pointer;
+}
+
+.down-container{
+    display: flex;
+    flex-flow: row wrap;
+    height: 3rem;   
+    justify-content: space-evenly;
+}
+
+.auth-cart-fav-buttons{
+    display: flex;
+}
+
+.auth-cart-fav-buttons a{
+    font-size: large;
+    margin: 1rem;
+}
+
+.img-container{  
+    object-fit:contain;
 }

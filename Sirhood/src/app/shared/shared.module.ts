@@ -7,6 +7,8 @@ import { ProductItemCardComponent } from './product-item-card/product-item-card.
 import { RouterModule } from '@angular/router';
 import { MaterialModule } from './material.module';
 import { CategoriesMenuComponent } from './categories-menu/categories-menu.component';
+import { CookieModule } from 'ngx-cookie';
+import { AvailableStockComponent } from './available-stock/available-stock.component';
 
 @NgModule({
   declarations: [
@@ -14,16 +16,18 @@ import { CategoriesMenuComponent } from './categories-menu/categories-menu.compo
     ProductItemComponent,
     CartItemComponent,
     ProductItemCardComponent,
-    CategoriesMenuComponent
+    CategoriesMenuComponent,  
+    AvailableStockComponent
   ],
-  imports: [CommonModule, RouterModule, MaterialModule],
+  imports: [CommonModule, RouterModule, MaterialModule,CookieModule.forRoot()],
   exports: [
     FavoriteItemComponent,
     ProductItemComponent,
     CartItemComponent,
     ProductItemCardComponent,
     MaterialModule,
-    CategoriesMenuComponent
+    CategoriesMenuComponent,
+    AvailableStockComponent
   ],
 })
 export class SharedModule {}

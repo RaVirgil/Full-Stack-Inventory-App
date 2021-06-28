@@ -1,18 +1,149 @@
 .highlight-category-container{
+    display: block;
     width: 100%;
-    height: 30%;
+    height: 30rem;
+
+    text-align: center;   
+    background-image: url("../../assets/images/watch.jpg");
+    background-color: transparent;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position:center ;
+   
+}
+
+.highlight-category-container a{
+    text-decoration: none;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: xx-large;
+}
+
+.categories-container{      
+       margin: 2rem;
+}
+
+.parfumuri{
+    width: 100%;
+    height: 100%;
+    background-image: url("../../assets/images/cologne.jpg");
+    background-color: transparent;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position:center ;
+}
+
+.parfumuri a{
+    text-decoration: none;
+    width: 100%;
+    height: 100%;
     text-align: center;
-    background-color: beige;
+    font-size: xx-large;
 }
 
-.dashboard-container{   
-    height: 90vh;
+.ulei-barba{     
+    background-image: url("../../assets/images/beard-oil.jpg");
+    background-color: transparent;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position:center ;
 }
 
-.categories-container{
-       border: 2px black solid;
+.ulei-barba a{
+    text-decoration: none;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    font-size: xx-large;
 }
 
-.inspiration-container{
-    border: 2px black solid;
+.costume{  
+    text-align: center;   
+    background-image: url("../../assets/images/watch.jpg");
+    background-color: transparent;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position:center ;
+}
+
+.costume a{
+    text-decoration: none;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    font-size: xx-large;
+}
+
+.pantaloni{
+    text-align: center;   
+    background-image: url("../../assets/images/watch.jpg");
+    background-color: transparent;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position:center ;
+}
+
+.pantaloni a{
+    text-decoration: none;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    font-size: xx-large;
+}
+
+.accesorii{
+    text-align: center;   
+    background-image: url("../../assets/images/accessories.jpg");
+    background-color: transparent;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position:center ;
+}
+
+.accesorii a{
+    text-decoration: none;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    font-size: xx-large;
+}
+
+.inspiration-container{  
+    margin: 2rem;
+}
+
+.inspiration-block{
+    font-size: x-large;
+    padding: 1rem;
+}
+
+.inspiration-block i {
+    font-size: xx-large;
+}
+
+.pentru-el{
+
+}
+
+.pentru-el a{
+    text-decoration: none;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    font-size: xx-large;
+}
+
+.pentru-ea{
+
+}
+
+.pentru-ea a{
+    text-decoration: none;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    font-size: xx-large;
 }

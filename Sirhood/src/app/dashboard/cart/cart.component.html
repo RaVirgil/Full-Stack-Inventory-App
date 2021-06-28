@@ -1,2 +1,30 @@
-<app-cart-item *ngFor="let product of products" [product]="product">
-</app-cart-item>
+<!-- <div class="container">
+  <div class="spacer-left"></div>
+
+  <div class="products-list">
+    <app-cart-item
+      *ngFor="let product of products"
+      [product]="product"
+      (addToFavorites)="addToFavorites($event)"
+      (delete)="delete($event)"
+    ></app-cart-item>
+
+    <div class="price">
+      <p>Products: {{ productPrice | currency: "EUR" }}</p>
+      <p>Transport: {{ transportPrice | currency: "EUR" }}</p>
+      <p>Total: {{ productPrice + transportPrice | currency: "EUR" }}</p>
+    </div>
+  </div>
+  <div class="spacer-right"></div>
+  <div class="summary">
+    <h1>Delivery summary</h1>
+    <p>Products: {{ productPrice | currency: "EUR" }}</p>
+    <p>Transport: {{ transportPrice | currency: "EUR" }}</p>
+    <mat-divider class="divider"></mat-divider>
+    <p class="total">
+      Total: {{ productPrice + transportPrice | currency: "EUR" }}
+    </p>
+    <a mat-raised-button color="accent" class="buyButton" matStepperNext> Next step </a>
+  </div>
+</div> -->
+

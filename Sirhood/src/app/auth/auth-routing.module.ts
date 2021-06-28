@@ -9,6 +9,7 @@ const routes: Routes = [
     path: 'auth',
     component: AuthComponent,
     children: [
+      {path: '', redirectTo: 'login', pathMatch:"full"},
       { path: 'login', component: LoginComponent },
       { path: 'register', component: RegisterComponent },
     ],

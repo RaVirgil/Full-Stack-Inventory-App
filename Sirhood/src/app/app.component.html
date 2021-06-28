@@ -1,7 +1,13 @@
-<app-header></app-header>
-
-<main>
-  <router-outlet></router-outlet>
-</main>
-
-<app-footer></app-footer>
+<div class="page-wrap" fxLayout="column">
+  <header>
+    <app-header></app-header>
+  </header>
+  <mat-divider></mat-divider>
+  <main fxFlex="1" class="main-container">
+    <router-outlet></router-outlet>
+  </main>
+  <mat-divider></mat-divider>
+  <footer>
+    <app-footer class="footer-container" fxFlexOffset="auto"></app-footer>
+  </footer>
+</div>
