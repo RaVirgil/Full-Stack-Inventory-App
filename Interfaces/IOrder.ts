@@ -1,9 +1,11 @@
 import { IProduct } from "./IProduct";
+import { IUserInfo } from "./IUserInfo";
 
 export interface IOrder {
     id: string;
-    fullname: string
-    products: IProduct,
-    orderedAt: Date
-    status: string
+    userId: string;
+    userInfo: IUserInfo;
+    products: IProduct[];
+    orderedAt: Date;
+    status: string;
   }

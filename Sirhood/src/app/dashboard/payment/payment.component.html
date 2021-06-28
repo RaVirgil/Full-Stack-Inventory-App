@@ -91,6 +91,7 @@
       class="btn-block"
       [disabled]="!payForm.valid"
       matStepperNext
+      (click) = 'pay()'
     >
       Finish
     </button>

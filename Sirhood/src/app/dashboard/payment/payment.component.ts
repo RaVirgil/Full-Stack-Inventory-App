@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Order } from 'src/app/@core/entities/order.entity';
 import { UserInfo } from 'src/app/@core/entities/user-info.entity';
 import { AuthenticationService } from 'src/app/@core/services/authentication.service';
+import { CartService } from 'src/app/@core/services/cart.service';
+import { OrderService } from 'src/app/@core/services/order.service';
 
 @Component({
   selector: 'app-payment',
@@ -13,7 +16,11 @@ export class PaymentComponent implements OnInit {
   public payForm: FormGroup;
   public paymentOptions = ['Cash on delivery', 'Card'];
   public chosenOption: string = 'Card';
-  constructor(private readonly authenticationService: AuthenticationService) {}
+  constructor(
+    private readonly authenticationService: AuthenticationService,
+    private readonly cartService: CartService,
+    private readonly orderService: OrderService
+  ) {}
 
   ngOnInit(): void {
     this.setCountries();
@@ -29,7 +36,7 @@ export class PaymentComponent implements OnInit {
       email: new FormControl(info.email, Validators.required),
       phone: new FormControl(info.phone, Validators.required),
       country: new FormControl(info.country, Validators.required),
-      county: new FormControl(info.county, Validators.required),      
+      county: new FormControl(info.county, Validators.required),
       address: new FormControl(info.address, Validators.required),
       paymentMethod: new FormControl(this.chosenOption, Validators.required),
     });
@@ -41,10 +48,25 @@ export class PaymentComponent implements OnInit {
       email: new FormControl('', [Validators.required, Validators.email]),
       phone: new FormControl('', Validators.required),
       country: new FormControl('', Validators.required),
-      county: new FormControl('', Validators.required),  
+      county: new FormControl('', Validators.required),
       address: new FormControl('', Validators.required),
       paymentMethod: new FormControl(this.chosenOption, Validators.required),
     });
+  }
+
+  public pay(): void { 
+
+    const formInfo: UserInfo = {...this.payForm.value};
+    const order: Order = {
+      userInfo: formInfo,
+      userId: this.authenticationService.getUserId(),
+      products: this.cartService.cart$.getValue(),
+      orderedAt: new Date(),
+      status: '',
+      id: ''
+    };
+
+    this.orderService.post(order);
   }
 
   private setCountries(): void {
