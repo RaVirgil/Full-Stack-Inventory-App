@@ -58,5 +58,6 @@ export class CartService {
     this.cart.splice(index, 1);
     this.cart$.next(this.cart);
     this.sessionService.setCart(this.cart);
+    this.httpService.delete(`cart/${this.authenticationService.getUserId()}/${product.id}`).subscribe();
   }
 }

@@ -25,6 +25,9 @@ export class Order implements MongoEntity<Order>, IOrder {
   userId: string;
 
   @Property()
+  sessionId: string;
+
+  @Property()
   userInfo: IUserInfo;
 
   @Property()
@@ -39,4 +42,5 @@ export class Order implements MongoEntity<Order>, IOrder {
   public constructor(init?: Partial<Order>) {
     Object.assign(this, init);
   }
+  
 }

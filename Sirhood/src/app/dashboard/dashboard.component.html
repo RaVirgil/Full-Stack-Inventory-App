@@ -1,38 +1,30 @@
 <section class="highlight-category-container">
-  <a routerLink="/category/Ceasuri"> Ceasuri </a>
+  <a routerLink="/category/Accessories/subCategory/{{categories[0]}}"> {{categories[0]}} </a>
 </section>
 
 <section class="categories-container">
   <mat-grid-list cols="4" rowHeight="100px">
     <mat-grid-tile [colspan]="1" [rowspan]="3" class="parfumuri">
-      <a routerLink="/category/Parfumuri"> Parfumuri </a>
-    </mat-grid-tile>
 
-    <mat-grid-tile
-      [colspan]="2"
-      [rowspan]="1"
-      style="background-color: lightgreen"
-      class="costume"
-    >
-      <a routerLink="/category/Costume"> Costume </a>
-    </mat-grid-tile>
+      <a routerLink="/category/Face and body/subCategory/{{categories[1]}}"> {{categories[1]}} </a>
+    </mat-grid-tile>    
 
     <mat-grid-tile [colspan]="1" [rowspan]="3" class="ulei-barba">
-      <a routerLink="/category/Ulei barba"> Ulei de barba </a>
+      <a routerLink="/category/Beard oil/subCategory/{{categories[2]}}"> {{categories[2]}} </a>
     </mat-grid-tile>
 
-    <mat-grid-tile [colspan]="1" [rowspan]="2" class="pantaloni">
-      <a routerLink="/category/Pantaloni"> Pantaloni </a>
+    <mat-grid-tile [colspan]="1" [rowspan]="3" class="ceara-par">
+      <a routerLink="/category/Hair/subCategory/{{categories[3]}}"> {{categories[3]}} </a>
     </mat-grid-tile>
 
-    <mat-grid-tile [colspan]="1" [rowspan]="2" class="accesorii">
-      <a routerLink="/category/Accesorii"> Accesorii </a>
+    <mat-grid-tile [colspan]="1" [rowspan]="3" class="accesorii">
+      <a routerLink="/category/{{categories[4]}}"> {{categories[4]}} </a>
     </mat-grid-tile>
   </mat-grid-list>
 </section>
 
 <section class="inspiration-container">
-  <mat-grid-list cols="3" rowHeight="100px">
+  <mat-grid-list cols="3" rowHeight="300px">
     <mat-grid-tile
       [colspan]="2"
       [rowspan]="2"
@@ -53,11 +45,11 @@
     </mat-grid-tile>
 
     <mat-grid-tile [colspan]="1" [rowspan]="1" class="pentru-el">
-      <a routerLink="/male"> Pentru el </a>
+      <a routerLink="/male"> For him </a>
     </mat-grid-tile>
 
     <mat-grid-tile [colspan]="1" [rowspan]="1" class="pentru-ea">
-      <a routerLink="/female"> Pentru ea </a>
+      <a routerLink="/female"> For her </a>
     </mat-grid-tile>
   </mat-grid-list>
 </section>

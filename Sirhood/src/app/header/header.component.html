@@ -1,10 +1,22 @@
 <mat-toolbar class="toolbar">
   <mat-toolbar-row class="up-container">
-    <img src="../../assets/images/logo.png" alt="LOGO" routerLink="" class="img-container"/>
-
-    <span>
-      <input type="search" placeholder="Whatever the sir wants..." />
-    </span>
+    <img
+      src="../../assets/images/logo.png"
+      alt="LOGO"
+      routerLink=""
+      class="img-container"
+    />
+  
+    <div  class="search-bar" >
+      <input      
+      type="text"
+      placeholder="Whatever the sir wants..."
+      [ngModel]="input"
+      (ngModelChange)="inputChanged($event)">
+      <mat-icon>search</mat-icon>
+    </div>
+      
+    
 
     <span class="auth-cart-fav-buttons">
       <div [ngSwitch]="isAuthenticated()">
@@ -16,21 +28,28 @@
           ><mat-icon>login</mat-icon> Sign In
         </a>
       </div>
-      <a mat-button routerLink="/favorites"><mat-icon>favorite</mat-icon> Favorites </a>
-      <a mat-button routerLink="/cart" matBadge="{{cartSize}}" matBadgePosition="before" matBadgeColor="accent"><mat-icon>shopping_cart</mat-icon> Cart </a>
+      <a mat-button routerLink="/favorites"
+        ><mat-icon>favorite</mat-icon> Favorites
+      </a>
+      <a
+        mat-button
+        routerLink="/cart"
+        matBadge="{{ cartSize }}"
+        matBadgePosition="before"
+        matBadgeColor="accent"
+        ><mat-icon>shopping_cart</mat-icon> Cart
+      </a>
     </span>
   </mat-toolbar-row>
 
   <mat-toolbar-row class="down-container">
     <div class="header-links-left">
-      <app-categories-menu> </app-categories-menu>
-      <a mat-button routerLink="/deals"> Deals </a>
+      <app-categories-menu> </app-categories-menu>      
     </div>
 
     <div class="header-links-right">
-      <a mat-button routerLink="/info"> Info </a>
       <a mat-button routerLink="/questions"> Q&A </a>
       <a mat-button routerLink="/contact"> Contact </a>
     </div>
-  </mat-toolbar-row>  
+  </mat-toolbar-row>
 </mat-toolbar>

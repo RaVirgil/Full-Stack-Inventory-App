@@ -1,7 +1,8 @@
 <mat-card class="container">
     <mat-card-content class="card-content-container">        
         <div class="img-container">
-            <img src="" alt="img of product">
+            <img mat-card-image [src] = 'product.imageLink' height="100px" width="50px" alt='Product image coming soon' onerror="this.src='../../assets/images/product-image-placeholder.png';" />
+
         </div>
 
         <div class="info-center-container">

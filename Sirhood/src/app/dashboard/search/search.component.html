@@ -1,0 +1,9 @@
+<div fxLayout="row wrap" fxLayoutGap = "16px grid" class="products">
+    <div fxFlex="25%" fxFlex.sm="33%" fxFlex.xs="100%" *ngFor="let product of searchedProducts">
+      <app-product-item-card
+        [product]="product"
+        (addToCart)="addToCart($event)"
+        (addToFavorites)="addToFavorites($event)"
+      ></app-product-item-card>
+    </div>
+  </div>

@@ -1,1 +1,30 @@
-<h1>{{product.name}}</h1>>
+<mat-card class="container">
+    <mat-card-content class="card-content-container">        
+        <div class="img-container">
+            <img mat-card-image [src] = 'product.imageLink' height="100px" width="50px" alt='Product image coming soon' onerror="this.src='../../assets/images/product-image-placeholder.png';" />
+
+        </div>
+
+        <div class="info-center-container">
+            <mat-card-title>{{product.name}}</mat-card-title>
+            <div [ngSwitch]="product.quantity">            
+                <span *ngSwitchCase="0" class="red"> Not in stock </span>
+                <span *ngSwitchDefault class="green">
+                  <span *ngIf="product.quantity < 10" class="orange"> Limited stock </span>
+                  <span *ngIf="product.quantity >= 10" class="green"> In stock </span>
+                </span>
+              </div>
+        </div>
+
+        <div class="info-right-container">
+            <div class="price">
+                <p>{{product.price | currency: "EUR"}}</p>
+            </div>
+            <div class="info-right-container-buttons">
+                <button mat-stroked-button color="accent" (click) = "addToCartButton()"> Move to cart </button>
+                <button mat-stroked-button color="warn" (click) = "deleteButton()"> Delete </button>
+            </div>
+        </div>
+        
+    </mat-card-content>
+</mat-card>

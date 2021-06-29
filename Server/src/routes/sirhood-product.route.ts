@@ -27,8 +27,7 @@ async function getPopularProducts( req: IExpressRequest,
     let result: Product[] | Error;
 
     try {
-      result = await productService.getPopularProducts(req.em);
-      console.log(result);
+      result = await productService.getPopularProducts(req.em);     
     } catch (ex) {
       return next(ex);
     }

@@ -1,17 +1,10 @@
-<!-- <div *ngIf = "product?.active">
-    <h1>{{product.name}}</h1>
-    <p>{{product.price}}</p>
-    <button (click) = "addToCartButton()">Add to cart</button>
-    <button (click) = "addToFavoritesButton()">Add to favorites</button>
-    <a routerLink = "/product/{{product.id}}">Go to info</a>
-</div> -->
 
 <mat-card class="mat-elevation-z4 card" routerLink="/product/{{ product.id }}">
   <mat-card-header>
-    <img mat-card-image alt="Some photo" />
+    <img mat-card-image [src] = 'product.imageLink' height="300px" width="200px" alt='Product image coming soon' onerror="this.src='../../assets/images/product-image-placeholder.png';" />
   </mat-card-header>
   <mat-divider></mat-divider>
-  <mat-card-content>
+  <mat-card-content  class="content-container">
     <mat-card-title>{{ product.name }}</mat-card-title>
     <p>
       {{ product.brand }}

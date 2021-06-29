@@ -34,11 +34,11 @@ export class RegisterComponent implements OnInit {
   public register(): void {
     const user: User = { ...this.registerForm.value };
     user.active = true;
+    user.cart = [];
+    user.favorites = []
+    this.authenticationService.register(user); 
 
-    this.authenticationService.register(user);
-    this.authenticationService.login(user.username, user.password);
-
-    this.router.navigate(['']);
+    this.router.navigate(['auth/login']);
   }
 
   private setCountries(): void {

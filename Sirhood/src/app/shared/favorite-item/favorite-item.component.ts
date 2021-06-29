@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Product } from 'src/app/@core/entities/product.entity';
 
 @Component({
@@ -6,9 +6,16 @@ import { Product } from 'src/app/@core/entities/product.entity';
   templateUrl: './favorite-item.component.html',
   styleUrls: ['./favorite-item.component.css'],
 })
-export class FavoriteItemComponent implements OnInit {
+export class FavoriteItemComponent {
   @Input() product: Product;
-  constructor() {}
+  @Output() addToCart: EventEmitter<Product> = new EventEmitter<Product>();
+  @Output() delete: EventEmitter<Product> = new EventEmitter<Product>();
 
-  ngOnInit(): void {}
+  public addToCartButton(): void {
+    this.addToCart.emit(this.product);
+  }
+
+  public deleteButton(): void {
+    this.delete.emit(this.product);
+  }
 }

@@ -22,7 +22,7 @@ async function getOrdersForUser(
 
   let orders: Error | Order[] | null;
   try {
-    orders = await ordersService.getOrders(req.em, req.params.id);
+    orders = await ordersService.getOrdersForUser(req.em, req.params.id);
   } catch (ex) {
     return next(ex);
   }

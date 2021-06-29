@@ -22,14 +22,17 @@ let mostPopularProducts: Product[] = [];
 
 async function calculatePopularProductsList(em: EntityManager) {
   const cronJob = new CronJob("* * * * *", async () => {
-    const result = await getVisitedProducts(em);
-    if (!(result instanceof Error)) mostPopularProducts = result;
-    console.log('upated!');
+    
+    const result = await getVisitedProducts(em);   
+    if (!(result instanceof Error)) mostPopularProducts = result;  
+    console.log(mostPopularProducts);  
   });
 
   if (!cronJob.running) {
     cronJob.start();
   }
+
+  
 }
 
 async function countProducts(em: EntityManager, activeOnly = false) {

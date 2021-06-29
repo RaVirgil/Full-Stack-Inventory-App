@@ -12,34 +12,39 @@ export class SessionService {
   public session: BehaviorSubject<Session> = new BehaviorSubject<Session>(
     new Session({
       cart: [],
-      visited: []
+      visited: [],
     })
   );
+  private sessionId: string | null;
 
   constructor(
     private readonly httpService: HttpService,
     private readonly localStorageSerivce: LocalStorageService
   ) {
-    const sessionId = this.localStorageSerivce.get('sessionId');
-    
-    if (!sessionId || sessionId === '') {
+    this.sessionId = this.localStorageSerivce.get('sessionId');
+
+    if (!this.sessionId || this.sessionId === '') {
       const token = this.getRandomString(20);
       this.localStorageSerivce.put('sessionId', token);
       this.post(token);
 
       this.httpService.get(`session/${token}`).subscribe((session: Session) => {
-        this.session.next(session);        
+        this.session.next(session);
       });
     } else {
       this.httpService
-        .get(`session/${sessionId}`)
+        .get(`session/${this.sessionId}`)
         .subscribe((session: Session) => {
           this.session.next(session);
         });
     }
   }
 
-  public setCart(cart: Product[]): void {   
+  public getSessionId(): string | null {
+    return this.sessionId;
+  }
+
+  public setCart(cart: Product[]): void {
     const newSession = {
       ...this.session.getValue(),
     };
@@ -49,7 +54,7 @@ export class SessionService {
     this.put();
   }
 
-  public setVisited(visited: Product[]): void {  
+  public setVisited(visited: Product[]): void {
     const newSession = {
       ...this.session.getValue(),
     };

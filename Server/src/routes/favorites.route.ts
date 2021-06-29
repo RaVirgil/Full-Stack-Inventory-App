@@ -48,7 +48,7 @@ async function removeFavorites(
     return next(ex);
   }
 
-  return res.status(200).send("ok");
+  return res.status(200).end();
 }
 
 async function removeFromFavorites(
@@ -58,7 +58,7 @@ async function removeFromFavorites(
 ) {
   if (!req.em || !(req.em instanceof EntityManager))
     return next(Error("EntityManager not available"));
-
+        
   try {
     await favoritesService.removeFromFavorites(
       req.em,
@@ -69,7 +69,7 @@ async function removeFromFavorites(
     return next(ex);
   }
 
-  return res.status(200).send("ok");
+  return res.status(200).end();
 }
 
 async function postFavorites(
@@ -86,7 +86,7 @@ async function postFavorites(
     return next(ex);
   }
 
-  return res.status(201).send("ok");
+  return res.status(200).end();
 }
 
 async function putFavorites(
@@ -103,5 +103,5 @@ async function putFavorites(
     return next(ex);
   }
 
-  return res.status(200).send("ok");
+  return res.status(200).end();
 }

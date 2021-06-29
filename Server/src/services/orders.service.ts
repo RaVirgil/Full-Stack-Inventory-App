@@ -1,14 +1,12 @@
-import { EntityManager, wrap } from "mikro-orm";
+import { EntityManager, } from "mikro-orm";
 import { Order } from "../entities/order.entity";
 
-export {
-    getOrders,
-    postOrder,  
-    removeOrder,
-    updateOrder
+export {  
+  getOrdersForUser,  
+  postOrder,  
 };
 
-async function getOrders(
+async function getOrdersForUser(
   em: EntityManager,
   id: string
 ): Promise<Error | Order[] | null> {
@@ -25,7 +23,7 @@ async function getOrders(
 }
 
 async function postOrder(
-  em: EntityManager,  
+  em: EntityManager,
   order: Partial<Order>
 ): Promise<Error | Order> {
   if (!(em instanceof EntityManager)) return Error("invalid request");
@@ -36,48 +34,10 @@ async function postOrder(
   try {
     const item = new Order(order);
     item.orderedAt = new Date();
-    item.status = 'placed';
+    item.status = "placed";
     await em.persistAndFlush(item);
     return item;
   } catch (ex) {
     return ex;
   }
 }
-
-async function removeOrder(
-    em: EntityManager,
-    id: string
-  ): Promise<Error | void> {
-    if (!(em instanceof EntityManager)) return Error("invalid request");
-  
-    if (!id || typeof id !== "string") return Error("invalid params");
-  
-    try {
-      const item = await em.findOneOrFail(Order, { id });
-      await em.removeAndFlush(item);
-    } catch (ex) {
-      return ex;
-    }
-  }
-  
-  async function updateOrder(
-    em: EntityManager,
-    order: Partial<Order>
-  ): Promise<Error | Order> {
-    if (!(em instanceof EntityManager)) return Error("invalid request");
-  
-    if (!order || typeof order !== "object" || !order.id)
-      return Error("invalid params");
-  
-    try {
-      const item = await em.findOneOrFail(Order, {
-        id: order.id,
-      });
-      wrap(item).assign(order);
-      await em.persistAndFlush(item);
-      return item;
-    } catch (ex) {
-      return ex;
-    }
-  } 
-  

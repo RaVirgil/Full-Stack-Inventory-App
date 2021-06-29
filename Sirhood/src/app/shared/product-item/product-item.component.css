@@ -7,6 +7,8 @@
   
   .product-image {
     border-radius: 2%;
+    height: 80%;
+    width: 80%;
   }
   
   .title {

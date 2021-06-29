@@ -1,11 +1,53 @@
-<div class="info"></div>
-<b>Info: </b><i>{{ dataReceived.info }}</i
-><br /><br />
-<b>Address: </b><i>{{ dataReceived.address }}</i
-><br /><br />
-<b>Phone: </b><i>{{ dataReceived.phone }}</i
-><br /><br />
-<b>Open Days: </b><i>{{ dataReceived.openDays }}</i
-><br /><br />
-<b>Time Slot: </b><i>{{ dataReceived.timeSlot }}</i
-><br /><br />
+<div class="main-wrapper" fxLayout="row" fxLayoutAlign="center center">
+  <form class="form" [formGroup]="contactForm">
+    <H1>Contact</H1>
+    <mat-form-field class="full-width">
+      <input
+        matInput
+        placeholder="Email@example.com"
+        type="text"
+        formControlName="email"
+        required
+      />
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+      <input
+        matInput
+        placeholder="Phone"
+        type="text"
+        formControlName="phone"
+        required
+      />
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+      <input
+        matInput
+        placeholder="Full name"
+        type="text"
+        formControlName="fullname"
+        required
+      />
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+      <textarea
+        matInput
+        placeholder="Your message"
+        formControlName="message"
+        required
+      >
+      </textarea>
+    </mat-form-field>
+
+    <button
+      mat-raised-button     
+      class="btn-block"
+      [disabled]="!contactForm.valid"
+      (click)="sendMessage()"
+    >
+      Send
+    </button>
+  </form>
+</div>

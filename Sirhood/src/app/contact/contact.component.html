@@ -1,1 +1,32 @@
-<p>contact works!</p>
+<div class="main-wrapper" fxLayout="row" fxLayoutAlign="center center">
+    <mat-card >
+      <mat-card-header>
+        <mat-card-title>Contact</mat-card-title>
+      </mat-card-header>
+  
+      <form class="form" [formGroup] = "contactForm">
+  
+        <mat-card-content>         
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Email@example.com" type="text" formControlName="email" required>
+          </mat-form-field>
+
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Phone" type="text" formControlName="phone" required>
+          </mat-form-field>     
+
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Full name" type="text" formControlName="fullname" required>
+          </mat-form-field> 
+
+          <mat-form-field class="full-width">
+            <textarea matInput placeholder="Your message" formControlName="message" required>
+            </textarea>
+          </mat-form-field> 
+        
+        </mat-card-content>
+  
+        <button mat-raised-button color="accent" class="btn-block" [disabled]="!contactForm.valid" (click) = "sendMessage()">Send</button>         
+      </form>
+    </mat-card>
+  </div>

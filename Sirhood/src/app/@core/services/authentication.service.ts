@@ -57,9 +57,9 @@ export class AuthenticationService {
     if (token === null || token === '') {
       this.cookieService.remove('userId');
       return false;
+    } else {
+      return !this.jwtHelper.isTokenExpired(token);
     }
-
-    return !this.jwtHelper.isTokenExpired(token);
   }
 
   public logout(): void {
@@ -75,7 +75,7 @@ export class AuthenticationService {
     return 'notAuthenticated';
   }
 
-  public getInfo(): UserInfo{  
+  public getInfo(): UserInfo {
     return JSON.parse(this.localStorageService.get('info')!);
   }
 
@@ -99,5 +99,9 @@ export class AuthenticationService {
       horizontalPosition: 'center',
       verticalPosition: 'top',
     });
+  }
+
+  public update(user: User): void {
+    this.httpService.put('users/update', user).subscribe();
   }
 }

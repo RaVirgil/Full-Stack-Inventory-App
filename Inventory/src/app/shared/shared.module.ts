@@ -14,7 +14,13 @@ import { CategoryDialogBoxComponent } from './category-dialog-box/category-dialo
 import { ChipInputComponent } from './chip-input/chip-input.component';
 
 @NgModule({
-  declarations: [ProductDialogBoxComponent, ShowItemComponent, NotFoundComponent, CategoryDialogBoxComponent, ChipInputComponent],
+  declarations: [
+    ProductDialogBoxComponent,
+    ShowItemComponent,
+    NotFoundComponent,
+    CategoryDialogBoxComponent,
+    ChipInputComponent,
+  ],
   imports: [
     CommonModule,
     MaterialModule,
@@ -24,7 +30,6 @@ import { ChipInputComponent } from './chip-input/chip-input.component';
     HttpClientModule,
     QRCodeModule,
     ZXingScannerModule,
-    
   ],
   exports: [
     ProductDialogBoxComponent,
@@ -37,8 +42,8 @@ import { ChipInputComponent } from './chip-input/chip-input.component';
     HttpClientModule,
     QRCodeModule,
     ZXingScannerModule,
-    NotFoundComponent,   
-    ChipInputComponent
+    NotFoundComponent,
+    ChipInputComponent,
   ],
 })
 export class SharedModule {}

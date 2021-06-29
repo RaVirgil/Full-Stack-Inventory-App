@@ -1,1 +1,17 @@
-<app-favorite-item *ngFor = "let product of products" [product] = "product"></app-favorite-item>
+<div [ngSwitch]="products.length">
+  <div *ngSwitchCase="0">
+    <h1>Looks like your list of favorite products is empty...</h1>
+    <a routerLink="">Take me to homepage</a>
+  </div>
+  <div *ngSwitchDefault>
+    <div fxLayout="column wrap" class="products-list">
+      <app-favorite-item
+        *ngFor="let product of products"
+        [product]="product"
+        (addToCart)="addToCart($event)"
+        (delete)="delete($event)"
+      ></app-favorite-item>
+      <button mat-raised-button color='accent' (click) = 'removeAll()'>Remove all</button>
+    </div>
+  </div>
+</div>

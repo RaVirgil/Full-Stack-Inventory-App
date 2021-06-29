@@ -38,8 +38,6 @@ async function removeFromCart(
   } catch (ex) {
     return ex;
   }
-
-  return Promise.resolve();
 }
 
 async function removeCart(
@@ -57,8 +55,6 @@ async function removeCart(
   } catch (ex) {
     return ex;
   }
-
-  return Promise.resolve();
 }
 
 async function addToCart(
@@ -77,8 +73,6 @@ async function addToCart(
   } catch (ex) {
     return ex;
   }
-
-  return Promise.resolve();
 }
 
 async function updateCart(
@@ -97,6 +91,4 @@ async function updateCart(
   } catch (ex) {
     return ex;
   }
-
-  return Promise.resolve();
 }

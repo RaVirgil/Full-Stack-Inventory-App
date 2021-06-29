@@ -43,9 +43,7 @@ async function getUserFavorites(
       }
     } catch (ex) {
       return ex;
-    }
-  
-    return Promise.resolve();
+    } 
   }
   
   async function removeFavorites(
@@ -62,9 +60,7 @@ async function getUserFavorites(
       em.flush();
     } catch (ex) {
       return ex;
-    }
-  
-    return Promise.resolve();
+    } 
   }
   
   async function addToFavorites(
@@ -82,9 +78,7 @@ async function getUserFavorites(
       em.flush();
     } catch (ex) {
       return ex;
-    }
-  
-    return Promise.resolve();
+    } 
   }
   
   async function updateFavorites(
@@ -102,7 +96,5 @@ async function getUserFavorites(
       em.flush();
     } catch (ex) {
       return ex;
-    }
-  
-    return Promise.resolve();
+    } 
   }

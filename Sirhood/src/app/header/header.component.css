@@ -54,3 +54,26 @@ padding-top: 1rem;
 .img-container{  
     object-fit:contain;
 }
+
+
+.search-bar{
+    max-width: 15%;
+    width: 15%;
+    border: 0;
+    border-radius: 10px;
+    background-color: white;
+}
+.search-bar input {
+   padding: 0.5rem;
+   border: 0;
+   outline: 0;
+   border-radius:10px;
+  
+   font-family:inherit;
+   font-size: inherit;
+}
+
+.search-bar mat-icon{
+    vertical-align: middle;
+
+}

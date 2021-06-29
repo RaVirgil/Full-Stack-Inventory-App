@@ -50,4 +50,16 @@ export class ProductDialogBoxComponent implements OnInit {
   closeDialog() {
     this.dialogRef.close({ event: 'Cancel' });
   }
+
+  public addTag(tag: string): void {
+    this.updateForm.value.tags.push(tag);
+  }
+
+  public deleteTag(tag: string): void { 
+    const index = this.updateForm.value.tags.findIndex(
+      (element: string) => element === tag
+    );     
+
+    if (index > -1) this.updateForm.value.tags.splice(index, 1);
+  }
 }

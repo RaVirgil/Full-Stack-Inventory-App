@@ -13,8 +13,6 @@ export class MostPopularComponent implements OnInit {
   constructor(private readonly productService: ProductService) { }
 
   ngOnInit(): void {
-   this.productService.getPopular().subscribe((products: Product[]) => {
-     this.popularProducts = products;
-   })
+   this.productService.mostPopular$.subscribe(products => this.popularProducts = products);
   }
 }

@@ -26,8 +26,7 @@ async function getSession(
   try {
     response = await sessionService.getSession(req.em, req.params.token);
   } catch (ex) {
-    console.log(ex);
-    return next(ex);
+      return next(ex);
   }
 
   return res.json(response);

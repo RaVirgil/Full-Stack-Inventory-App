@@ -36,9 +36,11 @@
     <input matInput placeholder="Brand" formControlName="brand" />
   </mat-form-field>
 
-  <mat-form-field>
-    <textarea matInput placeholder="Tags" formControlName="tags"></textarea>
-  </mat-form-field>
+  <app-chip-input
+    [chips]="updateForm.value.tags"
+    (addChip)="addTag($event)"
+    (deleteChip)="deleteTag($event)"
+  ></app-chip-input>
 
   <mat-form-field>
     <input matInput placeholder="Location" formControlName="location" />

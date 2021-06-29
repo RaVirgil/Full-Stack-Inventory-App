@@ -5,6 +5,7 @@ import { UserInfo } from 'src/app/@core/entities/user-info.entity';
 import { AuthenticationService } from 'src/app/@core/services/authentication.service';
 import { CartService } from 'src/app/@core/services/cart.service';
 import { OrderService } from 'src/app/@core/services/order.service';
+import { SessionService } from 'src/app/@core/services/session.service';
 
 @Component({
   selector: 'app-payment',
@@ -19,7 +20,8 @@ export class PaymentComponent implements OnInit {
   constructor(
     private readonly authenticationService: AuthenticationService,
     private readonly cartService: CartService,
-    private readonly orderService: OrderService
+    private readonly orderService: OrderService,
+    private readonly sessionService: SessionService
   ) {}
 
   ngOnInit(): void {
@@ -59,6 +61,7 @@ export class PaymentComponent implements OnInit {
     const formInfo: UserInfo = {...this.payForm.value};
     const order: Order = {
       userInfo: formInfo,
+      sessionId: this.sessionService.getSessionId()!,
       userId: this.authenticationService.getUserId(),
       products: this.cartService.cart$.getValue(),
       orderedAt: new Date(),

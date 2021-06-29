@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { BehaviorSubject, Observable, of } from 'rxjs';
 import { HttpService } from '../api/http.service';
 import { Product } from '../entities/product.entity';
 import { AuthenticationService } from './authentication.service';
@@ -8,97 +8,64 @@ import { AuthenticationService } from './authentication.service';
   providedIn: 'root',
 })
 export class FavoritesService {
+  public favorites$: BehaviorSubject<Product[]> = new BehaviorSubject<
+    Product[]
+  >([]);
   private favorites: Product[] = [];
 
   constructor(
     private readonly httpService: HttpService,
     private readonly authenticationService: AuthenticationService
-  ) {}
+  ) {
+    this.httpService
+      .get(`favorites/${this.authenticationService.getUserId()}`)
+      .subscribe((products: Product[]) => {
+        this.favorites = products;
+        this.favorites$.next(products);
+      });
+  }
 
   public add(product: Product) {
-    const userId = this.authenticationService.getUserId();
+    this.favorites.push(product);
+    this.favorites$.next(this.favorites);
 
-    switch (userId) {
-      case 'notAuthenticated': {
-        this.favorites.push(product);
-        break;
-      }
-      default: {
-        this.addToDb(product);
-        break;
-      }
-    }
+    this.addToDb(product);
   }
 
   private addToDb(product: Product): void {
-    this.httpService.post(
-      `favorites/${this.authenticationService.getUserId()}`,
-      product
-    ).subscribe();
-  }
-
-  public get(): Observable<Product[]> {
-    const userId = this.authenticationService.getUserId();
-
-    switch (userId) {
-      case 'notAuthenticated': {
-        return of(this.favorites);
-      }
-      default: {
-        return this.getFromDb();
-      }
-    }
-  }
-
-  private getFromDb(): Observable<Product[]> {
-    return this.httpService.get(
-      `favorites/${this.authenticationService.getUserId()}`
-    );
+    this.httpService
+      .post(`favorites/${this.authenticationService.getUserId()}`, product)
+      .subscribe();
   }
 
   public removeAll(): void {
-    const userId = this.authenticationService.getUserId();
+    this.favorites = [];
+    this.favorites$.next([]);
 
-    switch (userId) {
-      case 'notAuthenticated': {
-        this.favorites = [];
-        break;
-      }
-      default: {
-        this.removeAllFromDb();
-        break;
-      }
-    }
+    this.removeAllFromDb();
   }
 
   private removeAllFromDb(): void {
-    this.httpService.delete(
-      `favorites/${this.authenticationService.getUserId()}`
-    ).subscribe();
+    this.httpService
+      .delete(`favorites/${this.authenticationService.getUserId()}`)
+      .subscribe();
   }
 
   public remove(product: Product): void {
-    const userId = this.authenticationService.getUserId();
+    const index = this.favorites.findIndex(
+      (favoritesProduct) => favoritesProduct.id === product.id
+    );
 
-    switch (userId) {
-      case 'notAuthenticated': {
-        const index = this.favorites.findIndex(
-          (favoriteProduct) => favoriteProduct.id === product.id,
-          0
-        );
-        this.favorites.splice(index, 1);
-        break;
-      }
-      default: {
-        this.removeFromDb(product);
-        break;
-      }
-    }
+    this.favorites.splice(index, 1);
+    this.favorites$.next(this.favorites);
+    this.removeFromDb(product);
   }
 
   private removeFromDb(product: Product): void {
-    this.httpService.delete(
-      `favorites/${this.authenticationService.getUserId()}/:${product.id}`
-    ).subscribe();
+    this.httpService
+      .delete(
+        `favorites/${this.authenticationService.getUserId()}/${product.id}`
+      )
+      .subscribe();
   }
 }

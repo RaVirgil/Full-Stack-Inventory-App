@@ -1,14 +1,37 @@
-.info {
-  margin-top: 120px;
+.main-wrapper .form {
+	min-width: 20%;
+	max-width: 50%;
+	width: 100%;
+  padding: 5rem;
 }
 
-b {
-  margin-left: 50px;
-  font-size: x-large;
-  color: #def2f1;
+.main-wrapper .full-width,
+.main-wrapper .btn-block {
+	width: 100%;
 }
 
-i {
-  font-size: large;
-  color: #feffff;
+.main-wrapper mat-card-header {
+	text-align: center;
+	width: 100%;
+	display: block;
+	font-weight: 700;
+}
+
+.main-wrapper mat-card-header mat-card-title {
+	font-size: 30px;
+	margin: 0;
+}
+
+.main-wrapper .mat-card {
+	padding: 45px 70px 55px;
+}
+
+.main-wrapper .mat-stroked-button {
+	border: 1px solid currentColor;
+	line-height: 54px;
+	font-size: medium;
+}
+
+.main-wrapper .mat-form-field-appearance-legacy .mat-form-field-infix {
+	padding: 0.8375em 0;
 }

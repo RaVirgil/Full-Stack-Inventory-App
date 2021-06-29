@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Product } from 'src/app/@core/entities/product.entity';
+import { AuthenticationService } from 'src/app/@core/services/authentication.service';
 import { CartService } from 'src/app/@core/services/cart.service';
 import { FavoritesService } from 'src/app/@core/services/favorites.service';
 import { ProductService } from 'src/app/@core/services/product.service';
@@ -19,7 +20,9 @@ export class ProductItemComponent implements OnInit {
     private readonly favoritesService: FavoritesService,
     private readonly productService: ProductService,
     private readonly route: ActivatedRoute,
-    private readonly visitedService: VisitedService
+    private readonly visitedService: VisitedService,
+    private readonly authenticationService: AuthenticationService,
+    private readonly router: Router
   ) {}
 
   ngOnInit(): void {
@@ -40,6 +43,10 @@ export class ProductItemComponent implements OnInit {
   }
 
   public addToFavoritesButton() {
+    if(!this.authenticationService.isAuthenticated()){
+      this.router.navigate(['auth/login']);
+      return;
+    }
     this.favoritesService.add(this.product);
   }
 }

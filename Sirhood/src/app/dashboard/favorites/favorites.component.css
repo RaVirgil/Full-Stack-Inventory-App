@@ -1,0 +1,12 @@
+.products-list{
+    max-width: 40%;
+    width: 40%;   
+    background: #97aabd;
+    border-radius: 10px;
+    padding: 1%;
+    height: fit-content;
+}
+
+.title{
+    font-size: x-large;
+}

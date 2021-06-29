@@ -67,7 +67,9 @@ export class AddItemComponent implements OnInit {
   }
 
   public deleteTag(tag: string): void {
-    const index = this.addItemForm.value.tags.findIndex(tag);
+    const index = this.addItemForm.value.tags.findIndex(
+      (element: string) => element === tag
+    );
 
     if (index > -1) this.addItemForm.value.tags.splice(index, 1);
   }

@@ -1,10 +1,10 @@
 import { User } from "../entities/user.entity";
-import { EntityManager } from "mikro-orm";
+import { EntityManager, wrap } from "mikro-orm";
 import * as bcrypt from "bcrypt";
 import * as jwt from "jsonwebtoken";
 import { env } from "../env";
 
-export { loginUser, registerUser };
+export { loginUser, registerUser, updateUser };
 
 async function loginUser(em: EntityManager, user: User): Promise<Error | any> {
   if (!(em instanceof EntityManager)) return Error("invalid request");
@@ -16,6 +16,7 @@ async function loginUser(em: EntityManager, user: User): Promise<Error | any> {
 
   try {
     const foundUser = await em.findOne(User, { username: user.username });
+
     if (foundUser != null) {
       if (await bcrypt.compare(user.password, foundUser.password)) {
         return {
@@ -33,8 +34,7 @@ async function loginUser(em: EntityManager, user: User): Promise<Error | any> {
       }
       return "error";
     }
-  } catch (ex) {
-    console.log(ex);
+  } catch (ex) {    
     return ex;
   }
   return "error";
@@ -72,4 +72,27 @@ function generateAccessToken(id: string) {
     expiresIn: "10m",
   });
   return accessToken;
+}
+
+async function updateUser(em: EntityManager, user: any): Promise<Error | any> {
+  if (!(em instanceof EntityManager)) return Error("invalid request");
+
+  if (!user || typeof user !== "object" || !user.id)
+    return Error("invalid params");
+
+  try {
+    const foundUser = await em.findOne(User, { id: user.id });
+    if (foundUser != null) {
+      if (await bcrypt.compare(user.oldPassword, foundUser.password)) {
+        bcrypt.hash(user.newPassword, 10, function (_err, hash) {
+          wrap(foundUser).assign(user);
+          foundUser.password = hash;          
+          em.persistAndFlush(foundUser);
+        });
+      }
+    }
+    return "error";
+  } catch (ex) {
+    return ex;
+  }
 }

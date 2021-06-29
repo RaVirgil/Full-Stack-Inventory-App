@@ -48,7 +48,7 @@ async function removeCart(
     return next(ex);
   }
 
-  return res.status(200).send("ok");
+  return res.status(200).end();
 }
 
 async function removeFromCart(
@@ -69,7 +69,8 @@ async function removeFromCart(
     return next(ex);
   }
 
-  return res.status(200).send("ok");
+
+  return res.status(200).end();
 }
 
 async function postCart(
@@ -79,14 +80,14 @@ async function postCart(
 ) {
   if (!req.em || !(req.em instanceof EntityManager))
     return next(Error("EntityManager not available"));
-  console.log(req.body);
   try {
     await cartService.addToCart(req.em, req.params.id, req.body);
   } catch (ex) {
     return next(ex);
   }
 
-  return res.status(201).send("ok");
+
+  return res.status(200).end();
 }
 
 async function putCart(
@@ -103,5 +104,6 @@ async function putCart(
     return next(ex);
   }
 
-  return res.status(200).send("ok");
+
+  return res.status(200).end();
 }

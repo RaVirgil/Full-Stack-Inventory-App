@@ -1,0 +1,3 @@
+mongod --dbpath .\mongo_properties
+pt a porni serverul de mongo --> porneste compass
+

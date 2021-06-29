@@ -56,7 +56,7 @@ export class CategoryComponent implements OnInit, OnDestroy {
     const ref = this.snackBar.open(
       `${product.name} has been added to ${collection}`,
       'Undo',
-      { duration: 3000 }
+      { duration: 2000 }
     );
 
    this.subscriptions.push( ref.onAction().subscribe(() => {

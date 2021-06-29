@@ -1,3 +1,7 @@
 .card{
     cursor: pointer;
 }
+
+.content-container{
+    margin-top: 1rem;
+}

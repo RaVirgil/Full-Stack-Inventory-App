@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { HttpService } from '../api/http.service';
 import { Product } from '../entities/product.entity';
 
@@ -7,17 +7,25 @@ import { Product } from '../entities/product.entity';
   providedIn: 'root',
 })
 export class ProductService {
-  constructor(private readonly httpService: HttpService) {}
+  public mostPopular$: BehaviorSubject<Product[]> = new BehaviorSubject<
+    Product[]
+  >([]);
+
+  constructor(private readonly httpService: HttpService) {
+    this.getPopular();
+  }
 
   public getAll(): Observable<Product[]> {
     return this.httpService.get('sirhood/products');
   }
 
-  public getPopular(): Observable<Product[]>{
-    return this.httpService.get('sirhood/products/popular');
+  private getPopular() {
+    this.httpService
+      .get('sirhood/products/popular')
+      .subscribe((products) => this.mostPopular$.next(products));
   }
-  
-  public getById(id: string | null): Observable<Product>{    
+
+  public getById(id: string | null): Observable<Product> {
     return this.httpService.get(`sirhood/products/${id}`);
   }
 
@@ -28,7 +36,9 @@ export class ProductService {
   public getForSubCategory(
     category: string,
     subCategory: string
-  ): Observable<Product[]> {    
-    return this.httpService.get(`sirhood/products/category/${category}/subCategory/${subCategory}`);
+  ): Observable<Product[]> {
+    return this.httpService.get(
+      `sirhood/products/category/${category}/subCategory/${subCategory}`
+    );
   }
 }

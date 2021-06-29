@@ -15,8 +15,7 @@ async function addSession(
       em.persistAndFlush(session);
       return "ok";
     }
-  } catch (ex) {
-    console.log(ex);
+  } catch (ex) {   
     return ex;
   }
   return "error";
@@ -46,8 +45,7 @@ async function updateSession(
       await em.persistAndFlush(foundSession);
       return "ok";
     }
-  } catch (ex) {
-    console.log(ex);
+  } catch (ex) {   
     return ex;
   }
   return "error";
@@ -59,14 +57,12 @@ async function getSession(
 ): Promise<Error | any> {
   if (!(em instanceof EntityManager)) return Error("invalid request");
 
-  try {
-    console.log(token);
+  try {    
     let foundSession = await em.findOne(Session, { token: token });
     if (foundSession) {
       return foundSession;
     }
-  } catch (ex) {
-    console.log(ex);
+  } catch (ex) {  
     return ex;
   }
   return "error";
@@ -83,8 +79,7 @@ async function deleteSession(
     if (foundSession) {
       em.removeAndFlush(foundSession);
     }
-  } catch (ex) {
-    console.log(ex);
+  } catch (ex) {  
     return ex;
   }
   return "error";
