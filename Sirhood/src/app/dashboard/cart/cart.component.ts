@@ -54,9 +54,12 @@ export class CartComponent implements OnInit {
     });
   }
 
-  public getProductsPrice(cart: Product[]): number {      
-    let cost = 0; 
-    cart.forEach((product) => (cost += product.price));
+  public getProductsPrice(cart: Product[]): number {
+    let cost = 0;
+    cart.forEach((product: Product) => {
+      if (product.priceDeal > 0) cost += product.priceDeal;
+      else cost += product.price;
+    });
     return cost;
   }
 }
