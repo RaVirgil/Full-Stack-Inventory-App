@@ -28,14 +28,14 @@ export class SessionService {
       this.localStorageSerivce.put('sessionId', token);
       this.post(token);
 
-      this.httpService.get(`session/${token}`).subscribe((session: Session) => {
-        this.session.next(session);
+      this.httpService.get(`session/${token}`).subscribe((session: Session) => {        
+        this.session.next(session);   
       });
     } else {
       this.httpService
         .get(`session/${this.sessionId}`)
-        .subscribe((session: Session) => {
-          this.session.next(session);
+        .subscribe((session: Session) => {         
+          this.session.next(session);         
         });
     }
   }

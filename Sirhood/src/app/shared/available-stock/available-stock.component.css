@@ -15,3 +15,12 @@
   justify-content: space-between;
   font-size: medium;
 }
+
+.price{
+ text-decoration: line-through;
+ margin-right: 1rem;
+} 
+
+.prices{
+  display: flex;  
+}

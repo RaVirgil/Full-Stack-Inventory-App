@@ -24,9 +24,15 @@
   text-align: right;
 }
 
-.add-item-form{
-  height: 25rem;
-  
+.add-item-form{ 
   display: flex;
-  flex-flow: column wrap;
+  flex-flow: row wrap;
+}
+
+.left-half-inputs{
+
+}
+
+.right-half-inputs{
+
 }

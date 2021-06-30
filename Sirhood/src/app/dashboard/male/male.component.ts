@@ -22,9 +22,7 @@ export class MaleComponent implements OnInit {
     this.productSerivce.getAll().subscribe((result: Product[]) => {      
       result.forEach((product) => {        
         if (product.tags?.includes("male")) this.products.push(product);
-      });
-      console.log(result);
-      console.log(this.products);
+      });     
     });
   }
 

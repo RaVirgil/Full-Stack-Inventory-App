@@ -7,6 +7,7 @@ import * as productService from "../services/products.service";
 export { setSirhoodProductRoute };
 
 function setSirhoodProductRoute(router: Router): Router {
+  router.get("/all", getAllProducts);
   router.get("/", getProducts);
   router.get('/popular', getPopularProducts);
   router.get("/:id", getProduct);
@@ -34,6 +35,28 @@ async function getPopularProducts( req: IExpressRequest,
 
     if(result instanceof Error) next(result);
     return res.json(result);
+  }
+
+  async function getAllProducts(
+    req: IExpressRequest,
+    res: Response,
+    next: NextFunction
+  ) {
+    if (!req.em || !(req.em instanceof EntityManager))
+      return next(Error("EntityManager not available"));
+  
+    let products: Error | Product[] | null;
+    try {
+      products = await productService.getAllProducts(req.em);
+    } catch (ex) {
+      return next(ex);
+    }
+  
+    if (products instanceof Error) return next(products);
+  
+    if (products === null) return res.status(404).end();
+  
+    return res.json(products);
   }
 
 async function getProducts(

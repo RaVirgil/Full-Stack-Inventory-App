@@ -21,7 +21,7 @@
                 <p>{{product.price | currency: "EUR"}}</p>
             </div>
             <div class="info-right-container-buttons">
-                <button mat-stroked-button color="accent" (click) = "addToFavoritesButton()"> Move to favorites </button>
+                <button mat-stroked-button color="accent" (click) = "addToFavoritesButton()"> <mat-icon>favorite_border</mat-icon> </button>
                 <button mat-stroked-button color="warn" (click) = "deleteButton()"> Delete </button>
             </div>
         </div>

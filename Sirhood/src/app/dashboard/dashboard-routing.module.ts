@@ -16,7 +16,6 @@ import { ProfileComponent } from './profile/profile.component';
 import { QuestionsComponent } from './questions/questions.component';
 import { SearchComponent } from './search/search.component';
 import { SubcategoryComponent } from './subcategory/subcategory.component';
-import { UpcomingComponent } from './upcoming/upcoming.component';
 
 const routes: Routes = [
   {
@@ -35,7 +34,6 @@ const routes: Routes = [
     component: ProfileComponent,
     canActivate: [SessionGuard],
   },
-  { path: 'upcoming', component: UpcomingComponent },
   { path: 'product/:id', component: ProductItemComponent },
   {
     path: 'cart',

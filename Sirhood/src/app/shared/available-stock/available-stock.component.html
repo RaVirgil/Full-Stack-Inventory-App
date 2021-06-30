@@ -1,7 +1,18 @@
 <div [ngSwitch]="product.quantity" class="price-quantity-container">
-  <span>
-    {{ product.price | currency: "EUR" }}
+  <span [ngSwitch]="true">
+    <div *ngSwitchCase="product.priceDeal > 0">
+      <span class="prices"
+        ><p class="price">
+          {{ product.price | currency: "EUR" }}
+        </p>
+        <p>{{product.priceDeal | currency: 'EUR'}}</p>
+      </span>
+    </div>
+    <div *ngSwitchDefault><p >
+      {{ product.price | currency: "EUR" }}
+    </p></div>
   </span>
+
   <span *ngSwitchCase="0" class="red"> Not in stock </span>
   <span *ngSwitchDefault class="green">
     <span *ngIf="product.quantity < 10" class="orange"> Limited stock </span>

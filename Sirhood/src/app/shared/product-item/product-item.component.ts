@@ -13,7 +13,7 @@ import { VisitedService } from 'src/app/@core/services/visited.service';
   styleUrls: ['./product-item.component.css'],
 })
 export class ProductItemComponent implements OnInit {
-  public product: Product;
+  public product: Product = new Product();
 
   constructor(
     private readonly cartService: CartService,

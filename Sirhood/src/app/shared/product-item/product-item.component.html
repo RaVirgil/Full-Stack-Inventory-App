@@ -2,8 +2,8 @@
   <mat-grid-list cols="2" rowHeight="45%">
     <mat-grid-tile colspan="1" rowspan="2">
       <img
-      [src] = 'product.imageLink'
-        class="product-image"        
+        [src]="product.imageLink"
+        class="product-image"
         alt="Product image coming soon"
         routerLink="product/{{ product.id }}"
         onerror="this.src='../../assets/images/product-image-placeholder.png';"
@@ -14,7 +14,21 @@
       <section class="product-infos">
         <h1 class="title">{{ product?.name }}</h1>
         <h3 class="brand">Made by {{ product?.brand }}</h3>
-        <h3 class="price">{{ product?.price | currency: "USD" }}</h3>
+
+        <span [ngSwitch]="true">
+          <div *ngSwitchCase="product.priceDeal > 0" class="prices">
+            <p class="price">
+              {{ product.price | currency: "EUR" }}
+            </p>
+            <p>{{ product.priceDeal | currency: "EUR" }}</p>
+          </div>
+          <div *ngSwitchDefault class="prices">
+            <p>
+              {{ product.price | currency: "EUR" }}
+            </p>
+          </div>
+        </span>
+
         <p class="description">{{ product?.description }}</p>
         <div class="buttons">
           <button
@@ -29,8 +43,6 @@
           </button>
         </div>
       </section>
-    </mat-grid-tile>    
+    </mat-grid-tile>
   </mat-grid-list>
 </section>
-
-<app-visited></app-visited>

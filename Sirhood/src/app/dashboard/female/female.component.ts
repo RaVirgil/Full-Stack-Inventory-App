@@ -20,11 +20,9 @@ export class FemaleComponent implements OnInit {
 
   ngOnInit(): void {
     this.productSerivce.getAll().subscribe((result: Product[]) => {      
-      result.forEach((product) => {        
+      result.forEach((product) => {  
         if (product.tags?.includes("female")) this.products.push(product);
-      });
-      console.log(result);
-      console.log(this.products);
+      });     
     });
   }
 

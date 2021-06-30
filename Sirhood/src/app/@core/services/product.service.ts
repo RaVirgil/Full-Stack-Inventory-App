@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, interval, Observable } from 'rxjs';
 import { HttpService } from '../api/http.service';
 import { Product } from '../entities/product.entity';
+import { switchMap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
@@ -16,13 +17,15 @@ export class ProductService {
   }
 
   public getAll(): Observable<Product[]> {
-    return this.httpService.get('sirhood/products');
+    return this.httpService.get('sirhood/products/all');
   }
 
   private getPopular() {
-    this.httpService
-      .get('sirhood/products/popular')
-      .subscribe((products) => this.mostPopular$.next(products));
+    interval(30000)
+      .pipe(switchMap(() => this.httpService.get('sirhood/products/popular')))
+      .subscribe((products) => {
+        this.mostPopular$.next(products);       
+      });
   }
 
   public getById(id: string | null): Observable<Product> {

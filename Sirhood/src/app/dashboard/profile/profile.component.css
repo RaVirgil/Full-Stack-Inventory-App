@@ -6,6 +6,7 @@
 
 .main-wrapper .full-width,
 .main-wrapper .btn-block {
+	margin-top: 1rem;
 	width: 100%;
 }
 

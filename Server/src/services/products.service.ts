@@ -2,10 +2,11 @@ import { Product } from "../entities/product.entity";
 import { EntityManager, wrap, QueryOrder, QueryOrderMap } from "mikro-orm";
 import { Session } from "../entities/session.entity";
 import { groupBy, orderBy } from "lodash";
-import { CronJob } from "cron";
+
 
 export {
   getProducts,
+  getAllProducts,
   getProduct,
   getPopularProducts,
   updateProduct,
@@ -21,18 +22,13 @@ export {
 let mostPopularProducts: Product[] = [];
 
 async function calculatePopularProductsList(em: EntityManager) {
-  const cronJob = new CronJob("* * * * *", async () => {
-    
-    const result = await getVisitedProducts(em);   
-    if (!(result instanceof Error)) mostPopularProducts = result;  
-    console.log(mostPopularProducts);  
-  });
+  const minutes = 0.25;
+  const interval = minutes * 60 * 1000;
+  setInterval(async () => {
+    const result = await getVisitedProducts(em.fork());       
+    if (!(result instanceof Error)) mostPopularProducts = result;        
+  }, interval)  
 
-  if (!cronJob.running) {
-    cronJob.start();
-  }
-
-  
 }
 
 async function countProducts(em: EntityManager, activeOnly = false) {
@@ -116,6 +112,19 @@ async function getProducts(
     });
 
     return items;
+  } catch (ex) {
+    return ex;
+  }
+}
+
+async function getAllProducts(
+  em: EntityManager  
+): Promise<Error | Product[] | null> {
+  if (!(em instanceof EntityManager)) return Error("invalid request");  
+
+  try {
+    const item = await em.find(Product, {});
+    return item;
   } catch (ex) {
     return ex;
   }

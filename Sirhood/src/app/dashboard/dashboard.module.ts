@@ -5,7 +5,6 @@ import { DashboardComponent } from './dashboard.component';
 import { MaleComponent } from './male/male.component';
 import { FemaleComponent } from './female/female.component';
 
-import { UpcomingComponent } from './upcoming/upcoming.component';
 import { ProfileComponent } from './profile/profile.component';
 import { SharedModule } from '../shared/shared.module';
 import { CategoryComponent } from './category/category.component';
@@ -22,8 +21,7 @@ import { SearchComponent } from './search/search.component';
   declarations: [
     DashboardComponent,
     MaleComponent,
-    FemaleComponent,  
-    UpcomingComponent,
+    FemaleComponent,   
     ProfileComponent, 
     CategoryComponent,
     SubcategoryComponent,

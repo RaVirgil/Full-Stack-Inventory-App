@@ -6,17 +6,16 @@
       routerLink=""
       class="img-container"
     />
-  
-    <div  class="search-bar" >
-      <input      
-      type="text"
-      placeholder="Whatever the sir wants..."
-      [ngModel]="input"
-      (ngModelChange)="inputChanged($event)">
+
+    <div class="search-bar">
+      <input
+        type="text"
+        placeholder="Whatever the sir wants..."
+        [ngModel]="input"
+        (ngModelChange)="inputChanged($event)"
+      />
       <mat-icon>search</mat-icon>
     </div>
-      
-    
 
     <span class="auth-cart-fav-buttons">
       <div [ngSwitch]="isAuthenticated()">
@@ -44,11 +43,11 @@
 
   <mat-toolbar-row class="down-container">
     <div class="header-links-left">
-      <app-categories-menu> </app-categories-menu>      
+      <app-categories-menu> </app-categories-menu>
     </div>
 
     <div class="header-links-right">
-      <a mat-button routerLink="/questions"> Q&A </a>
+      <a mat-button routerLink=""> Q&A </a>
       <a mat-button routerLink="/contact"> Contact </a>
     </div>
   </mat-toolbar-row>

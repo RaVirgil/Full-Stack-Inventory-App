@@ -56,9 +56,8 @@ export class PaymentComponent implements OnInit {
     });
   }
 
-  public pay(): void { 
-
-    const formInfo: UserInfo = {...this.payForm.value};
+  public pay(): void {
+    const formInfo: UserInfo = { ...this.payForm.value };
     const order: Order = {
       userInfo: formInfo,
       sessionId: this.sessionService.getSessionId()!,
@@ -66,7 +65,7 @@ export class PaymentComponent implements OnInit {
       products: this.cartService.cart$.getValue(),
       orderedAt: new Date(),
       status: '',
-      id: ''
+      id: '',
     };
 
     this.orderService.post(order);

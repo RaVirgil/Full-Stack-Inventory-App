@@ -40,8 +40,7 @@ async function updateSession(
   try {   
     let foundSession = await em.findOne(Session, { token: session.token });   
     if (foundSession) {
-      wrap(foundSession).assign(session);
-      console.log(foundSession);
+      wrap(foundSession).assign(session);     
       await em.persistAndFlush(foundSession);
       return "ok";
     }

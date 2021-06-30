@@ -74,8 +74,7 @@ async function updateSession(
   if (!req.em || !(req.em instanceof EntityManager))
     return next(Error("EntityManager not available"));
   
-  try {   
-    console.log(req.body);
+  try {    
     await sessionService.updateSession(req.em, req.body);
   } catch (ex) {
     return next(ex);

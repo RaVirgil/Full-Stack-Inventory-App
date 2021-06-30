@@ -14,7 +14,7 @@ export class VisitedComponent implements OnInit {
 
   ngOnInit(): void {
     this.visitedService.visited$.subscribe((visited: Product[]) => {
-      this.visitedProducts = visited;    
+      this.visitedProducts = visited.slice(Math.max(visited.length - 5, 0));    
     });
   }
 

@@ -19,7 +19,7 @@ export class SearchComponent implements OnInit {
     private readonly cartService: CartService,
     private readonly favoritesService: FavoritesService,
     private readonly authenticationService: AuthenticationService,
-    private readonly router:Router
+    private readonly router: Router
   ) {}
 
   ngOnInit(): void {
@@ -27,14 +27,12 @@ export class SearchComponent implements OnInit {
     this.route.params.subscribe((params) => {
       input = params.input;
 
-      setTimeout(() => {
-        this.searchedProducts = this.searchService.search(input);
-      }, 3000);
+      this.searchedProducts = this.searchService.search(input);
     });
   }
 
   public addToCart(product: Product) {
-    this.cartService.add(product);    
+    this.cartService.add(product);
   }
 
   public addToFavorites(product: Product) {
@@ -43,6 +41,6 @@ export class SearchComponent implements OnInit {
       return;
     }
 
-    this.favoritesService.add(product); 
+    this.favoritesService.add(product);
   }
 }
